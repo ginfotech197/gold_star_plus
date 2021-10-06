@@ -1,0 +1,308 @@
+<!-- <div style="text-align: center; color: white; font-size: 30px; font-weight: bold;"><marquee behavior="slide" direction="" class="pt-2">Welcome</marquee></div> -->
+<div [ngClass]="projectData.colorScheme" id="outer-div" style="height: 480px; ">
+
+  <div class="d-flex flex-row bd-highlight mb-3  " id="bg">
+    <div class="p-2 background body  bd-highlight" id="background" >
+      <div fxLayout="row" fxLayoutAlign="" >
+        <div id="table-1" fxFlex="35" class="mt-5">
+          <div class="">
+            <!-- <div class="col-3" style="background-size: cover; color: white;width: 60px;">
+              <div style="background-color: red;">0<br><div><input type="text" value=""></div></div>
+            </div>
+            <div class="col-3"></div>
+            <div class="col-3" style="background-color: red; background-size: cover; color: white;">1</div>
+            <div class="col-3"></div> -->
+            <table class="table mt-3" style=" text-align: center; background-color: rgba(255, 47, 144, 0.507);">
+
+              <tbody>
+<!--                <tr>-->
+<!--                  <td><div class="td-style"><a id="red-box" (click)="setGameInputSet(singleNumbers[9],1,1)">{{singleNumbers[9].singleNumber}}</a> <br><input #single9 type="number" (blur)="setValue(single9.value,singleNumbers[9])" [value]="singleNumbers[9].quantity || ''" class="input-td" min="1"></div></td>-->
+<!--                  <td><div class="td-style"><a id="red-box" (click)="setGameInputSet(singleNumbers[0],1,1)">{{singleNumbers[0].singleNumber}}</a> <br><input #single0 type="number" (blur)="setValue(single0.value,singleNumbers[0])" [value]="singleNumbers[0].quantity || ''" class="input-td" min="1"></div> </td>-->
+<!--                  <td><div class="td-style"><a id="red-box" (click)="setGameInputSet(singleNumbers[1],1,1)">{{singleNumbers[1].singleNumber}}</a> <br><input #single1 type="number" (blur)="setValue(single1.value,singleNumbers[1])" [value]="singleNumbers[1].quantity || ''" class="input-td" min="1"></div></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <td><div class="td-style"><a id="red-box" (click)="setGameInputSet(singleNumbers[2],1,1)">{{singleNumbers[2].singleNumber}}</a><br><input #single2 type="number" (blur)="setValue(single2.value,singleNumbers[2])" [value]="singleNumbers[2].quantity || ''" class="input-td" min="1"></div></td>-->
+<!--                  <td><div class="td-style"><a id="red-box" (click)="setGameInputSet(singleNumbers[3],1,1)">{{singleNumbers[3].singleNumber}}</a><br><input #single3 type="number" (blur)="setValue(single3.value,singleNumbers[3])" [value]="singleNumbers[3].quantity || ''" class="input-td" min="1"></div></td>-->
+<!--                  <td><div class="td-style"><a id="red-box" (click)="setGameInputSet(singleNumbers[4],1,1)">{{singleNumbers[4].singleNumber}}</a><br><input #single4 type="number" (blur)="setValue(single4.value,singleNumbers[4])" [value]="singleNumbers[4].quantity || ''" class="input-td" min="1"></div></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <td><div class="td-style"><a id="red-box" (click)="setGameInputSet(singleNumbers[5],1,1)">{{singleNumbers[5].singleNumber}}</a><br><input #single5 type="number" (blur)="setValue(single5.value,singleNumbers[5])" [value]="singleNumbers[5].quantity || ''" class="input-td" min="1"></div></td>-->
+<!--                  <td><div class="td-style"><a id="red-box" (click)="setGameInputSet(singleNumbers[6],1,1)">{{singleNumbers[6].singleNumber}}</a><br><input #single6 type="number" (blur)="setValue(single6.value,singleNumbers[6])" [value]="singleNumbers[6].quantity || ''" class="input-td" min="1"></div></td>-->
+<!--                  <td><div class="td-style"><a id="red-box" (click)="setGameInputSet(singleNumbers[7],1,1)">{{singleNumbers[7].singleNumber}}</a><br><input #single7 type="number" (blur)="setValue(single7.value,singleNumbers[7])" [value]="singleNumbers[7].quantity || ''" class="input-td" min="1"></div></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <td></td>-->
+<!--                  <td><div class="td-style" style="background-color: red;border: 6px solid white; border-radius: 10px; color: white; font-weight:bold ; border-style:  double;width: 100%;"><a style="background-color: transparent" (click)="setGameInputSet(singleNumbers[8],1,1)">{{singleNumbers[8].singleNumber}}</a><br><input #single8 type="number" (blur)="setValue(single8.value,singleNumbers[8])" min="1" [value]="singleNumbers[8].quantity || ''" style="width: 90%; border-radius:5px; height: 39px;"></div></td>-->
+<!--                  <td></td>-->
+<!--                </tr>-->
+
+                  <tr>
+                    <td><div class="td-style" ><button class="td-style-button" id="red-box" (click)="initializeValue(singleNumbers[9])">{{singleNumbers[9].singleNumber}}</button> <br><input #single9 type="number"  (blur)="setValue(single9.value,singleNumbers[9])" [value]="singleNumbers[9].quantity || ''" class="input-td" min="1"></div></td>
+                    <td><div class="td-style" ><button class="td-style-button" id="red-box" (click)="initializeValue(singleNumbers[0])">{{singleNumbers[0].singleNumber}}</button> <br><input #single0 type="number"  (blur)="setValue(single0.value,singleNumbers[0])" [value]="singleNumbers[0].quantity || ''" class="input-td" min="1"></div> </td>
+                    <td><div class="td-style" ><button class="td-style-button" id="red-box" (click)="initializeValue(singleNumbers[1])">{{singleNumbers[1].singleNumber}}</button> <br><input #single1 type="number"  (blur)="setValue(single1.value,singleNumbers[1])" [value]="singleNumbers[1].quantity || ''" class="input-td" min="1"></div></td>
+                  </tr>
+                  <tr>
+                    <td><div class="td-style" ><button class="td-style-button" id="red-box" (click)="initializeValue(singleNumbers[2])">{{singleNumbers[2].singleNumber}}</button><br><input #single2 type="number"  (blur)="setValue(single2.value,singleNumbers[2])" [value]="singleNumbers[2].quantity || ''" class="input-td" min="1"></div></td>
+                    <td><div class="td-style" ><button class="td-style-button" id="red-box" (click)="initializeValue(singleNumbers[3])">{{singleNumbers[3].singleNumber}}</button><br><input #single3 type="number"  (blur)="setValue(single3.value,singleNumbers[3])" [value]="singleNumbers[3].quantity || ''" class="input-td" min="1"></div></td>
+                    <td><div class="td-style" ><button class="td-style-button" id="red-box" (click)="initializeValue(singleNumbers[4])">{{singleNumbers[4].singleNumber}}</button><br><input #single4 type="number"  (blur)="setValue(single4.value,singleNumbers[4])" [value]="singleNumbers[4].quantity || ''" class="input-td" min="1"></div></td>
+                  </tr>
+                  <tr>
+                    <td><div class="td-style" ><button class="td-style-button" id="red-box" (click)="initializeValue(singleNumbers[5])">{{singleNumbers[5].singleNumber}}</button><br><input #single5 type="number"  (blur)="setValue(single5.value,singleNumbers[5])" [value]="singleNumbers[5].quantity || ''" class="input-td" min="1"></div></td>
+                    <td><div class="td-style" ><button class="td-style-button" id="red-box" (click)="initializeValue(singleNumbers[6])">{{singleNumbers[6].singleNumber}}</button><br><input #single6 type="number"  (blur)="setValue(single6.value,singleNumbers[6])" [value]="singleNumbers[6].quantity || ''" class="input-td" min="1"></div></td>
+                    <td><div class="td-style" ><button class="td-style-button" id="red-box" (click)="initializeValue(singleNumbers[7])">{{singleNumbers[7].singleNumber}}</button><br><input #single7 type="number"  (blur)="setValue(single7.value,singleNumbers[7])" [value]="singleNumbers[7].quantity || ''" class="input-td" min="1"></div></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td><div class="td-style"  style="background-color: red;border: 6px solid white; border-radius: 10px; color: white; font-weight:bold ; border-style:  double;width: 100%;"><button class="td-style-button" style="background-color: transparent; color: rgb(255, 255, 255); background-color: #0c72db;" (click)="initializeValue(singleNumbers[8])">{{singleNumbers[8].singleNumber}}</button><br><input #single8 type="number" (blur)="setValue(single8.value,singleNumbers[8])" min="1" [value]="singleNumbers[8].quantity || ''" style="width: 90%; border-radius:5px; height: 39px;"></div></td>
+                    <td></td>
+                  </tr>
+
+              </tbody>
+            </table>
+            <div style="padding-top: 3px;">
+              <div class="left-div" style="padding-top: ; margin-left: 20px; text-align: center;" >
+                <span class="d-flex" style="padding-left: 25px; margin-top: 40px;" ><h4 style="font-weight: bolder; font-size: large; padding-top: 30px; padding-left: 150px;color: white;">{{totalTicketPurchased}}</h4></span>
+               </div>
+              <div class=" d-flex mt-" style="height: 50px; border-radius: 10px;margin-top: 16px; ">
+                <!-- <button style="font-size: 100%;   width: 50%;height: 145%;  border: 8px solid rgb(255, 255, 255); border-style: double;" class="btn btn-danger ml-1 btn-responsive" [routerLink]="['/terminalReport']">REPORT</button> -->
+                <button (click)="resetMatrixValue()" style="font-size: 100%;  width: 50%;  border: 8px solid rgb(253, 253, 253); border-style: double; height: 145%; font-size: 30px;font-weight: bolder;" class="btn btn-success ml-1 btn-responsive">CLEAR</button>
+                <button class="btn btn-info ml-1 btn-responsive" id="print-button" style="font-size: 100%;   width: 50%;height: 145%;  border: 8px solid rgb(255, 255, 255); border-style: double; font-size: 30px;font-weight: bolder;"
+                        [printStyle]="{h1 : {'color': 'red'}, h2 : {'border': 'solid 3px'}}" printSectionId="print-section" ngxPrint>PRINT</button>
+              </div>
+            </div>
+
+            <div class="col-4" style="" >
+              <!-- <div class="left-div" style="padding-top: ;" >
+               <span class="d-flex" style="padding-left: 25px; margin-top: 40px;" ><h4 style="font-weight: bolder; font-size: large; padding-top: 30px; padding-left: 150px;color: white;">{{totalTicketPurchased}}</h4></span>
+              </div> -->
+            </div>
+          </div>
+
+
+        </div>
+
+        <div fxFlex="30">
+          <div class="text-center" style="">
+            <div style="padding-top: 55px;text-align: center; background-repeat: no-repeat;min-height: 100px;font-weight: bold; ">
+
+                <ngx-wheel
+                #wheel
+                width='300'
+                height='300'
+                spinDuration='8'
+                [disableSpinOnClick]='true'
+                [items]='items'
+                [innerRadius]='20'
+                [spinAmount]='10'
+                [textOrientation]='textOrientation'
+                [textAlignment]='textAlignment'
+                pointerStrokeColor='black'
+                pointerFillColor='#DC143C'
+                [idToLandOn]='idToLandOn'
+                (onSpinStart)='before()'
+                (onSpinComplete)='after()'
+                style=" padding-top: 14px;"
+
+              >
+            </ngx-wheel>
+            <div class="mt-5" style="text-align: center; margin-top: 40px !important; ">
+              <div class="d-flex" style="">
+                <div class="col-1"></div>
+                <div class="" style="border: 5px solid white; min-width: 85%;border-style: double; border-radius: 10px;">
+                  <div [hidden]="value>100 || value<0" style="color: white; font-weight: bold; font-size: x-large; background-color: red; border: 1px solid black; border-radius: 5px;">{{remainingTime}}</div>
+                  <div [hidden]="!(value>100 || value<0)" style="color: white; font-weight: bold; font-size: x-large; background-color: red; border: 1px solid black; border-radius: 5px;">00:00:00</div>
+                  <div [hidden]="value>100 || value<0" style="color: white; font-weight: bold; font-size: x-large; background-color: yellow; border: 1px solid black; border-radius: 5px;"><mat-progress-bar [color]="color" class="green-progress" mode="determinate"  [value]="value"></mat-progress-bar></div>
+                  <div [hidden]="!(value>100 || value<0)" style="color: white; font-weight: bold; font-size: x-large; background-color: yellow; border: 1px solid black; border-radius: 5px;"><mat-progress-bar [color]="color" class="green-progress" mode="indeterminate"  [value]="value"></mat-progress-bar></div>
+                </div>
+                <div class="col-3"></div>
+              </div>
+            </div>
+<!--              <div class="d-flex justify-content-between" style="background-color: rgb(255, 230, 0);height: 43px; border: 5px solid rgb(247, 38, 84); border-style: double; width: 105%; color: white;margin: 10px" >-->
+<!--                <button matBadge="{{single.quantity}}"  style="color: rgb(28, 12, 90); font-weight: bold; "-->
+<!--                        *ngFor="let single of singleNumbers; let i=index" (click)="setGameInputSet(single,1,1)"-->
+<!--                        class="single-number-button-{{i}}" type="button">{{ single.singleNumber }}</button>-->
+<!--              </div>-->
+              <div style="padding-top: 35px; padding-right: 15px;">
+                <div class="d-flex" style="background-image: url('assets/images/number-background.png'); background-repeat: no-repeat;background-size: cover; padding-bottom: 20px;  width: 435px;
+                margin-left:10%;padding-right: 20px;">
+                  <div class="chips-outer-div " style="padding-top: 8%; padding-left: 16%;">
+                    <input *ngFor="let x of chips; let i= index" class="chips-button-{{i}}" [ngClass]="(selectedChip==x)?'selectedChipStyle':''" mat-fab value="bold" type="button" value="" (click)="changeChip(x)">
+                  </div>
+                </div>
+              </div>
+              <div class=" d-flex" style="height: 50px; border-radius: 10px; margin-left: 10%;">
+                <button [disabled]="value>100 || value<0" (click)="saveUserPlayInputDetails()" style="font-size: 100%; width: 100%;height: 145%;  border: 8px solid rgb(255, 255, 255); border-style: double; font-size: 30px;font-weight: bolder;" class="btn btn-warning ml-1 btn-responsive">BUY</button>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+
+
+        <div fxFlex="35" class=" ml-2" style=" color: white; font-weight: bold;padding-top: 35px;">
+          <div class="container right-container" >
+            <table class="" >
+              <thead >
+                <tr >
+                  <th colspan="4">
+                    <div>{{currentDate}}&nbsp;
+                    </div>
+
+                  </th>
+                  <th colspan="4" style="padding-left: 100px;">
+                    <div style="text-align: end; color: white;">RESULT SHEET</div>
+                  </th>
+                </tr>
+              </thead>
+            </table>
+          <table class="table table-bordered " id="result-table" style="margin-bottom: 4px; border-radius: ; background-image: url('/assets/images/resultBackgroung.jpg');background-size: cover;">
+
+            <tbody>
+                <ng-container *ngIf="currentDateResult">
+                  <tr *ngFor="let row of currentDateResult.result.slice(0, currentDateResult.result.length % columnNumber2  === 0 ? currentDateResult.result.length / columnNumber2 : currentDateResult.result.length / columnNumber2 + 1); let idx = index">
+                    <td scope="row" class="current-result" colspan="2" *ngFor="let result of currentDateResult.result.slice(idx * columnNumber2, idx * columnNumber2 + columnNumber2)" class="text-center align-middle">
+                      <div class=" result-heading current-result" style="font-size: larger;">{{result.end_time.slice(0,5)}}</div>
+                      <div class="bd-highlight current-result" style="min-height: 40px;">
+                        <span *ngIf="result.single_number!=null" style="font-size: 55 !important;">{{result.single_number}}</span>
+                        <span *ngIf="result.single_number==null" style="font-size: 25px;">
+                          <img src="assets/images/singleStar3.gif" height="40px" alt="">
+                        </span>
+                      </div>
+                      <!-- <div class="bd-highlight current-result" style="background-color: rgb(28, 35, 253);"><img src="assets/images/singleStar.gif" height="10px" alt=""></div> -->
+                    </td>
+                  </tr>
+                </ng-container>
+
+            </tbody>
+          </table>
+          <!-- <div class=" d-flex" style="height: 60px; border-radius: 10px;">
+            <button style="font-size: 100%;   width: 50%;height: 145%;  border: 8px solid rgb(255, 255, 255); border-style: double;" class="btn btn-lg  btn-responsive btn-primary">INFO</button>
+            <button class="btn btn-success ml-1 btn-responsive"  style="font-size: 100%;   width: 50%;height: 145%;  border: 8px solid rgb(255, 255, 255); border-style: double;"
+                      (click)="resetMatrixValue()">CLEAR</button>
+          </div> -->
+          <!-- <div class=" mt-3" style="height: 50px; border-radius: 10px; padding-left: 100px;">
+            <button style="font-size: 100%; width: 50%;text-align: center; border: 8px solid rgb(255, 255, 255);border-style: double; height: 145%; font-size: 30px;font-weight: bolder;" class="btn btn-lg  btn-responsive btn-primary" [routerLink]="['/terminalReport']"  >INFO</button>
+            <button style="font-size: 100%;   width: 50%;height: 145%;  border: 8px solid rgb(255, 255, 255); border-style: double; font-size: 30px;font-weight: bolder;" class="btn btn-danger mt-1 btn-responsive" [routerLink]="['/terminalReport']">REPORT</button>
+
+          </div> -->
+          <div style="padding-top: px;">
+            <div class="right-div" style="padding-top: ; margin-left: 60px;" >
+              <span class="d-flex" style="padding-left: 25px; margin-top: 40px;" >
+                <!-- MRP -->
+                <h4 style="font-weight: bolder; font-size: large; padding-top: 35px; padding-left: 100px;color: white;">10</h4>
+                <!-- WIN -->
+                <h4 style="font-weight: bolder; font-size: large; padding-top: 35px; padding-left: 69px;color: white;">90</h4>
+              </span>
+             </div>
+            <div class=" d-flex mt-" style="height: 50px; border-radius: 10px;margin-top: 16px; ">
+              <button style="font-size: 100%; width: 50%;text-align: center; border: 8px solid rgb(255, 255, 255);border-style: double; height: 145%; font-size: 30px;font-weight: bolder;" class="btn btn-lg  btn-responsive btn-primary" [routerLink]="['/terminalReport']"  >INFO</button>
+              <button style="font-size: 100%;   width: 50%;height: 145%;  border: 8px solid rgb(255, 255, 255); border-style: double; font-size: 30px;font-weight: bolder;" class="btn btn-danger ml-1 btn-responsive" [routerLink]="['/terminalReport']">REPORT</button>
+            </div>
+          </div>
+          <!-- <div class=" d-flex" style="height: 60px; border-radius: 10px;padding-top: 20px; padding-left: 97px;">
+            <button style="font-size: 100%;   width: 50%;height: 145%;  border: 8px solid rgb(255, 255, 255); border-style: double;" class="btn btn-danger ml-1 btn-responsive" [routerLink]="['/terminalReport']">REPORT</button>
+            <button class="btn btn-info ml-1 btn-responsive" id="print-button" style="font-size: 100%;   width: 50%;height: 145%;  border: 8px solid rgb(255, 255, 255); border-style: double;"
+                    [printStyle]="{h1 : {'color': 'red'}, h2 : {'border': 'solid 3px'}}" printSectionId="print-section" ngxPrint>PRINT</button>
+          </div> -->
+          <!-- <div class=" d-flex" style="height: 50px; border-radius: 10px; padding-top: 20px;padding-left: 96px;">
+            <button (click)="saveUserPlayInputDetails()" style="font-size: 100%; width: 100%;height: 145%;  border: 8px solid rgb(255, 255, 255); border-style: double;" class="btn btn-warning ml-1 btn-responsive">BUY</button>
+          </div> -->
+
+        </div>
+
+
+        </div>
+
+      </div>
+      <!-- <div><marquee behavior="" direction="" style="color: white; font-size: 50px; font-weight: bold;">Welcome</marquee></div> -->
+
+
+
+    </div>
+  </div>
+
+
+</div>
+
+
+
+<div id="print-section" directPrint="true" style="border: 2px solid black; margin-left: 0; display: none" *ngIf="lastPurchasedTicketDetails">
+  Rajshree single
+  <div>
+    <div >Terminal: {{lastPurchasedTicketDetails.data.play_master.terminal.terminalId}}</div>
+    <div >Ticket ID: {{lastPurchasedTicketDetails.data.play_master.barcodeNumber}}</div>
+    <div >Draw time: {{lastPurchasedTicketDetails.data.play_master.drawTime.visibleTime}}</div>
+    <div >Ticket time: {{lastPurchasedTicketDetails.data.play_master.ticketTakenTime}}</div>
+    <div >Total point: {{lastPurchasedTicketDetails.data.amount}}</div>
+  </div>
+  <div>
+    <div style="font-weight: bold;" *ngIf="lastPurchasedTicketSingle.length">Single</div>
+      <table>
+        <tbody>
+          <tr *ngFor="let single of lastPurchasedTicketSingle.
+          slice(0, lastPurchasedTicketSingle.length % 5  === 0 ?
+           lastPurchasedTicketSingle.length / 5 :
+            lastPurchasedTicketSingle.length / 5 + 1); let idx = index">
+            <td *ngFor="let x of lastPurchasedTicketSingle.slice(idx * 5, idx * 5 + 5)" style="white-space: nowrap">
+              {{x.singleNumber}}-{{x.quantity}},
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  <div>
+    <div style="font-weight: bold;" *ngIf="lastPurchasedTicketTriple.length">Triple</div>
+    <table>
+      <tbody>
+        <tr *ngFor="let triple of lastPurchasedTicketTriple.
+        slice(0, lastPurchasedTicketTriple.length % 5  === 0 ?
+         lastPurchasedTicketTriple.length / 5 :
+          lastPurchasedTicketTriple.length / 5 + 1); let idx = index">
+          <td *ngFor="let x of lastPurchasedTicketTriple.slice(idx * 5, idx * 5 + 5)" style="white-space: nowrap">
+            {{x.visibleTripleNumber}} - {{x.quantity}},
+          </td>
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!--<button (click)="printDiv()">Print div</button>-->
+<!--end testing print-->
+
+
+
+<!-- <button id="print-button" [printStyle]="{h1 : {'color': 'red'}, h2 : {'border': 'solid 3px'}}" printSectionId="print-section" ngxPrint>print</button> -->
+
+<div class="d-flex" *ngIf="!isProduction">
+  <div class="col-3">
+    <!-- <mat-slide-toggle (change)="showDevArea=!showDevArea">{{showDevArea?"Hide Developer Area":"Show Developer Area"}}</mat-slide-toggle> -->
+  </div>
+</div>
+
+<div class="d-flex" *ngIf="!isProduction && showDevArea">
+  <div class="col-6">
+    <button id="print-button" [printStyle]="{h1 : {'color': 'red'}, h2 : {'border': 'solid 3px'}}" printSectionId="print-section" ngxPrint>print</button>
+      <pre>
+        <!-- singleNumbers = {{singleNumbers | json}} -->
+        todayLastResult = {{todayLastResult | json}}
+      </pre>
+  </div>
+  <div class="col-3">
+      <pre>
+        <!-- activeDrawTime = {{activeDrawTime | json}} -->
+      </pre>
+  </div>
+  <!-- <div class="col-3"><pre>userGameInput = {{userGameInput | json}}</pre>
+
+  </div> -->
+</div>
