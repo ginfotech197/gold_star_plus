@@ -210,7 +210,7 @@
 
 
   <!--For Terminal-->
-  <mat-toolbar color="golden" style="background-image: url('/assets/images/terminal-header.jpg');background-position: center top;width: 100%;max-width: 1366px; position: relative; background-repeat: no-repeat;" *ngIf="isAuthenticated && isTerminal">
+  <mat-toolbar color="golden" style="background-image: linear-gradient(to right, yellow , red,yellow);background-position: center top;width: 100%;max-width: 1366px; position: relative; background-repeat: no-repeat;" *ngIf="isAuthenticated && isTerminal">
 <!--    <p style="font-size: 90px;">hi{{deviceXs}}</p>-->
 <!--    for desktop view-->
     <mat-toolbar-row fxLayoutAlign="space-between center" *ngIf="!deviceXs">
@@ -218,17 +218,17 @@
           <!-- <img src="assets/images/single-coin.png" height="100px" alt=""> -->
           <button mat-button [routerLink]="['terminal']">
             <i class="bi bi-bookmark-star-fill" style="font-size: 25px; color: white;"></i>
-            <span class="logo" style="color: white;">{{user.userName}}</span>
+            <!-- <span class="logo" style="color: white;">{{user.userName}}</span> -->
           </button>
           <div fxLayout="row" class="mb-2 mt-1" style="">
-             <div *ngIf="!deviceXs">
+             <!-- <div *ngIf="!deviceXs">
               <button class=" mt-4 ml-1 mr-1" style="font-size: large;  background-color: rgb(255, 147, 46); border-radius: 5px; width: 80px; text-align: center; border: 2px solid greenyellow; border-style: dotted;" mat-button
                       [routerLink]="['/chart']"
                       routerLinkActive="MyActiveMenu"
                       [routerLinkActiveOptions]="{exact: true}">Result</button>
-            </div>
+            </div> -->
 
-            <div class=" mt-2  mb-2" style="font-size: large; border-radius: 5px; width: 80px; text-align: center; color: white;">Balc<br>{{user.balance}}</div>
+            <!-- <div class=" mt-2  mb-2" style="font-size: large; border-radius: 5px; width: 80px; text-align: center; color: white;">Balc<br>{{user.balance}}</div> -->
           </div>
           <!-- <button class=" mt-4 mb-4" style="font-size: 15px;  background-color: rgb(255, 147, 46); border-radius: 5px; width: 80px; text-align: center; border: 2px solid greenyellow; border-style: dotted;" mat-button
                   (click)="refresh()"
@@ -238,7 +238,9 @@
             routerLinkActive="MyActiveMenu"
             [routerLinkActiveOptions]="{exact: true}"></i> -->
       </div>
-
+      <div fxLayout="row">
+        <div style="font-weight: bolder; font-size: 50px;">GoldStar Plus</div>
+      </div>
 
       <div fxLayout="row">
 <!--        <div class="pt-4"  style="font-size: large; width: 150px">-->
@@ -255,16 +257,16 @@
             [value]="value">
           </mat-progress-spinner> -->
 <!--        </div>-->
-        <a class="mt-3" href="assets/app/RajshreeSingle.apk" style="color: yellow; background-color: transparent"><mat-icon style="font-size: 30px;">android</mat-icon></a>
-        <i style="color: white; font-size: 30px; font-weight: bold;" class="bi bi-arrow-clockwise mt-3 mr-3" (click)="refresh()"
+        <!-- <a class="mt-3" href="assets/app/RajshreeSingle.apk" style="color: yellow; background-color: transparent"><mat-icon style="font-size: 30px;">android</mat-icon></a> -->
+        <!-- <i style="color: white; font-size: 30px; font-weight: bold;" class="bi bi-arrow-clockwise mt-3 mr-3" (click)="refresh()"
         routerLinkActive="MyActiveMenu"
-        [routerLinkActiveOptions]="{exact: true}"></i>
+        [routerLinkActiveOptions]="{exact: true}"></i> -->
 
-        <span class="mt-2  mr-2" style="font-size: large;color: white; text-align: center;">Next draw<br>{{activeDrawTime.visibleTime}}</span>
-        <div class="clock-container clock2 ml-1 mt-3 pt-1" *ngIf="alwaysTime" style="font-size: large; width: 150px">
+        <!-- <span class="mt-2  mr-2" style="font-size: large;color: white; text-align: center;">Next draw<br>{{activeDrawTime.visibleTime}}</span> -->
+        <!-- <div class="clock-container clock2 ml-1 mt-3 pt-1" *ngIf="alwaysTime" style="font-size: large; width: 150px">
           <div class="time">{{alwaysTime}}</div>
-        </div>
-          <button mat-button *ngIf="isAuthenticated" (click)="logout()" style="color: white;">Logout<i class="ri-logout-circle-r-line ri-2x"></i></button>
+        </div> -->
+          <!-- <button mat-button *ngIf="isAuthenticated" (click)="logout()" style="color: white;">Logout<i class="ri-logout-circle-r-line ri-2x"></i></button> -->
       </div>
     </mat-toolbar-row>
 <!--    for mobile view-->
