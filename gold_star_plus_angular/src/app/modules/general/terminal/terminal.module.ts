@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { TerminalRoutingModule } from './terminal-routing.module';
 import {TerminalComponent} from '../../../pages/terminal/terminal.component';
-// import {CurrentResultComponent} from '../../../pages/current-result/current-result.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -17,7 +16,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {NgxPrintModule} from 'ngx-print';
 import {NgxWheelModule} from 'ngx-wheel';
 import {MatProgressBar, MatProgressBarModule} from '@angular/material/progress-bar';
-// import {CurrentResultModule} from '../../current-result/current-result.module';
+import {CurrentResultModule} from '../current-result/current-result.module';
 
 
 @NgModule({
@@ -38,14 +37,13 @@ import {MatProgressBar, MatProgressBarModule} from '@angular/material/progress-b
     NgxPrintModule,
     NgxWheelModule,
     MatProgressBarModule,
-    // CurrentResultModule
+    CurrentResultModule
   ],
   declarations: [
     TerminalComponent
   ],
   exports: [
-    TerminalComponent,
-    // CurrentResultComponent
+    TerminalComponent
   ]
 })
 export class TerminalModule { }
