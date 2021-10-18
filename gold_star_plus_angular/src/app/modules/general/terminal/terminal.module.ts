@@ -18,6 +18,7 @@ import {NgxPrintModule} from 'ngx-print';
 import {NgxWheelModule} from 'ngx-wheel';
 import {MatProgressBar, MatProgressBarModule} from '@angular/material/progress-bar';
 import {CurrentResultModule} from '../current-result/current-result.module';
+import {CurrentResultComponent} from '../../../pages/current-result/current-result.component';
 
 
 @NgModule({
@@ -41,11 +42,11 @@ import {CurrentResultModule} from '../current-result/current-result.module';
     CurrentResultModule
   ],
   declarations: [
-    TerminalComponent
+    TerminalComponent,
+    CurrentResultComponent
   ],
   exports: [
-    TerminalComponent,
-    // CurrentResultComponent
+    TerminalComponent
   ]
 })
 export class TerminalModule { }
