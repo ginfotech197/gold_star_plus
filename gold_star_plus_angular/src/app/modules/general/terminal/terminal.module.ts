@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { TerminalRoutingModule } from './terminal-routing.module';
 import {TerminalComponent} from '../../../pages/terminal/terminal.component';
+// import {CurrentResultComponent} from '../../../pages/current-result/current-result.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -43,7 +44,8 @@ import {CurrentResultModule} from '../current-result/current-result.module';
     TerminalComponent
   ],
   exports: [
-    TerminalComponent
+    TerminalComponent,
+    // CurrentResultComponent
   ]
 })
 export class TerminalModule { }
