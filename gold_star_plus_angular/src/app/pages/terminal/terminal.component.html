@@ -1,138 +1,135 @@
 
-<!-- <div class="d-flex" style="background-color: black;">
-  <div class="col-4" *ngFor="let row of user">
-    <button mat-button [routerLink]="['terminal']">
-      <i class="bi bi-bookmark-star-fill" style="font-size: 25px; color: white;"></i>
-      <span class="logo" style="color: white;">{{row.userName}}</span>
-    </button>
-  </div>
-</div> -->
+<div *ngIf="false">
 
-<div  style="padding-top: 30px;"> 
-  <div class="d-flex" style="background-color: blue;">
-    <div class="col-2">
-      <i class="bi bi-bookmark-star-fill" style="font-size: 25px; color: white;"></i>
-      <span class="logo" style="color: white;">{{user.userName}}</span>
-    </div>
-    <div class="col-2">
-      <button class="ml-1 mr-1" style="font-size: large;  background-color: rgb(255, 147, 46); border-radius: 5px; width: 80px; text-align: center; border: 2px solid greenyellow; border-style: dotted;" mat-button
-                      [routerLink]="['/chart']"
-                      routerLinkActive="MyActiveMenu"
-                      [routerLinkActiveOptions]="{exact: true}">Result</button>
-    </div>
-    <div class="col-2" style="color: white;">
-      Balc: {{user.balance}}   
-    </div>
-    <div class="col-4">
-      <span class="mt-2  mr-2" style="font-size: large;color: white; text-align: center;">Next draw: {{activeDrawTime.visibleTime}}</span>
-    </div>
-    <div class="clock-container clock2 ml-1 mt-1 pt-1 col-1 " *ngIf="alwaysTime" style="font-size: large; width: 150px">
-      <div class="time">{{alwaysTime}}</div>
-    </div>
-  </div>
-  
-  <table class="table table-bordered">
-    <thead>
-      <tr style="background-color: rgb(54, 54, 54); color: white;">
-        <th scope="col">Sereise Name</th>
-        <th scope="col">SR</th>
-        <th scope="col">00-09</th>
-        <th scope="col">10-19</th>
-        <th scope="col">20-29</th>
-        <th scope="col">30-39</th>
-        <th scope="col">40-49</th>
-        <th scope="col">50-59</th>
-        <th scope="col">60-69</th>
-        <th scope="col">70-79</th>
-        <th scope="col">80-89</th>
-        <th scope="col">90-99</th>
-        <th scope="col">03:00 PM</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="background-color: rgb(248, 19, 107); font-weight: bold; font-size: 30px;">
-        <td scope="col">GoldStar GANGA</td>
-        <td scope="col">A</td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col">12</td>
-      </tr>
-      <tr style="background-color: rgb(23, 255, 2); font-weight: bold; font-size: 30px;">
-        <td scope="col">GoldStar JAMUNA</td>
-        <td scope="col">B</td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col">47</td>
-      </tr>
-      <tr style="background-color: rgb(252, 19, 19); font-weight: bold; font-size: 30px;">
-        <td scope="col">GoldStar SARASWATI</td>
-        <td scope="col">C</td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col">96</td>
-      </tr>
-      <tr style="background-color: rgb(9, 255, 0); font-weight: bold; font-size: 30px;">
-        <td scope="col">GoldStar GODAVARI</td>
-        <td scope="col">D</td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col">27</td>
-      </tr>
-      <tr style="background-color: rgb(215, 17, 255); font-weight: bold; font-size: 30px;">
-        <td scope="col">GoldStar KRISHNA</td>
-        <td scope="col">E</td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
-        <td scope="col">70</td>
-      </tr>
 
-    </tbody>
-  </table>
+
+  <div  style="padding-top: 30px;"> 
+    <div class="d-flex" style="background-color: blue;">
+      <div class="col-2">
+        <i class="bi bi-bookmark-star-fill" style="font-size: 25px; color: white;"></i>
+        <span class="logo" style="color: white;">{{user.userName}}</span>
+      </div>
+      <div class="col-2">
+        <button class="ml-1 mr-1" style="font-size: large;  background-color: rgb(255, 147, 46); border-radius: 5px; width: 80px; text-align: center; border: 2px solid greenyellow; border-style: dotted;" mat-button
+                        [routerLink]="['/chart']"
+                        routerLinkActive="MyActiveMenu"
+                        [routerLinkActiveOptions]="{exact: true}">Result</button>
+      </div>
+      <div class="col-2" style="color: white;">
+        Balc: {{user.balance}}   
+      </div>
+      <div class="col-4">
+        <span class="mt-2  mr-2" style="font-size: large;color: white; text-align: center;">Next draw: {{activeDrawTime.visibleTime}}</span>
+      </div>
+      <div class="clock-container clock2 ml-1 mt-1 pt-1 col-1 " *ngIf="alwaysTime" style="font-size: large; width: 150px">
+        <div class="time">{{alwaysTime}}</div>
+      </div>
+    </div>
+    
+    <table class="table table-bordered">
+      <thead>
+        <tr style="background-color: rgb(54, 54, 54); color: white;">
+          <th scope="col">Sereise Name</th>
+          <th scope="col">SR</th>
+          <th scope="col">00-09</th>
+          <th scope="col">10-19</th>
+          <th scope="col">20-29</th>
+          <th scope="col">30-39</th>
+          <th scope="col">40-49</th>
+          <th scope="col">50-59</th>
+          <th scope="col">60-69</th>
+          <th scope="col">70-79</th>
+          <th scope="col">80-89</th>
+          <th scope="col">90-99</th>
+          <th scope="col">03:00 PM</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background-color: rgb(248, 19, 107); font-weight: bold; font-size: 30px;">
+          <td scope="col">GoldStar GANGA</td>
+          <td scope="col">A</td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col">12</td>
+        </tr>
+        <tr style="background-color: rgb(23, 255, 2); font-weight: bold; font-size: 30px;">
+          <td scope="col">GoldStar JAMUNA</td>
+          <td scope="col">B</td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col">47</td>
+        </tr>
+        <tr style="background-color: rgb(252, 19, 19); font-weight: bold; font-size: 30px;">
+          <td scope="col">GoldStar SARASWATI</td>
+          <td scope="col">C</td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col">96</td>
+        </tr>
+        <tr style="background-color: rgb(9, 255, 0); font-weight: bold; font-size: 30px;">
+          <td scope="col">GoldStar GODAVARI</td>
+          <td scope="col">D</td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col">27</td>
+        </tr>
+        <tr style="background-color: rgb(215, 17, 255); font-weight: bold; font-size: 30px;">
+          <td scope="col">GoldStar KRISHNA</td>
+          <td scope="col">E</td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col">70</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <div class="row" style="text-align: center; padding-left: 550px;">
+    <button class="btn btn-warning">View Results</button>
+    <button class="btn btn-primary">Log Out</button>
+    
+  </div>
 </div>
-<div class="row" style="text-align: center; padding-left: 550px;">
-  <button class="btn btn-warning">View Results</button>
-  <button class="btn btn-primary">Log Out</button>
-  <!-- <pre>
-    {{user | json}}
-  </pre> -->
-</div>
+<!-- <div *ngIf="true"> -->
+  <!-- <app-current-result></app-current-result> -->
+<!-- </div> -->
