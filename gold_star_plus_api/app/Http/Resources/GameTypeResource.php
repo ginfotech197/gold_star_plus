@@ -28,6 +28,8 @@ class GameTypeResource extends JsonResource
         return [
             'gameTypeId' => $this->id,
             'gameTypeName' => $this->game_type_name,
+            'gameName' => $this->game_name,
+            'seriesName' => $this->series_name,
             'gameTypeInitial' => $this->game_type_initial,
             'mrp' => $this->mrp,
             'winningPrice' => $this->winning_price,

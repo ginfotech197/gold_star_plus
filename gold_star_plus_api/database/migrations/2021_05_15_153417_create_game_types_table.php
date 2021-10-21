@@ -16,6 +16,8 @@ class CreateGameTypesTable extends Migration
         Schema::create('game_types', function (Blueprint $table) {
             $table->id();
             $table->string('game_type_name',20)->nullable(true);
+            $table->string('game_name',20)->nullable(true);
+            $table->string('series_name',2)->nullable(true);
             $table->string('game_type_initial',10)->nullable(true);
             $table->decimal('mrp',5,2)->default(0);
             $table->decimal('winning_price',10,2)->default(0);

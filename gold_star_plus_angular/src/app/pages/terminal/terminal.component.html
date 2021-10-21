@@ -9,12 +9,12 @@
         <i class="bi bi-bookmark-star-fill" style="font-size: 25px; color: white;"></i>
         <span class="logo" style="color: white;">{{user.userName}}</span>
       </div>
-      <div class="col-2">
+      <!-- <div class="col-1"> -->
         <!-- <button class="ml-1 mr-1" style="font-size: large;  background-color: rgb(255, 147, 46); border-radius: 5px; width: 80px; text-align: center; border: 2px solid greenyellow; border-style: dotted;" mat-button
                         [routerLink]="['/chart']"
                         routerLinkActive="MyActiveMenu"
                         [routerLinkActiveOptions]="{exact: true}">Result</button> -->
-      </div>
+      <!-- </div> -->
       <div class="col-2" style="color: white;">
         Balc: {{user.balance}}
       </div>
@@ -45,9 +45,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr style="background-color: rgb(248, 19, 107); font-weight: bold; font-size: 30px;">
-          <td scope="col">GoldStar GANGA</td>
-          <td scope="col">A</td>
+        <tr style="background-color: rgb(248, 19, 107); font-weight: bold; font-size: 34px;" *ngFor="let row of gameTypes">
+          <td scope="col">{{row.gameName}}</td>
+          <td scope="col">{{row.seriesName}}</td>
           <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
           <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
           <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
@@ -60,7 +60,7 @@
           <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
           <td scope="col">12</td>
         </tr>
-        <tr style="background-color: rgb(23, 255, 2); font-weight: bold; font-size: 30px;">
+        <tr style="background-color: rgb(23, 255, 2); font-weight: bold; font-size: 34px;">
           <td scope="col">GoldStar JAMUNA</td>
           <td scope="col">B</td>
           <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
@@ -75,7 +75,7 @@
           <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
           <td scope="col">47</td>
         </tr>
-        <tr style="background-color: rgb(252, 19, 19); font-weight: bold; font-size: 30px;">
+        <tr style="background-color: rgb(252, 19, 19); font-weight: bold; font-size: 34px;">
           <td scope="col">GoldStar SARASWATI</td>
           <td scope="col">C</td>
           <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
@@ -90,7 +90,7 @@
           <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
           <td scope="col">96</td>
         </tr>
-        <tr style="background-color: rgb(9, 255, 0); font-weight: bold; font-size: 30px;">
+        <tr style="background-color: rgb(9, 255, 0); font-weight: bold; font-size: 34px;">
           <td scope="col">GoldStar GODAVARI</td>
           <td scope="col">D</td>
           <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
@@ -105,7 +105,7 @@
           <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
           <td scope="col">27</td>
         </tr>
-        <tr style="background-color: rgb(215, 17, 255); font-weight: bold; font-size: 30px;">
+        <tr style="background-color: rgb(215, 17, 255); font-weight: bold; font-size: 34px;">
           <td scope="col">GoldStar KRISHNA</td>
           <td scope="col">E</td>
           <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
@@ -129,6 +129,11 @@
     <button class="btn btn-primary">Log Out</button>
 
   </div>
+  <!-- <div style="color: rgb(253, 253, 253);">
+    <pre>
+      {{gameTypes | json}}
+    </pre>
+  </div> -->
 </div>
 <div *ngIf="false">
    <app-current-result></app-current-result>

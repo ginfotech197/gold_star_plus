@@ -4,6 +4,8 @@ export class GameType {
 
   gameTypeId?: number;
   gameTypeName?: string;
+  gameName?:string;
+  seriesName?:string;
   gameTypeInitial?: string;
   mrp?: number;
   winningPrice?: number;

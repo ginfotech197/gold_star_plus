@@ -343,8 +343,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         GameType::insert([
-            ['game_type_name'=>'single','game_type_initial' => '' ,'mrp'=> 10.00, 'winning_price'=>90, 'winning_bonus_percent'=>0.2, 'commission'=>0.00, 'payout'=>50,'default_payout'=>150],
-            ['game_type_name'=>'triple','game_type_initial' => '' ,'mrp'=> 1.00, 'winning_price'=>100, 'winning_bonus_percent'=>0.2, 'commission'=>0.00, 'payout'=>150,'default_payout'=>150]
+            ['game_type_name'=>'Jodi','game_name'=>'GoldStar GANGA','series_name'=>'A','game_type_initial' => '' ,'mrp'=> 10.00, 'winning_price'=>90, 'winning_bonus_percent'=>0.2, 'commission'=>0.00, 'payout'=>50,'default_payout'=>150],
+            ['game_type_name'=>'Jodi','game_name'=>'GoldStar JAMUNA','series_name'=>'B','game_type_initial' => '' ,'mrp'=> 10.00, 'winning_price'=>90, 'winning_bonus_percent'=>0.2, 'commission'=>0.00, 'payout'=>50,'default_payout'=>150],
+            ['game_type_name'=>'Jodi','game_name'=>'GoldStar SARASWATI','series_name'=>'C','game_type_initial' => '' ,'mrp'=> 10.00, 'winning_price'=>90, 'winning_bonus_percent'=>0.2, 'commission'=>0.00, 'payout'=>50,'default_payout'=>150],
+            ['game_type_name'=>'Jodi','game_name'=>'GoldStar GODAVARI','series_name'=>'D','game_type_initial' => '' ,'mrp'=> 10.00, 'winning_price'=>90, 'winning_bonus_percent'=>0.2, 'commission'=>0.00, 'payout'=>50,'default_payout'=>150],
+            ['game_type_name'=>'Jodi','game_name'=>'GoldStar KRISHNA','series_name'=>'E','game_type_initial' => '' ,'mrp'=> 10.00, 'winning_price'=>90, 'winning_bonus_percent'=>0.2, 'commission'=>0.00, 'payout'=>50,'default_payout'=>150]
+
         ]);
 
         // Product has separate file
