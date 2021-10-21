@@ -78,6 +78,8 @@ export class TerminalComponent implements OnInit {
   showDevArea = false;
   currentDate: string;
   deviceXs: boolean;
+
+  public showCurrentResult = false;
   public lastPurchasedTicketDetails: GameInputSaveResponse;
   public lastPurchasedTicketSingle: {singleNumber: number, quantity: number}[];
   public lastPurchasedTicketTriple: {visibleTripleNumber: number, quantity: number, singleNumber: number}[];
@@ -101,6 +103,11 @@ export class TerminalComponent implements OnInit {
 
     this.watchDrawService.getNextDrawListener().subscribe((response: NextDrawId) => {
       this.nextDrawId = response;
+      this.showCurrentResult = this.watchDrawService.showCurrentResult;
+      setTimeout(() => {
+        this.watchDrawService.showCurrentResult = false;
+        this.showCurrentResult = false;
+      }, 10000);
       // if (this.todayLastResult !== undefined){
       //   console.log(this.todayLastResult.data);
       //   this.spin(this.todayLastResult.data.single_number).then(r => {});
