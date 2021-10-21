@@ -1,5 +1,5 @@
 
-<div *ngIf="true">
+<div *ngIf="!showCurrentResult">
 
 
 
@@ -25,7 +25,7 @@
         <div class="time">{{alwaysTime}}</div>
       </div>
     </div>
-
+    {{showCurrentResult}}
     <table class="table table-bordered">
       <thead>
         <tr style="background-color: rgb(54, 54, 54); color: white;">
@@ -130,6 +130,6 @@
 
   </div>
 </div>
-<div *ngIf="false">
+<div *ngIf="showCurrentResult">
    <app-current-result></app-current-result>
 </div>

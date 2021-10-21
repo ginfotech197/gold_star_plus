@@ -16,6 +16,7 @@ export class WatchDrawService {
 
   private BASE_API_URL = environment.BASE_API_URL;
   private nextDrawId: NextDrawId = {};
+  public showCurrentResult = false;
   nextDrawSubject = new Subject<NextDrawId>();
 
   constructor(private http: HttpClient, private gameResultService: GameResultService, private playGameService: PlayGameService
@@ -38,6 +39,7 @@ export class WatchDrawService {
           }
 
         }else if (this.nextDrawId.data.id !== response.data.id) {
+          this.showCurrentResult = true;
           this.nextDrawId = response;
           this.nextDrawSubject.next({...this.nextDrawId});
           if (userData == null){
@@ -52,7 +54,7 @@ export class WatchDrawService {
         }
 
       });
-    }, 10000);
+    }, 3000);
   }
 
 
