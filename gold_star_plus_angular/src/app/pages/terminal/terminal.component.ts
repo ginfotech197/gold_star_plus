@@ -66,12 +66,15 @@ export class TerminalComponent implements OnInit {
   columnNumber = 5;
   columnNumber2 = 8;
   columnNumber3 = 1;
+  
+  
 
   public activeTripleContainerValue = 0;
   public selectedChip = 10;
   public previousChip = 10;
   public selectedChipValue = 10;
   public counter = 0;
+  public colorName = ['#FE0C4D','#85FE0C','#1DA4FE','#FE7701','#BB01FE'];
   copyNumberMatrix: SingleNumber[];
   copySingleNumber: SingleNumber[];
   isProduction = environment.production;
@@ -123,9 +126,9 @@ export class TerminalComponent implements OnInit {
     this.gameTypes = this.gameTypeService.getGameType();
     this.gameTypeService.getGameTypeListener().subscribe((response: GameType[]) => {
       this.gameTypes = response;
-      this.gameTypes = this.gameTypes.filter(x => x.gameTypeId === 1);
+      this.gameTypes = this.gameTypes.filter(x => x.gameTypeId);
     });
-    this.gameTypes = this.gameTypes.filter(x => x.gameTypeId === 1);
+    this.gameTypes = this.gameTypes.filter(x => x.gameTypeId);
   }
 
   ngOnInit(): void {
@@ -420,7 +423,7 @@ export class TerminalComponent implements OnInit {
     this.ngxPrinterService.printDiv('print-section');
     this.ngxPrinterService.printOpenWindow = false;
   }
-
+  
 
   saveUserPlayInputDetails(){
 
