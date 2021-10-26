@@ -13,6 +13,7 @@ use App\Models\UserType;
 use App\Models\NumberCombination;
 use App\Models\ResultMaster;
 use App\Models\NextGameDraw;
+use App\Models\TwoDNumberSet;
 
 class DatabaseSeeder extends Seeder
 {
@@ -851,5 +852,18 @@ class DatabaseSeeder extends Seeder
         NextGameDraw::create(['next_draw_id' => 2, 'last_draw_id' => 1]);
 
         Message::create(['message' =>'test message']);
+
+        TwoDNumberSet::insert([
+            ['number_set'=>'00-09'],
+            ['number_set'=>'10-19'],
+            ['number_set'=>'20-29'],
+            ['number_set'=>'30-39'],
+            ['number_set'=>'40-49'],
+            ['number_set'=>'50-59'],
+            ['number_set'=>'60-69'],
+            ['number_set'=>'70-79'],
+            ['number_set'=>'80-89'],
+            ['number_set'=>'90-99'],
+        ]);
     }
 }
