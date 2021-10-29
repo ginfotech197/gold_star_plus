@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\TwoDNumberSet;
+use App\Models\TwoDigitNumberCombinations;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TwoDNumberSetFactory extends Factory
+class TwoDigitNumberCombinationsFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = TwoDNumberSet::class;
+    protected $model = TwoDigitNumberCombinations::class;
 
     /**
      * Define the model's default state.

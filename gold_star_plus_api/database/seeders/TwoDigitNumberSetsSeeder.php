@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class TwoDNumberCombinationSeeder extends Seeder
+class TwoDigitNumberSetsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
