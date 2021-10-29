@@ -242,7 +242,7 @@
         <div style="font-weight: bolder; font-size: 50px; padding-top: 20px;">GoldStar Plus</div>
       </div>
 
-      <div fxLayout="row">
+      <div fxLayout="row" style="background-color: #ff0f0f !important; border-radius: 8px;">
 <!--        <div class="pt-4"  style="font-size: large; width: 150px">-->
 <!--&lt;!&ndash;          <div class="time">{{remainingTime}}</div>&ndash;&gt;-->
 <!--          <mat-progress-bar mode="determinate" [value]="value"></mat-progress-bar>-->
@@ -266,7 +266,7 @@
         <!-- <div class="clock-container clock2 ml-1 mt-3 pt-1" *ngIf="alwaysTime" style="font-size: large; width: 150px">
           <div class="time">{{alwaysTime}}</div>
         </div> -->
-          <!-- <button mat-button *ngIf="isAuthenticated" (click)="logout()" style="color: white;">Logout<i class="ri-logout-circle-r-line ri-2x"></i></button> -->
+          <button mat-button *ngIf="isAuthenticated" (click)="logout()" style="color: white;">Logout<i class="ri-logout-circle-r-line ri-2x"></i></button>
       </div>
     </mat-toolbar-row>
 <!--    for mobile view-->
@@ -277,7 +277,7 @@
 
        <mat-menu #menu="matMenu" style="width: 20px !important;">
 <!--          <button mat-menu-item [routerLink]="['terminal']" routerLinkActive="MyActiveMenu" style="height: 28px ; font-size: small; line-height: 18px !important;" >Home</button>-->
-         <button mat-button *ngIf="isAuthenticated" (click)="logout()" style="font-size: small; line-height: 18px !important;">Logout<i class="ri-logout-circle-r-line ri-1x"></i></button>
+         <button  *ngIf="isAuthenticated" (click)="logout()" style="font-size: small; line-height: 18px !important; background-color: #ff0f0f !important;">Logout<i class="ri-logout-circle-r-line ri-1x"></i></button>
        </mat-menu>
     </mat-toolbar-row>
   </mat-toolbar>
