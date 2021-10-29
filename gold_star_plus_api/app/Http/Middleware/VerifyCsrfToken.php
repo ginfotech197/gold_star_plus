@@ -12,7 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'https://rajshreesingle.com/rajshree_single_api/public/api/*',
-        'https://rajshreesingle.com/rajshree_single_api/public/api/*'
+        'https://my.goarajshree.com/gold_star_plus_api/public/api/*',
+        'https://my.goarajshree.com/gold_star_plus_api/public/api/*'
     ];
 }
