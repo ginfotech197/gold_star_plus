@@ -125,7 +125,7 @@
     </table>
   </div>
   <div class="row" style="text-align: center; padding-left: 550px;">
-    <button class="btn btn-warning">View Results</button>
+    <button class="btn btn-warning" (click)="viewResult()">View Results</button>
     <!-- <button class="btn btn-primary">Log Out</button> -->
 
   </div>
@@ -135,6 +135,6 @@
     </pre>
   </div>  -->
 </div>
-<div *ngIf="showCurrentResult">
+<div *ngIf="showCurrentResult" >
    <app-current-result></app-current-result>
 </div>

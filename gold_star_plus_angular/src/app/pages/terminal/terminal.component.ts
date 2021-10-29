@@ -66,8 +66,8 @@ export class TerminalComponent implements OnInit {
   columnNumber = 5;
   columnNumber2 = 8;
   columnNumber3 = 1;
-  
-  
+
+
 
   public activeTripleContainerValue = 0;
   public selectedChip = 10;
@@ -423,7 +423,7 @@ export class TerminalComponent implements OnInit {
     this.ngxPrinterService.printDiv('print-section');
     this.ngxPrinterService.printOpenWindow = false;
   }
-  
+
 
   saveUserPlayInputDetails(){
 
@@ -502,6 +502,14 @@ export class TerminalComponent implements OnInit {
         });
     //   }
     // });
+  }
+
+
+  viewResult(){
+    this.showCurrentResult = true ;
+  }
+  goToHomePage(){
+    this.showCurrentResult = false ;
   }
   // playAudio(){
   //   let audio = new Audio();
