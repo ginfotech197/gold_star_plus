@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TwoDNumberCombination;
+use App\Models\twoDigitNumberSets;
 use Illuminate\Http\Request;
 
-class TwoDNumberCombinationController extends Controller
+class TwoDigitNumberSetsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class TwoDNumberCombinationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TwoDNumberCombination  $twoDNumberCombination
+     * @param  \App\Models\twoDigitNumberSets  $twoDigitNumberSets
      * @return \Illuminate\Http\Response
      */
-    public function show(TwoDNumberCombination $twoDNumberCombination)
+    public function show(twoDigitNumberSets $twoDigitNumberSets)
     {
         //
     }
@@ -52,10 +52,10 @@ class TwoDNumberCombinationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TwoDNumberCombination  $twoDNumberCombination
+     * @param  \App\Models\twoDigitNumberSets  $twoDigitNumberSets
      * @return \Illuminate\Http\Response
      */
-    public function edit(TwoDNumberCombination $twoDNumberCombination)
+    public function edit(twoDigitNumberSets $twoDigitNumberSets)
     {
         //
     }
@@ -64,10 +64,10 @@ class TwoDNumberCombinationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TwoDNumberCombination  $twoDNumberCombination
+     * @param  \App\Models\twoDigitNumberSets  $twoDigitNumberSets
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TwoDNumberCombination $twoDNumberCombination)
+    public function update(Request $request, twoDigitNumberSets $twoDigitNumberSets)
     {
         //
     }
@@ -75,10 +75,10 @@ class TwoDNumberCombinationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TwoDNumberCombination  $twoDNumberCombination
+     * @param  \App\Models\twoDigitNumberSets  $twoDigitNumberSets
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TwoDNumberCombination $twoDNumberCombination)
+    public function destroy(twoDigitNumberSets $twoDigitNumberSets)
     {
         //
     }
