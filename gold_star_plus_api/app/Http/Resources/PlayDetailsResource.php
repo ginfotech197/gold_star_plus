@@ -27,7 +27,7 @@ class PlayDetailsResource extends JsonResource
         return [
             'playMasterId' => $this->play_master_id,
             'game' => new GameTypeResource($this->game),
-            'numberCombinationId' => $this->number_combination_id,
+            'twoDigitNumberSetId' => $this->two_digit_number_set_id,
             'quantity' => $this->quantity,
             'mrp' => $this->mrp,
             'playDetailsId' => $this->id,

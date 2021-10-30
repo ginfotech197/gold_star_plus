@@ -59,7 +59,7 @@ class PlayController extends Controller
         //validation for playDetails
         $rules = array(
             "*.gameTypeId"=>'required|exists:game_types,id',
-            '*.singleNumberId' => 'required_if:*.gameTypeId,==,1',
+            // '*.singleNumberId' => 'required_if:*.gameTypeId,==,1',
             '*.quantity' => 'bail|required|integer|min:1',
             '*.mrp' => 'bail|required|integer|min:1'
         );
@@ -90,7 +90,7 @@ class PlayController extends Controller
                         $playDetails = new PlayDetails();
                         $playDetails->play_master_id = $playMaster->id;
                         $playDetails->game_type_id = $detail->gameTypeId;
-                        $playDetails->single_number_id = $detail->singleNumberId;
+                        $playDetails->two_digit_number_set_id = $detail->twoDigitNumberSetId;
                         $playDetails->quantity = $detail->quantity;
                         $playDetails->mrp = $detail->mrp;
                         $playDetails->commission = $gameType->commission;
@@ -105,6 +105,7 @@ class PlayController extends Controller
 
             }
             $output_array['game_input'] = $this->get_game_input_details_by_play_master_id($playMaster->id);
+
 
             $amount = $playMaster->play_details->sum(function($t){
                 return $t->quantity * $t->mrp;
@@ -126,14 +127,15 @@ class PlayController extends Controller
 
     public function get_game_input_details_by_play_master_id($play_master_id){
         $output_array = array();
-        $single_game_data = PlayDetails::select(DB::raw('single_numbers.single_number as single_number')
+        $single_game_data = PlayDetails::select(DB::raw('two_digit_number_sets.number_set as two_digit_number_set')
             ,DB::raw('play_details.quantity as quantity'))
-            ->join('single_numbers','play_details.single_number_id','single_numbers.id')
+            ->join('two_digit_number_sets','play_details.two_digit_number_set_id','two_digit_number_sets.id')
             ->where('play_details.play_master_id',$play_master_id)
             ->where('play_details.game_type_id',1)
-            ->orderBy('single_numbers.single_order')
+            ->orderBy('two_digit_number_sets.id')
             ->get();
-        $output_array['single_game_data'] = PrintSingleGameInputResource::collection($single_game_data);
+            $output_array['single_game_data'] = PrintSingleGameInputResource::collection($single_game_data);
+            // $output_array['two_digit_data'] = $single_game_data;
 
         return $output_array;
     }

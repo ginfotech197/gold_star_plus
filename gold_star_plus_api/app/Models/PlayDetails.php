@@ -36,7 +36,7 @@ class PlayDetails extends Model
     /**
      * @var mixed
      */
-    private $single_number_id;
+    private $two_digit_number_set_id;
 
     public function game(){
         return $this->belongsTo(GameType::class,'game_type_id');
