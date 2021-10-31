@@ -14,7 +14,7 @@ import {CommonService} from './services/common.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy{
-  title = 'Rajshree single';
+  title = 'Gold star plus';
   active = 1;
   events: string[] = [];
   opened: boolean;
@@ -44,13 +44,13 @@ export class AppComponent implements OnInit, OnDestroy{
     this.canonicalService.setCanonicalURL();
     this.pageTitle.setTitle(this.title);
     this.metaService.addTags([
-      { name: 'keywords', content: 'rajshree online games' },
+      { name: 'keywords', content: 'gold star plus' },
       { name: 'robots', content: 'index, follow' },
-      { name: 'author', content: 'rajshree kolkata' },
+      { name: 'author', content: 'gold star plus' },
       { name: 'date', content: '2021-05-25', scheme: 'YYYY-MM-DD' },
       { charset: 'UTF-8' },
-      { description: 'rajshree WEBSITE ⭐ Today All Bazi Tips KOLKATA rajshree Result Live Update. Kolkata Fatafat Result . कोलकाता फटाफट RESULT, Prediction the result and win, try your luck..\n' +
-          '‎Kolkata rajshree · ‎OLD Kolkata  rajshree Result · ‎Kolkata fun lucky number · ‎Kolkata FF FUN result since 1960' }
+      { description: 'Gold star plus WEBSITE ⭐ Today All Bazi Tips Gold Star Plus Result Live Update. Kolkata Fatafat Result . कोलकाता फटाफट RESULT, Prediction the result and win, try your luck..\n' +
+          '‎Gold star plus · ‎OLD Kolkata  Gold star plus Result · ‎Kolkata fun lucky number · ‎Kolkata FF FUN result since 1960' }
     ]);
 
 
