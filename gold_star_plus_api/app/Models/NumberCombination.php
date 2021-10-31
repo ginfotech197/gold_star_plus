@@ -16,4 +16,8 @@ class NumberCombination extends Model
     public function single(){
         return $this->belongsTo(SingleNumber::class,'single_number_id');
     }
+
+    public function two_digit_number_combination(){
+        return $this->belongsTo(TwoDigitNumberCombinations::class,'two_digit_number_combination_id');
+    }
 }

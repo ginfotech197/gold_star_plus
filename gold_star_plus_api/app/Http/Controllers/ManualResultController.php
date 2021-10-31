@@ -52,7 +52,7 @@ class ManualResultController extends Controller
 
             $manualResult = new ManualResult();
             $manualResult->draw_master_id = $requestedData->drawMasterId;
-            $manualResult->single_number_id = $requestedData->numberCombinationId;
+            $manualResult->two_digit_number_combination_id = $requestedData->twoDigitNumberCombinationId;
             $manualResult->game_date = Carbon::today();
             $manualResult->save();
 
