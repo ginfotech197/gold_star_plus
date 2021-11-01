@@ -86,7 +86,7 @@ class PlayController extends Controller
                 if($detail->gameTypeId == 1) {
                     $gameType = GameType::find($detail->gameTypeId);
                     //insert value for triple
-                    if ($detail->gameTypeId == 1) {
+//                    if ($detail->gameTypeId == 1) {
                         $playDetails = new PlayDetails();
                         $playDetails->play_master_id = $playMaster->id;
                         $playDetails->game_type_id = $detail->gameTypeId;
@@ -97,7 +97,7 @@ class PlayController extends Controller
                         $playDetails->payout = $gameType->payout;
                         $playDetails->save();
                         $output_play_details[] = $playDetails;
-                    }
+//                    }
                 }else{
                     DB::rollBack();
                     return response()->json(['success'=>0,'exception'=> 'invalid game','error_line'=>null,'file_name' => null], 500);

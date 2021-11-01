@@ -454,18 +454,18 @@ export class TerminalComponent implements OnInit {
     });
 
     const z = {
-      "gameTypeId": x.gameTypeId,
+      // "gameTypeId": x.gameTypeId,
+      "gameTypeId": 1,
+      // "twoDigitNumberSetId": Math.floor(Math.random() * (9 - 1 + 1) + 1),
       "twoDigitNumberSetId": nc,
       "quantity": y,
       "mrp": x.mrp
      };
     this.playDetails.push(z);
-    console.log(this.playDetails);
   }
 
 
   saveUserPlayInputDetails(){
-
 
     const user = JSON.parse(localStorage.getItem('user'));
 
@@ -491,26 +491,11 @@ export class TerminalComponent implements OnInit {
       return;
     }
 
-    // Swal.fire({
-    //   title: 'Confirmation',
-    //   text: 'Do you sure to buy ticket?',
-    //   icon: 'info',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#3085d6',
-    //   cancelButtonColor: '#d33',
-    //   confirmButtonText: 'Yes, save It!'
-    // }).then((result) => {
-    //   if (result.isConfirmed){
     const masterData = {
-          // playMaster: {drawMasterId: this.activeDrawTime.drawId, terminalId: this.user.userId},
-          // playDetails: this.userGameInput
-      drawMasterId: this.activeDrawTime.drawId, terminalId: this.user.userId
+          playMaster: {drawMasterId: this.activeDrawTime.drawId, terminalId: this.user.userId},
+          playDetails: this.playDetails
     };
 
-    console.log(masterData);
-    console.log(this.playDetails);
-
-    return;
     this.playGameService.saveUserPlayInputDetails(masterData).subscribe(response => {
           if (response.success === 1){
             this.lastPurchasedTicketDetails = response;
@@ -546,8 +531,6 @@ export class TerminalComponent implements OnInit {
           // when error occured
           console.log('data saving error', error);
         });
-    //   }
-    // });
   }
 
 
