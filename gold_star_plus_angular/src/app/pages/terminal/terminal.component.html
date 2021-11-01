@@ -60,7 +60,7 @@
         <tr [style.background-color]="colorName[i]" style=" font-weight: bold; font-size: 33px;" *ngFor="let row of gameTypes; let i = index">
           <td scope="col">{{row.gameName}}</td>
           <td scope="col">{{row.seriesName}}</td>
-          <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input #value1 (change)="changeInputDetails(row,value1.value,00)" style="max-width: 50px; max-height: 25px;"></td>
           <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
           <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
           <td scope="col"><input style="max-width: 50px; max-height: 25px;"></td>
@@ -77,6 +77,7 @@
   </div>
   <div class="row" style="text-align: center; padding-left: 550px;">
     <button class="btn btn-warning" (click)="viewResult()">View Results</button>
+    <button class="btn btn-warning" (click)="saveUserPlayInputDetails()">save</button>
     <!-- <button class="btn btn-primary">Log Out</button> -->
 
   </div>

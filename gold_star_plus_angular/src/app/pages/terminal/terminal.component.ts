@@ -63,6 +63,8 @@ export class TerminalComponent implements OnInit {
   todayLastResult: TodayLastResult;
   nextDrawId: NextDrawId;
 
+  playDetails = [];
+
   customInput: number;
 
   columnNumber = 5;
@@ -438,8 +440,32 @@ export class TerminalComponent implements OnInit {
     this.ngxPrinterService.printOpenWindow = false;
   }
 
+  removeDuplicates(data){
+    data.filter((value, index) => data.indexOf(value) === index);
+  };
+
+  changeInputDetails(x, y, nc){
+
+    this.playDetails.forEach(function(value) {
+      if ((value.gameTypeId === x.gameTypeId) && (value.twoDigitNumberSetId === nc)){
+        // const tempIndex = value.findIndex(x=>x.gameTypeId === x.gameTypeId);
+        value.quantity = y;
+      }
+    });
+
+    const z = {
+      "gameTypeId": x.gameTypeId,
+      "twoDigitNumberSetId": nc,
+      "quantity": y,
+      "mrp": x.mrp
+     };
+    this.playDetails.push(z);
+    console.log(this.playDetails);
+  }
+
 
   saveUserPlayInputDetails(){
+
 
     const user = JSON.parse(localStorage.getItem('user'));
 
@@ -476,9 +502,15 @@ export class TerminalComponent implements OnInit {
     // }).then((result) => {
     //   if (result.isConfirmed){
     const masterData = {
-          playMaster: {drawMasterId: this.activeDrawTime.drawId, terminalId: this.user.userId},
-          playDetails: this.userGameInput
-        };
+          // playMaster: {drawMasterId: this.activeDrawTime.drawId, terminalId: this.user.userId},
+          // playDetails: this.userGameInput
+      drawMasterId: this.activeDrawTime.drawId, terminalId: this.user.userId
+    };
+
+    console.log(masterData);
+    console.log(this.playDetails);
+
+    return;
     this.playGameService.saveUserPlayInputDetails(masterData).subscribe(response => {
           if (response.success === 1){
             this.lastPurchasedTicketDetails = response;
