@@ -7,6 +7,7 @@ use App\Models\NumberCombination;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\SingleNumber;
 use App\Http\Resources\SingleNumberSimpleResource;
+use App\Http\Resources\TwoDigitNumberCombinationResource;
 
 /**
  * @property mixed id
@@ -27,8 +28,7 @@ class ManualResultResource extends JsonResource
         return [
             'manualResultId'=> $this->id,
             'drawMaster'=> new DrawMasterResource($this->draw_master),
-            // 'numberCombination'=> new NumberCombinationSimpleResource($this->number_combination),
-            // 'single'=> new SingleNumberSimpleResource(SingleNumber::find(($this->number_combination->single_number_id))),
+            'twoDigitNumberCombination'=> new TwoDigitNumberCombinationResource($this->two_digit_number_combination),
             'gameDate'=> $this->game_date,
         ];
     }

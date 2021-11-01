@@ -26,7 +26,10 @@ class ManualResult extends Model
         return $this->belongsTo(DrawMaster::class,'draw_master_id');
     }
 
-    public function number_combination(){
-        return $this->belongsTo(NumberCombination::class,'number_combination_id');
+    // public function number_combination(){
+    //     return $this->belongsTo(NumberCombination::class,'number_combination_id');
+    // }
+    public function two_digit_number_combination(){
+        return $this->belongsTo(TwoDigitNumberCombinations::class,'two_digit_number_combination_id');
     }
 }

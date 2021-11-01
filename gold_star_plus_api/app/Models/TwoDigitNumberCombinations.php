@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class TwoDigitNumberCombinations extends Model
 {
     use HasFactory;
+
+   
 }
