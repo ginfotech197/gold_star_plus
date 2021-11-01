@@ -14,6 +14,7 @@ import {CurrentGameResult} from '../models/CurrentGameResult.model';
 import {TodayLastResult} from '../models/TodayLastResult.model';
 import {User} from '../models/user.model';
 import {AuthService} from './auth.service';
+import {TwoDigitNumberSet} from '../models/TwoDigitNumberSet.model';
 
 
 
@@ -25,7 +26,9 @@ export class PlayGameService {
   singleNumbers: SingleNumber[] = [];
   singleNumberSubject = new Subject<SingleNumber[]>();
   numberCombinationMatrix: SingleNumber[] = [];
+  twoDigitNumberSet: TwoDigitNumberSet[] = [];
   numberCombinationMatrixSubject = new Subject<SingleNumber[]>();
+  twoDigitNumberSetSubject = new Subject<TwoDigitNumberSet[]>();
   currentDateResult: CurrentGameResult;
   currentDateResultSubject = new Subject<CurrentGameResult>();
 
@@ -58,6 +61,13 @@ export class PlayGameService {
         this.currentDateResult = response.data;
         this.currentDateResultSubject.next({...this.currentDateResult});
       });
+
+    this.http.get(this.BASE_API_URL + '/getTwoDigitNumberSets').subscribe((response: ServerResponse) => {
+      this.twoDigitNumberSet = response.data;
+      console.log('service', this.twoDigitNumberSet);
+      this.twoDigitNumberSetSubject.next([...this.twoDigitNumberSet]);
+    });
+
     // }
 
 
@@ -72,6 +82,11 @@ export class PlayGameService {
   getSingleNumbers(){
     return [...this.singleNumbers];
   }
+
+  getTwoDigitNumberSetNumbers(){
+    return [...this.twoDigitNumberSet];
+  }
+
   getSingleNumberListener(){
     return this.singleNumberSubject.asObservable();
   }
@@ -81,6 +96,10 @@ export class PlayGameService {
   }
   getNumberCombinationMatrixListener(){
     return this.numberCombinationMatrixSubject.asObservable();
+  }
+
+  getTwoDigitNumberSetListener(){
+    return this.twoDigitNumberSetSubject.asObservable();
   }
 
   getCurrentDateResult(){

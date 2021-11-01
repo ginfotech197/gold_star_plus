@@ -21,7 +21,7 @@ use App\Http\Controllers\TerminalController;
 use App\Http\Controllers\CPanelReportController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TerminalReportController;
-
+use App\Http\Controllers\TwoDigitNumberSetsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -65,6 +65,9 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get("numberCombinations",[NumberCombinationController::class,'index']);
     Route::get("numberCombinations/number/{id}",[NumberCombinationController::class,'getNumbersBySingleNumber']);
     Route::get("numberCombinations/matrix",[NumberCombinationController::class,'getAllInMatrix']);
+
+    //TwoDigitNumberSets
+    Route::get("getTwoDigitNumberSets",[TwoDigitNumberSetsController::class,'getTwoDigitNumberSets']);
 
     //draw_masters
     Route::get('drawTimes',[DrawMasterController::class,'index']);

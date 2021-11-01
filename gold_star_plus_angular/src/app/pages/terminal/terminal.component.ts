@@ -25,6 +25,7 @@ import {ThemePalette} from '@angular/material/core';
 import {GameType} from '../../models/GameType.model';
 import {MatTableDataSource} from '@angular/material/table';
 import {GameTypeService} from '../../services/game-type.service';
+import {TwoDigitNumberSet} from '../../models/TwoDigitNumberSet.model';
 
 
 @Component({
@@ -52,6 +53,7 @@ export class TerminalComponent implements OnInit {
   user: User;
   singleNumbers: SingleNumber[] = [];
   numberCombinationMatrix: SingleNumber[] = [];
+  twoDigitNumberSet: TwoDigitNumberSet[] = [];
   activeDrawTime: DrawTime;
   chips: number[] = [];
   gameTypes: GameType[] = [];
@@ -185,6 +187,18 @@ export class TerminalComponent implements OnInit {
     this.currentDateResult = this.playGameService.getCurrentDateResult();
     this.playGameService.getCurrentDateResultListener().subscribe((response: CurrentGameResult) => {
       this.currentDateResult = response;
+    });
+
+    // this.playGameService.getTwoDigitNumberSetListener().subscribe((response: TwoDigitNumberSet) => {
+    //   // this.currentDateResult = response;
+    //   console.log('component', response);
+    // });
+
+    this.twoDigitNumberSet =  this.playGameService.getTwoDigitNumberSetNumbers();
+    this.playGameService.getTwoDigitNumberSetListener().subscribe((response: TwoDigitNumberSet[]) => {
+      this.twoDigitNumberSet = response;
+      console.log(this.twoDigitNumberSet[0]);
+      // this.twoDigitNumberSet = response;
     });
 
     this.nextDrawId = this.watchDrawService.getNextDraw();
