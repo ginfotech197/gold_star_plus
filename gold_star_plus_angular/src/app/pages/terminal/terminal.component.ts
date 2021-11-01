@@ -25,6 +25,7 @@ import {ThemePalette} from '@angular/material/core';
 import {GameType} from '../../models/GameType.model';
 import {MatTableDataSource} from '@angular/material/table';
 import {GameTypeService} from '../../services/game-type.service';
+import {TwoDigitNumberSet} from '../../models/TwoDigitNumberSet.model';
 
 
 @Component({
@@ -52,6 +53,7 @@ export class TerminalComponent implements OnInit {
   user: User;
   singleNumbers: SingleNumber[] = [];
   numberCombinationMatrix: SingleNumber[] = [];
+  twoDigitNumberSet: TwoDigitNumberSet[] = [];
   activeDrawTime: DrawTime;
   chips: number[] = [];
   gameTypes: GameType[] = [];
@@ -60,6 +62,8 @@ export class TerminalComponent implements OnInit {
   currentDateResult: CurrentGameResult;
   todayLastResult: TodayLastResult;
   nextDrawId: NextDrawId;
+
+  playDetails = [];
 
   customInput: number;
 
@@ -185,6 +189,18 @@ export class TerminalComponent implements OnInit {
     this.currentDateResult = this.playGameService.getCurrentDateResult();
     this.playGameService.getCurrentDateResultListener().subscribe((response: CurrentGameResult) => {
       this.currentDateResult = response;
+    });
+
+    // this.playGameService.getTwoDigitNumberSetListener().subscribe((response: TwoDigitNumberSet) => {
+    //   // this.currentDateResult = response;
+    //   console.log('component', response);
+    // });
+
+    this.twoDigitNumberSet =  this.playGameService.getTwoDigitNumberSetNumbers();
+    this.playGameService.getTwoDigitNumberSetListener().subscribe((response: TwoDigitNumberSet[]) => {
+      this.twoDigitNumberSet = response;
+      console.log(this.twoDigitNumberSet[0]);
+      // this.twoDigitNumberSet = response;
     });
 
     this.nextDrawId = this.watchDrawService.getNextDraw();
@@ -424,8 +440,32 @@ export class TerminalComponent implements OnInit {
     this.ngxPrinterService.printOpenWindow = false;
   }
 
+  removeDuplicates(data){
+    data.filter((value, index) => data.indexOf(value) === index);
+  };
+
+  changeInputDetails(x, y, nc){
+
+    this.playDetails.forEach(function(value) {
+      if ((value.gameTypeId === x.gameTypeId) && (value.twoDigitNumberSetId === nc)){
+        // const tempIndex = value.findIndex(x=>x.gameTypeId === x.gameTypeId);
+        value.quantity = y;
+      }
+    });
+
+    const z = {
+      "gameTypeId": x.gameTypeId,
+      "twoDigitNumberSetId": nc,
+      "quantity": y,
+      "mrp": x.mrp
+     };
+    this.playDetails.push(z);
+    console.log(this.playDetails);
+  }
+
 
   saveUserPlayInputDetails(){
+
 
     const user = JSON.parse(localStorage.getItem('user'));
 
@@ -462,9 +502,15 @@ export class TerminalComponent implements OnInit {
     // }).then((result) => {
     //   if (result.isConfirmed){
     const masterData = {
-          playMaster: {drawMasterId: this.activeDrawTime.drawId, terminalId: this.user.userId},
-          playDetails: this.userGameInput
-        };
+          // playMaster: {drawMasterId: this.activeDrawTime.drawId, terminalId: this.user.userId},
+          // playDetails: this.userGameInput
+      drawMasterId: this.activeDrawTime.drawId, terminalId: this.user.userId
+    };
+
+    console.log(masterData);
+    console.log(this.playDetails);
+
+    return;
     this.playGameService.saveUserPlayInputDetails(masterData).subscribe(response => {
           if (response.success === 1){
             this.lastPurchasedTicketDetails = response;

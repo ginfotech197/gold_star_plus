@@ -7,14 +7,10 @@ use Illuminate\Http\Request;
 
 class TwoDigitNumberSetsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function getTwoDigitNumberSets()
     {
-        //
+       $data = TwoDigitNumberSets::select('id','number_set')->get();
+        return response()->json(['success' => 1, 'data' => $data], 200);
     }
 
     /**
