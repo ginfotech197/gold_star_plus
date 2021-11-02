@@ -509,8 +509,9 @@ export class TerminalComponent implements OnInit {
     this.playGameService.saveUserPlayInputDetails(masterData).subscribe(response => {
           if (response.success === 1){
             this.lastPurchasedTicketDetails = response;
-            this.lastPurchasedTicketSingle = this.lastPurchasedTicketDetails.data.game_input.single_game_data;
-            this.lastPurchasedTicketTriple = this.lastPurchasedTicketDetails.data.game_input.triple_game_data;
+            console.log('lastPurchasedTicketDetails: ', this.lastPurchasedTicketDetails);
+            // this.lastPurchasedTicketSingle = this.lastPurchasedTicketDetails.data.game_input.single_game_data;
+            // this.lastPurchasedTicketTriple = this.lastPurchasedTicketDetails.data.game_input.triple_game_data;
             const responseData = response.data;
             // @ts-ignore
             Swal.fire({
