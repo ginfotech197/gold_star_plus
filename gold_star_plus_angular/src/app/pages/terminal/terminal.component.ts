@@ -63,7 +63,7 @@ export class TerminalComponent implements OnInit {
   todayLastResult: TodayLastResult;
   nextDrawId: NextDrawId;
 
-  playDetails = [];
+  playDetails: UserGameInput[] = [];
 
   customInput: number;
 
@@ -464,6 +464,7 @@ export class TerminalComponent implements OnInit {
       "mrp": x.mrp
      };
     this.playDetails.push(z);
+    console.log(this.playDetails);
     // console.log(this.playDetails);
     let tempTotal = 0;
     this.playDetails.forEach(function(value) {
