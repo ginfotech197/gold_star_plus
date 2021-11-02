@@ -203,8 +203,6 @@ export class TerminalComponent implements OnInit {
     this.twoDigitNumberSet =  this.playGameService.getTwoDigitNumberSetNumbers();
     this.playGameService.getTwoDigitNumberSetListener().subscribe((response: TwoDigitNumberSet[]) => {
       this.twoDigitNumberSet = response;
-      console.log(this.twoDigitNumberSet[0]);
-      // this.twoDigitNumberSet = response;
     });
 
     this.nextDrawId = this.watchDrawService.getNextDraw();
@@ -266,7 +264,7 @@ export class TerminalComponent implements OnInit {
       this.selectedChipValue = this.selectedChip * this.counter;
     }
 
-    console.log(value.quantity);
+    // console.log(value.quantity);
     if (value.quantity){
       value.quantity = value.quantity + (this.selectedChip / this.gameTypes[0].mrp);
     }else{
@@ -466,7 +464,7 @@ export class TerminalComponent implements OnInit {
       "mrp": x.mrp
      };
     this.playDetails.push(z);
-    console.log(this.playDetails);
+    // console.log(this.playDetails);
     let tempTotal = 0;
     this.playDetails.forEach(function(value) {
         tempTotal = tempTotal + (value.quantity * value.mrp);
@@ -543,7 +541,7 @@ export class TerminalComponent implements OnInit {
           }
         }, (error) => {
           // when error occured
-          console.log('data saving error', error);
+          // console.log('data saving error', error);
         });
   }
 
