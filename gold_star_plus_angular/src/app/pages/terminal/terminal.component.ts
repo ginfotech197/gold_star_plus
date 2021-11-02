@@ -63,7 +63,7 @@ export class TerminalComponent implements OnInit {
   todayLastResult: TodayLastResult;
   nextDrawId: NextDrawId;
 
-  playDetails = [];
+  playDetails: UserGameInput[] = [];
 
   customInput: number;
 
@@ -142,6 +142,10 @@ export class TerminalComponent implements OnInit {
     // audio.load();
     // audio.play();
 
+    this.authService.userBehaviorSubject.subscribe(user => {
+      this.user = user;
+    });
+
     this.idToLandOn = this.seed[Math.floor(Math.random() * this.seed.length)];
     const colors = ['#FFA500', '#8B008B', '#FF1493', '#20B2AA', '#8B0000', '#00FF00', '#e0e000', '#0000FF', '#6A5ACD', '#cd5c5c'];
     this.items = this.seed.map((value) => ({
@@ -199,8 +203,6 @@ export class TerminalComponent implements OnInit {
     this.twoDigitNumberSet =  this.playGameService.getTwoDigitNumberSetNumbers();
     this.playGameService.getTwoDigitNumberSetListener().subscribe((response: TwoDigitNumberSet[]) => {
       this.twoDigitNumberSet = response;
-      console.log(this.twoDigitNumberSet[0]);
-      // this.twoDigitNumberSet = response;
     });
 
     this.nextDrawId = this.watchDrawService.getNextDraw();
@@ -262,7 +264,7 @@ export class TerminalComponent implements OnInit {
       this.selectedChipValue = this.selectedChip * this.counter;
     }
 
-    console.log(value.quantity);
+    // console.log(value.quantity);
     if (value.quantity){
       value.quantity = value.quantity + (this.selectedChip / this.gameTypes[0].mrp);
     }else{
@@ -455,17 +457,25 @@ export class TerminalComponent implements OnInit {
 
     const z = {
       "gameTypeId": x.gameTypeId,
+      // "gameTypeId": 1,
+      // "twoDigitNumberSetId": Math.floor(Math.random() * (9 - 1 + 1) + 1),
       "twoDigitNumberSetId": nc,
       "quantity": y,
       "mrp": x.mrp
      };
     this.playDetails.push(z);
     console.log(this.playDetails);
+    // console.log(this.playDetails);
+    let tempTotal = 0;
+    this.playDetails.forEach(function(value) {
+        tempTotal = tempTotal + (value.quantity * value.mrp);
+    });
+    // console.log(tempTotal);
+    this.totalTicketPurchased = tempTotal;
   }
 
 
   saveUserPlayInputDetails(){
-
 
     const user = JSON.parse(localStorage.getItem('user'));
 
@@ -491,26 +501,11 @@ export class TerminalComponent implements OnInit {
       return;
     }
 
-    // Swal.fire({
-    //   title: 'Confirmation',
-    //   text: 'Do you sure to buy ticket?',
-    //   icon: 'info',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#3085d6',
-    //   cancelButtonColor: '#d33',
-    //   confirmButtonText: 'Yes, save It!'
-    // }).then((result) => {
-    //   if (result.isConfirmed){
     const masterData = {
-          // playMaster: {drawMasterId: this.activeDrawTime.drawId, terminalId: this.user.userId},
-          // playDetails: this.userGameInput
-      drawMasterId: this.activeDrawTime.drawId, terminalId: this.user.userId
+          playMaster: {drawMasterId: this.activeDrawTime.drawId, terminalId: this.user.userId},
+          playDetails: this.playDetails
     };
 
-    console.log(masterData);
-    console.log(this.playDetails);
-
-    return;
     this.playGameService.saveUserPlayInputDetails(masterData).subscribe(response => {
           if (response.success === 1){
             this.lastPurchasedTicketDetails = response;
@@ -527,11 +522,14 @@ export class TerminalComponent implements OnInit {
             });
             // updating terminal balance from here
             this.authService.setUserBalanceBy(responseData.play_master.terminal.balance);
+            // @ts-ignore
+            // this.user.balance =
             this.resetMatrixValue();
 
             // setTimeout(function() {
             //   document.getElementById('print-button').click();
             // }.bind(this), 3000);
+
 
           }else{
             Swal.fire({
@@ -544,10 +542,8 @@ export class TerminalComponent implements OnInit {
           }
         }, (error) => {
           // when error occured
-          console.log('data saving error', error);
+          // console.log('data saving error', error);
         });
-    //   }
-    // });
   }
 
 

@@ -64,7 +64,7 @@ export class PlayGameService {
 
     this.http.get(this.BASE_API_URL + '/getTwoDigitNumberSets').subscribe((response: ServerResponse) => {
       this.twoDigitNumberSet = response.data;
-      console.log('service', this.twoDigitNumberSet);
+      // console.log('service', this.twoDigitNumberSet);
       this.twoDigitNumberSetSubject.next([...this.twoDigitNumberSet]);
     });
 
