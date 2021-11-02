@@ -83,7 +83,7 @@ class PlayController extends Controller
             $output_play_details = array();
             foreach($inputPlayDetails as $inputPlayDetail){
                 $detail = (object)$inputPlayDetail;
-                if($detail->gameTypeId == 1) {
+                if($detail->gameTypeId) {
                     $gameType = GameType::find($detail->gameTypeId);
                     //insert value for triple
 //                    if ($detail->gameTypeId == 1) {

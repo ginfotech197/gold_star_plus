@@ -454,14 +454,21 @@ export class TerminalComponent implements OnInit {
     });
 
     const z = {
-      // "gameTypeId": x.gameTypeId,
-      "gameTypeId": 1,
+      "gameTypeId": x.gameTypeId,
+      // "gameTypeId": 1,
       // "twoDigitNumberSetId": Math.floor(Math.random() * (9 - 1 + 1) + 1),
       "twoDigitNumberSetId": nc,
       "quantity": y,
       "mrp": x.mrp
      };
     this.playDetails.push(z);
+    console.log(this.playDetails);
+    let tempTotal = 0;
+    this.playDetails.forEach(function(value) {
+        tempTotal = tempTotal + (value.quantity * value.mrp);
+    });
+    // console.log(tempTotal);
+    this.totalTicketPurchased = tempTotal;
   }
 
 
@@ -512,11 +519,14 @@ export class TerminalComponent implements OnInit {
             });
             // updating terminal balance from here
             this.authService.setUserBalanceBy(responseData.play_master.terminal.balance);
+            // @ts-ignore
+            // this.user.balance =
             this.resetMatrixValue();
 
             // setTimeout(function() {
             //   document.getElementById('print-button').click();
             // }.bind(this), 3000);
+
 
           }else{
             Swal.fire({

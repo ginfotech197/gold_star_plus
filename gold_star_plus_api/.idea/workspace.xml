@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46d97cff-c6cb-436f-8cf9-75f19341b347" name="Default Changelist" comment="" />
+    <list default="true" id="46d97cff-c6cb-436f-8cf9-75f19341b347" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/pages/terminal/terminal.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/pages/terminal/terminal.component.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -229,7 +231,8 @@
       <workItem from="1635528552447" duration="3709000" />
       <workItem from="1635567770916" duration="1067000" />
       <workItem from="1635764203236" duration="4082000" />
-      <workItem from="1635784787356" duration="2136000" />
+      <workItem from="1635784787356" duration="3511000" />
+      <workItem from="1635833182074" duration="1797000" />
     </task>
     <servers />
   </component>
