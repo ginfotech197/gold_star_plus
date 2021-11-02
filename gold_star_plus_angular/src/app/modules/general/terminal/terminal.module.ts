@@ -19,6 +19,7 @@ import {NgxWheelModule} from 'ngx-wheel';
 import {MatProgressBar, MatProgressBarModule} from '@angular/material/progress-bar';
 import {CurrentResultModule} from '../current-result/current-result.module';
 import {CurrentResultComponent} from '../../../pages/current-result/current-result.component';
+import { ResultSheetComponent } from 'src/app/pages/result-sheet/result-sheet.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {CurrentResultComponent} from '../../../pages/current-result/current-resu
   ],
   declarations: [
     TerminalComponent,
-    CurrentResultComponent
+    CurrentResultComponent,
+    ResultSheetComponent
   ],
   exports: [
     TerminalComponent
