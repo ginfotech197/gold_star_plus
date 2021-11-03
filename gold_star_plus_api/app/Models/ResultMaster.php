@@ -18,8 +18,9 @@ class ResultMaster extends Model
      * @var \Illuminate\Support\Carbon|mixed
      */
     private $game_date;
+
     /**
      * @var mixed
      */
-    private $single_number_id;
+    private $two_digit_number_combination_id;
 }

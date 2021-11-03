@@ -75,7 +75,7 @@ class ResultMasterController extends Controller
     }
 
 
-    public function save_auto_result($draw_id,$single_number_result_id)
+    public function save_auto_result($draw_id,$two_digit_number_combination_id)
     {
         //$single_number_result_id is the calculated result as per total sale
         $manualResult = ManualResult::where('game_date',Carbon::today())
@@ -87,13 +87,13 @@ class ResultMasterController extends Controller
 //            $single_number_for_result = $selectRandomResult->id;
 //        }
         if(!empty($manualResult)){
-            $single_number_for_result = $manualResult->single_number_id;
+            $two_digit_for_result = $manualResult->two_digit_number_combination_id;
         }else{
-            $single_number_for_result = $single_number_result_id;
+            $two_digit_for_result = $two_digit_number_combination_id;
         }
         $resultMaster = new ResultMaster();
         $resultMaster->draw_master_id = $draw_id;
-        $resultMaster->single_number_id = $single_number_for_result;
+        $resultMaster->two_digit_number_combination_id = $two_digit_for_result;
         $resultMaster->game_date = Carbon::today();
         $resultMaster->save();
         if(isset($resultMaster->id)){

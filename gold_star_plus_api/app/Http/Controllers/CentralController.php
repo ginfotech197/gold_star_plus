@@ -26,44 +26,58 @@ class CentralController extends Controller
 
         $playMasterObj = new TerminalReportController();
         $playMasterObj->updateCancellation();
+        $totalGame = GameType::count();
 
-        $totalSale = $playMasterControllerObj->get_total_sale($today,$lastDrawId);
-        $single = GameType::find(1);
+        for($i=1;$i<=$totalGame;$i++){
+            $totalSale = $playMasterControllerObj->get_total_sale($today,$lastDrawId, $i);
+            $single = GameType::find($i);
+            $payout = ($totalSale*($single->payout))/100;
+            $targetValue = floor($payout/$single->winning_price);
+            // result less than equal to target value
+            $result = DB::select(DB::raw("select two_digit_number_sets.id as two_digit_number_set_id,two_digit_number_sets.number_set,
+two_digit_number_combinations.id as two_digit_number_combination_id,
+sum(play_details.quantity) as total_quantity
+from play_details
+inner join play_masters ON play_masters.id = play_details.play_master_id
+inner join two_digit_number_sets ON two_digit_number_sets.id = play_details.two_digit_number_set_id
+inner join two_digit_number_combinations on two_digit_number_combinations.two_digit_number_set_id = two_digit_number_sets.id
+where play_masters.draw_master_id = $lastDrawId and play_details.game_type_id=$i and date(play_details.created_at)= "."'".$today."'"."
+group by two_digit_number_sets.number_set,two_digit_number_sets.id,two_digit_number_combinations.id
+having sum(play_details.quantity)<= $targetValue
+order by rand() limit 1"));
 
-        $payout = ($totalSale*($single->payout))/100;
-        $targetValue = floor($payout/$single->winning_price);
+            // select empty item for result
+            if(empty($result)){
+                // empty value
+                $result = DB::select(DB::raw("SELECT two_digit_number_sets.id as two_digit_number_set_id,two_digit_number_combinations.id as two_digit_number_combination_id
+FROM two_digit_number_sets
+inner join two_digit_number_combinations on two_digit_number_combinations.two_digit_number_set_id = two_digit_number_sets.id
+WHERE two_digit_number_sets.id NOT IN(SELECT DISTINCT
+play_details.two_digit_number_set_id FROM play_details
+INNER JOIN play_masters on play_details.play_master_id= play_masters.id
+WHERE  DATE(play_masters.created_at) = "."'".$today."'"." and play_masters.draw_master_id = $lastDrawId
+and play_details.game_type_id=$i)
+ORDER by rand() LIMIT 1"));
+            }
 
-        // result less than equal to target value
-        $result = DB::select(DB::raw("select single_numbers.id as single_number_id,single_numbers.single_number,sum(play_details.quantity) as total_quantity  from play_details
-        inner join play_masters ON play_masters.id = play_details.play_master_id
-        inner join single_numbers ON single_numbers.id = play_details.single_number_id
-        where play_masters.draw_master_id = $lastDrawId  and date(play_details.created_at)= "."'".$today."'"."
-        group by single_numbers.single_number,single_numbers.id
-        having sum(play_details.quantity)<= $targetValue
-        order by rand() limit 1"));
-
-        // select empty item for result
-        if(empty($result)){
-            // empty value
-            $result = DB::select(DB::raw("SELECT single_numbers.id as single_number_id FROM single_numbers WHERE id NOT IN(SELECT DISTINCT
-        play_details.single_number_id FROM play_details
-        INNER JOIN play_masters on play_details.play_master_id= play_masters.id
-        WHERE  DATE(play_masters.created_at) = "."'".$today."'"." and play_masters.draw_master_id = $lastDrawId) ORDER by rand() LIMIT 1"));
+            // result greater than equal to target value
+            if(empty($result)) {
+                $result = DB::select(DB::raw("select two_digit_number_sets.id as two_digit_number_set_id,two_digit_number_sets.number_set,
+two_digit_number_combinations.id as two_digit_number_combination_id,
+sum(play_details.quantity) as total_quantity
+from play_details
+inner join play_masters ON play_masters.id = play_details.play_master_id
+inner join two_digit_number_sets ON two_digit_number_sets.id = play_details.two_digit_number_set_id
+inner join two_digit_number_combinations on two_digit_number_combinations.two_digit_number_set_id = two_digit_number_sets.id
+where play_masters.draw_master_id = $lastDrawId and play_details.game_type_id=$i and date(play_details.created_at)= " . "'" . $today . "'" . "
+group by two_digit_number_sets.number_set,two_digit_number_sets.id,two_digit_number_combinations.id
+having sum(play_details.quantity)>= $targetValue
+order by rand() limit 1"));
+            }
         }
 
-        // result greater than equal to target value
 
-        if(empty($result)){
-            $result = DB::select(DB::raw("select single_numbers.id as single_number_id,single_numbers.single_number,sum(play_details.quantity) as total_quantity  from play_details
-            inner join play_masters ON play_masters.id = play_details.play_master_id
-            inner join single_numbers ON single_numbers.id = play_details.single_number_id
-            where play_masters.draw_master_id= $lastDrawId  and date(play_details.created_at)= "."'".$today."'"."
-            group by single_numbers.single_number,single_numbers.id
-            having sum(play_details.quantity)> $targetValue
-            order by rand() limit 1"));
-        }
-
-        $single_number_result_id = $result[0]->single_number_id;
+        $two_digit_result_id = $result[0]->two_digit_number_combination_id;
 
         DrawMaster::query()->update(['active' => 0]);
         if(!empty($nextGameDrawObj)){
@@ -72,7 +86,7 @@ class CentralController extends Controller
 
 
         $resultMasterController = new ResultMasterController();
-        $jsonData = $resultMasterController->save_auto_result($lastDrawId,$single_number_result_id);
+        $jsonData = $resultMasterController->save_auto_result($lastDrawId,$two_digit_result_id);
 
         $resultCreatedObj = json_decode($jsonData->content(),true);
 
