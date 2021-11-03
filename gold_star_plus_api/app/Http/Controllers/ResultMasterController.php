@@ -6,6 +6,7 @@ use App\Models\DrawMaster;
 use App\Models\ManualResult;
 use App\Models\NextGameDraw;
 use App\Models\NumberCombination;
+use App\Models\ResultDetail;
 use App\Models\ResultMaster;
 use App\Models\SingleNumber;
 use Illuminate\Http\Request;
@@ -75,7 +76,7 @@ class ResultMasterController extends Controller
     }
 
 
-    public function save_auto_result($draw_id,$two_digit_number_combination_id)
+    public function save_auto_result($draw_id,$two_digit_number_combination_id,$game_type_id)
     {
         //$single_number_result_id is the calculated result as per total sale
         $manualResult = ManualResult::where('game_date',Carbon::today())
@@ -91,11 +92,26 @@ class ResultMasterController extends Controller
         }else{
             $two_digit_for_result = $two_digit_number_combination_id;
         }
-        $resultMaster = new ResultMaster();
-        $resultMaster->draw_master_id = $draw_id;
-        $resultMaster->two_digit_number_combination_id = $two_digit_for_result;
-        $resultMaster->game_date = Carbon::today();
-        $resultMaster->save();
+
+        $tempData = ResultMaster::select()->where('draw_master_id',$draw_id)->where('game_date',Carbon::today())->first();
+        if(empty($tempData)) {
+            $resultMaster = new ResultMaster();
+            $resultMaster->draw_master_id = $draw_id;
+//        $resultMaster->two_digit_number_combination_id = $two_digit_for_result;
+            $resultMaster->game_date = Carbon::today();
+            $resultMaster->save();
+        }else{
+            $resultMaster = $tempData;
+        }
+
+        if(isset($resultMaster->id)){
+            $resultDetails = new ResultDetail();
+            $resultDetails->result_masters_id = $resultMaster->id;
+            $resultDetails->two_digit_number_combination_id = $two_digit_for_result;
+            $resultDetails->game_type_id = $game_type_id;
+            $resultDetails->save();
+        }
+
         if(isset($resultMaster->id)){
             return response()->json(['success'=>1, 'data' => 'added result'], 200);
         }else{
