@@ -28,7 +28,7 @@ class ManualResultResource extends JsonResource
         return [
             'manualResultId'=> $this->id,
             'drawMaster'=> new DrawMasterResource($this->draw_master),
-            'twoDigitNumberCombination'=> new TwoDigitNumberCombinationResource($this->two_digit_number_combination),
+//            'twoDigitNumberCombination'=> new TwoDigitNumberCombinationResource($this->two_digit_number_combination),
             'gameDate'=> $this->game_date,
         ];
     }

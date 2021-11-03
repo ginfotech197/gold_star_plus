@@ -46,23 +46,25 @@ class ManualResultController extends Controller
             return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
         }
         $requestedData = (object)$request->json()->all();
-
-        DB::beginTransaction();
-        try{
+//        return response()->json(['success'=>1,'data'=> $requestedData], 200,[],JSON_NUMERIC_CHECK);
+//        DB::beginTransaction();
+//        try{
 
             $manualResult = new ManualResult();
             $manualResult->draw_master_id = $requestedData->drawMasterId;
             $manualResult->two_digit_number_combination_id = $requestedData->twoDigitNumberCombinationId;
+            $manualResult->game_type_id = $requestedData->gameTypeId;
             $manualResult->game_date = Carbon::today();
             $manualResult->save();
 
-            DB::commit();
-        }catch (\Exception $e){
-            DB::rollBack();
-            return response()->json(['success'=>0, 'data' => null, 'error'=>$e->getMessage()], 500);
-        }
+//            DB::commit();
+//        }catch (\Exception $e){
+//            DB::rollBack();
+//            return response()->json(['success'=>0, 'data' => null, 'error'=>$e->getMessage()], 500);
+//        }
 
-        return response()->json(['success'=>1,'data'=> new ManualResultResource($manualResult)], 200,[],JSON_NUMERIC_CHECK);
+//        return response()->json(['success'=>1,'data'=> new ManualResultResource($manualResult)], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=> $manualResult], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
