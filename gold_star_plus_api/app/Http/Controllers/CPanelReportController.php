@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ResultMaster;
+use App\Models\TwoDigitNumberCombinations;
+use App\Models\TwoDigitNumberSets;
 use Faker\Core\Number;
 use Illuminate\Http\Request;
 use App\Models\PlayMaster;
@@ -104,24 +106,32 @@ class CPanelReportController extends Controller
 
     public function get_prize_value_by_barcode($play_master_id){
         $play_master = PlayMaster::findOrFail($play_master_id);
+        $play_details = PlayDetails::select()->where('play_master_id',$play_master_id)->get();
         $play_game_ids = PlayDetails::where('play_master_id',$play_master_id)->distinct()->pluck('game_type_id');
 
         $play_date = Carbon::parse($play_master->created_at)->format('Y-m-d');
         $result_master = ResultMaster::where('draw_master_id', $play_master->draw_master_id)->where('game_date',$play_date)->first();
-        $result_number_combination_id = !empty($result_master) ? $result_master->single_number_id : null;
+//        return response()->json(['success' => 100, 'data' => $result_master, 'data2' => $play_date], 200);
+        $result_number_combination_id = !empty($result_master) ? $result_master->two_digit_number_combination_id : null;
+        if($result_number_combination_id){
+            $two_digit_number_set_id = (TwoDigitNumberCombinations::select('two_digit_number_set_id')->first())->two_digit_number_set_id;
+        }else{
+            $two_digit_number_set_id = null;
+        }
+//        return response()->json(['success' => 1, 'data' => $result_number_combination_id, 'data2' => $play_details], 200);
         $prize_value = 0;
         foreach ($play_game_ids as $game_id){
-            if($game_id == 1){
+//            if($game_id == 1){
                 $singleGamePrize = PlayMaster::join('play_details','play_masters.id','play_details.play_master_id')
-                    ->join('single_numbers','play_details.single_number_id','single_numbers.id')
+                    ->join('two_digit_number_sets','play_details.two_digit_number_set_id','two_digit_number_sets.id')
                     ->join('game_types','play_details.game_type_id','game_types.id')
                     ->select(DB::raw("max(play_details.quantity)* max(game_types.winning_price) as prize_value") )
                     ->where('play_masters.id',$play_master_id)
                     ->where('play_details.game_type_id',$game_id)
-                    ->where('play_details.single_number_id',$result_number_combination_id)
-                    ->groupBy('single_numbers.id')
+                    ->where('play_details.two_digit_number_set_id',$two_digit_number_set_id)
+                    ->groupBy('two_digit_number_sets.id')
                     ->first();
-            }
+//            }
 //            if($game_id == 2){
 //                $tripleGamePrize = PlayMaster::join('play_details','play_masters.id','play_details.play_master_id')
 //                    ->join('number_combinations','play_details.single_number_id','number_combinations.id')
@@ -138,9 +148,9 @@ class CPanelReportController extends Controller
         if(!empty($singleGamePrize)){
             $prize_value+= $singleGamePrize->prize_value;
         }
-        if(!empty($tripleGamePrize)){
-            $prize_value+= $tripleGamePrize->prize_value;
-        }
+//        if(!empty($tripleGamePrize)){
+//            $prize_value+= $tripleGamePrize->prize_value;
+//        }
         return $prize_value;
     }
 
