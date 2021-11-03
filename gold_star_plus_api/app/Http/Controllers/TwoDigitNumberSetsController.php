@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\twoDigitNumberSets;
+use App\Models\TwoDigitNumberSets;
 use Illuminate\Http\Request;
 
 class TwoDigitNumberSetsController extends Controller
