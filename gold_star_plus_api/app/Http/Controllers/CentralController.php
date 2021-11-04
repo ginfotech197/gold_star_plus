@@ -28,11 +28,11 @@ class CentralController extends Controller
         $playMasterObj->updateCancellation();
         $totalGame = GameType::count();
 
-        for($i=1;$i<=$totalGame;$i++){
-            $totalSale = $playMasterControllerObj->get_total_sale($today,$lastDrawId, $i);
+        for($i=1;$i<=$totalGame;$i++) {
+            $totalSale = $playMasterControllerObj->get_total_sale($today, $lastDrawId, $i);
             $single = GameType::find($i);
-            $payout = ($totalSale*($single->payout))/100;
-            $targetValue = floor($payout/$single->winning_price);
+            $payout = ($totalSale * ($single->payout)) / 100;
+            $targetValue = floor($payout / $single->winning_price);
             // result less than equal to target value
             $result = DB::select(DB::raw("select two_digit_number_sets.id as two_digit_number_set_id,two_digit_number_sets.number_set,
 two_digit_number_combinations.id as two_digit_number_combination_id,
@@ -41,13 +41,13 @@ from play_details
 inner join play_masters ON play_masters.id = play_details.play_master_id
 inner join two_digit_number_sets ON two_digit_number_sets.id = play_details.two_digit_number_set_id
 inner join two_digit_number_combinations on two_digit_number_combinations.two_digit_number_set_id = two_digit_number_sets.id
-where play_masters.draw_master_id = $lastDrawId and play_details.game_type_id=$i and date(play_details.created_at)= "."'".$today."'"."
+where play_masters.draw_master_id = $lastDrawId and play_details.game_type_id=$i and date(play_details.created_at)= " . "'" . $today . "'" . "
 group by two_digit_number_sets.number_set,two_digit_number_sets.id,two_digit_number_combinations.id
 having sum(play_details.quantity)<= $targetValue
 order by rand() limit 1"));
 
             // select empty item for result
-            if(empty($result)){
+            if (empty($result)) {
                 // empty value
                 $result = DB::select(DB::raw("SELECT two_digit_number_sets.id as two_digit_number_set_id,two_digit_number_combinations.id as two_digit_number_combination_id
 FROM two_digit_number_sets
@@ -55,13 +55,13 @@ inner join two_digit_number_combinations on two_digit_number_combinations.two_di
 WHERE two_digit_number_sets.id NOT IN(SELECT DISTINCT
 play_details.two_digit_number_set_id FROM play_details
 INNER JOIN play_masters on play_details.play_master_id= play_masters.id
-WHERE  DATE(play_masters.created_at) = "."'".$today."'"." and play_masters.draw_master_id = $lastDrawId
+WHERE  DATE(play_masters.created_at) = " . "'" . $today . "'" . " and play_masters.draw_master_id = $lastDrawId
 and play_details.game_type_id=$i)
 ORDER by rand() LIMIT 1"));
             }
 
             // result greater than equal to target value
-            if(empty($result)) {
+            if (empty($result)) {
                 $result = DB::select(DB::raw("select two_digit_number_sets.id as two_digit_number_set_id,two_digit_number_sets.number_set,
 two_digit_number_combinations.id as two_digit_number_combination_id,
 sum(play_details.quantity) as total_quantity
@@ -74,19 +74,20 @@ group by two_digit_number_sets.number_set,two_digit_number_sets.id,two_digit_num
 having sum(play_details.quantity)>= $targetValue
 order by rand() limit 1"));
             }
+//        }
+
+
+            $two_digit_result_id = $result[0]->two_digit_number_combination_id;
+
+            DrawMaster::query()->update(['active' => 0]);
+            if (!empty($nextGameDrawObj)) {
+                DrawMaster::findOrFail($nextDrawId)->update(['active' => 1]);
+            }
+
+
+            $resultMasterController = new ResultMasterController();
+            $jsonData = $resultMasterController->save_auto_result($lastDrawId, $two_digit_result_id, $single->id);
         }
-
-
-        $two_digit_result_id = $result[0]->two_digit_number_combination_id;
-
-        DrawMaster::query()->update(['active' => 0]);
-        if(!empty($nextGameDrawObj)){
-            DrawMaster::findOrFail($nextDrawId)->update(['active' => 1]);
-        }
-
-
-        $resultMasterController = new ResultMasterController();
-        $jsonData = $resultMasterController->save_auto_result($lastDrawId,$two_digit_result_id);
 
         $resultCreatedObj = json_decode($jsonData->content(),true);
 
