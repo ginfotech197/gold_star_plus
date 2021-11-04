@@ -122,7 +122,7 @@ export class TerminalComponent implements OnInit {
       setTimeout(() => {
         if (this.todayLastResult !== undefined){
           this.wheel.reset();
-          this.spin(this.todayLastResult.data.single_number).then(r => {});
+          // this.spin(this.todayLastResult.data.single_number).then(r => {});
         }
         }, 1000);
     });

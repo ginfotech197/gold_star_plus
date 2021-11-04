@@ -2,8 +2,8 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col" style="background-color: aqua;" *ngFor=" let i= index">#</th>
-        <th scope="col" style="background-color: rgb(255, 102, 0);">Draw name</th>
+        <!-- <th scope="col" style="background-color: aqua;" >#</th> -->
+        <th scope="col" style="background-color: rgb(255, 102, 0);">Draw time</th>
         <th scope="col" style="background-color: rgb(0, 255, 98);">GoldStar GANGA-A</th>
         <th scope="col" style="background-color: rgb(255, 0, 0);">GoldStar JAMUNA-B</th>
         <th scope="col" style="background-color: rgb(255, 230, 0);">GoldStar SARASWATI-C</th>
@@ -12,14 +12,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td scope="col" style="background-color: aqua;" *ngFor=" let i= index">#</td>
-        <td scope="col" style="background-color: rgb(255, 102, 0);">Draw name</td>
-        <td scope="col" style="background-color: rgb(0, 255, 98);">GoldStar GANGA-A</td>
-        <td scope="col" style="background-color: rgb(255, 0, 0);">GoldStar JAMUNA-B</td>
-        <td scope="col" style="background-color: rgb(255, 230, 0);">GoldStar SARASWATI-C</td>
-        <td scope="col" style="background-color: rgb(255, 0, 234);">GoldStar GODAVARI-D</td>
-        <td scope="col" style="background-color: rgb(175, 174, 252);">GoldStar GODAVARI-E</td>
+      <tr *ngFor="let cur of currentDateResult">
+        <!-- <td scope="col" style="background-color: aqua;" >#</td> -->
+        <td scope="col" style="background-color: rgb(255, 102, 0);">{{cur.draw_date}}</td>
+        <td scope="col" style="background-color: rgb(0, 255, 98);">{{cur.game_one}}</td>
+        <td scope="col" style="background-color: rgb(255, 0, 0);">{{cur.game_two}}</td>
+        <td scope="col" style="background-color: rgb(255, 230, 0);">{{cur.game_three}}</td>
+        <td scope="col" style="background-color: rgb(255, 0, 234);">{{cur.game_four}}</td>
+        <td scope="col" style="background-color: rgb(175, 174, 252);">{{cur.game_five}}</td>
       </tr>
       <tr>
 
@@ -27,4 +27,7 @@
 
     </tbody>
   </table>
+  <pre>
+    {{currentDateResult | json}}
+  </pre>
 </div>

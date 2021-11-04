@@ -62,11 +62,37 @@ class ResultMasterController extends Controller
 
         $result_array['date'] = Carbon::today();
 
-        $result_query =get_sql_with_bindings(ResultMaster::where('game_date', Carbon::today()));
-        $data = DrawMaster::leftJoin(DB::raw("($result_query) as result_masters"),'draw_masters.id','=','result_masters.draw_master_id')
-            ->leftJoin('two_digit_number_combinations','result_masters.two_digit_number_combination_id','two_digit_number_combinations.id')
-            ->select('result_masters.game_date','draw_masters.end_time','two_digit_number_combinations.visible_number')
-            ->get();
+        // $result_query =get_sql_with_bindings(ResultMaster::where('game_date', Carbon::today()));
+        // $data = DrawMaster::leftJoin(DB::raw("($result_query) as result_masters"),'draw_masters.id','=','result_masters.draw_master_id')
+        //     ->leftJoin('two_digit_number_combinations','result_masters.two_digit_number_combination_id','two_digit_number_combinations.id')
+        //     ->select('result_masters.game_date','draw_masters.end_time','two_digit_number_combinations.visible_number')
+        //     ->get();
+        $data = DB::select("select date_format(game_date,'%d/%m/%Y') as draw_date,visible_time,max(game_one) as game_one ,max(game_two) as game_two, max(game_three) as game_three,
+        max(game_four) as game_four, max(game_five) as game_five
+        from
+        (select *,
+        case when game_type_id = 1 then result end as game_one ,
+        case when game_type_id = 2 then result end as game_two,
+        case when game_type_id = 3 then result end as game_three,
+        case when game_type_id = 4 then result end as game_four,
+        case when game_type_id = 5 then result end as game_five
+        from
+        (select
+        end_time
+        ,draw_masters.id as draw_id
+        ,game_types.id as game_type_id
+        ,result_details.result_masters_id
+        ,result_masters.game_date
+        ,draw_masters.visible_time
+        ,two_digit_number_combinations.visible_number as result
+        from result_details
+        inner join (select * from result_masters where date(game_date)=?)result_masters on result_details.result_masters_id = result_masters.id
+        inner join draw_masters on result_masters.draw_master_id = draw_masters.id
+        inner join game_types ON game_types.id = result_details.game_type_id
+        inner join two_digit_number_combinations ON two_digit_number_combinations.id = result_details.two_digit_number_combination_id
+        ) as table1) as table2
+        group by result_masters_id order by draw_id DESC
+        ",[ $result_array['date']]);
         $result_array['result'] = $data;
 
 
