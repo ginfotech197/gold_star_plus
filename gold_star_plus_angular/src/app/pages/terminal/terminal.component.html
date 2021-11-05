@@ -1,5 +1,4 @@
-
-<div *ngIf="!showCurrentResult">
+<div *ngIf="!showCurrentResult && !showResultSheet">
 
 
 
@@ -76,7 +75,7 @@
     </table>
   </div>
   <div class="row" style="text-align: center; padding-left: 550px;">
-    <button class="btn btn-warning" (click)="viewResult()">View Results</button>
+    <button class="mr-2 btn btn-warning" (click)="viewResult()">View Results</button>
     <button class="btn btn-warning" (click)="saveUserPlayInputDetails()">save</button>
     <!-- <button class="btn btn-primary">Log Out</button> -->
 
@@ -90,7 +89,10 @@
 <!-- <pre>
   {{todayLastResult | json}}
 </pre> -->
-<div *ngIf="showCurrentResult" >
-   <!-- <app-current-result></app-current-result> -->
+<div *ngIf="showResultSheet" >
    <app-result-sheet></app-result-sheet>
+</div>
+
+<div *ngIf="showCurrentResult" >
+  <app-current-result></app-current-result>
 </div>

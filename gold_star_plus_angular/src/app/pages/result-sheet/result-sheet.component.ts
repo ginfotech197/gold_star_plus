@@ -13,7 +13,7 @@ import {TodayLastResult} from '../../models/TodayLastResult.model';
 export class ResultSheetComponent implements OnInit {
 
   todayLastResult: TodayLastResult;
-  currentDateResult: CurrentGameResult;
+  public currentDateResult: CurrentGameResult;
 
 
 
@@ -29,7 +29,6 @@ export class ResultSheetComponent implements OnInit {
     this.playGameService.getCurrentDateResultListener().subscribe((response: CurrentGameResult) => {
       this.currentDateResult = response;
       console.log(this.currentDateResult);
-      console.log("reslt")
     });
   }
 

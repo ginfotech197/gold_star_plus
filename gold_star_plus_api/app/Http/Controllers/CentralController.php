@@ -30,9 +30,9 @@ class CentralController extends Controller
 
         for($i=1;$i<=$totalGame;$i++) {
             $totalSale = $playMasterControllerObj->get_total_sale($today, $lastDrawId, $i);
-            $single = GameType::find($i);
-            $payout = ($totalSale * ($single->payout)) / 100;
-            $targetValue = floor($payout / $single->winning_price);
+            $gameType = GameType::find($i);
+            $payout = ($totalSale * ($gameType->payout)) / 100;
+            $targetValue = floor($payout / $gameType->winning_price);
             // result less than equal to target value
             $result = DB::select(DB::raw("select two_digit_number_sets.id as two_digit_number_set_id,two_digit_number_sets.number_set,
 two_digit_number_combinations.id as two_digit_number_combination_id,
@@ -74,7 +74,6 @@ group by two_digit_number_sets.number_set,two_digit_number_sets.id,two_digit_num
 having sum(play_details.quantity)>= $targetValue
 order by rand() limit 1"));
             }
-//        }
 
 
             $two_digit_result_id = $result[0]->two_digit_number_combination_id;
@@ -86,7 +85,7 @@ order by rand() limit 1"));
 
 
             $resultMasterController = new ResultMasterController();
-            $jsonData = $resultMasterController->save_auto_result($lastDrawId, $two_digit_result_id, $single->id);
+            $jsonData = $resultMasterController->save_auto_result($lastDrawId, $two_digit_result_id, $gameType->id);
         }
 
         $resultCreatedObj = json_decode($jsonData->content(),true);

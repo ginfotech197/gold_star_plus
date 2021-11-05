@@ -87,6 +87,7 @@ export class TerminalComponent implements OnInit {
   deviceXs: boolean;
 
   public showCurrentResult = false;
+  public showResultSheet = false;
   public lastPurchasedTicketDetails: GameInputSaveResponse;
   public lastPurchasedTicketSingle: {singleNumber: number, quantity: number}[];
   public lastPurchasedTicketTriple: {visibleTripleNumber: number, quantity: number, singleNumber: number}[];
@@ -111,6 +112,7 @@ export class TerminalComponent implements OnInit {
     this.watchDrawService.getNextDrawListener().subscribe((response: NextDrawId) => {
       this.nextDrawId = response;
       this.showCurrentResult = this.watchDrawService.showCurrentResult;
+      this.showResultSheet = false;
       setTimeout(() => {
         this.watchDrawService.showCurrentResult = false;
         this.showCurrentResult = false;
@@ -119,12 +121,6 @@ export class TerminalComponent implements OnInit {
       //   console.log(this.todayLastResult.data);
       //   this.spin(this.todayLastResult.data.single_number).then(r => {});
       // }
-      setTimeout(() => {
-        if (this.todayLastResult !== undefined){
-          this.wheel.reset();
-          // this.spin(this.todayLastResult.data.single_number).then(r => {});
-        }
-        }, 1000);
     });
     // this.spin(5).then(r => {console});
     this.gameTypes = this.gameTypeService.getGameType();
@@ -549,11 +545,9 @@ export class TerminalComponent implements OnInit {
 
 
   viewResult(){
-    this.showCurrentResult = true ;
+    this.showResultSheet = true ;
   }
-  goToHomePage(){
-    this.showCurrentResult = false ;
-  }
+
   // playAudio(){
   //   let audio = new Audio();
   //   audio.src = "../../../assets/audio/alarm.wav";
