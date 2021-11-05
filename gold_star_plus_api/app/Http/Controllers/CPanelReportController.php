@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ResultDetail;
 use App\Models\ResultMaster;
 use App\Models\TwoDigitNumberCombinations;
 use App\Models\TwoDigitNumberSets;
@@ -16,7 +17,7 @@ use Carbon\Carbon;
 class CPanelReportController extends Controller
 {
     public function barcode_wise_report(){
-        $x = $this->get_total_quantity_by_barcode(1);
+        $x = $this->get_total_quantity_by_barcode(2);
 
         $data = PlayMaster::select('play_masters.id as play_master_id', DB::raw('substr(play_masters.barcode_number, 1, 8) as barcode_number')
             ,'draw_masters.visible_time as draw_time',
@@ -108,27 +109,31 @@ class CPanelReportController extends Controller
         $play_master = PlayMaster::findOrFail($play_master_id);
         $play_details = PlayDetails::select()->where('play_master_id',$play_master_id)->get();
         $play_game_ids = PlayDetails::where('play_master_id',$play_master_id)->distinct()->pluck('game_type_id');
-
+//        return response()->json(['success' => 1, 'data' => $play_game_ids], 200);
         $play_date = Carbon::parse($play_master->created_at)->format('Y-m-d');
         $result_master = ResultMaster::where('draw_master_id', $play_master->draw_master_id)->where('game_date',$play_date)->first();
-//        return response()->json(['success' => 100, 'data' => $result_master, 'data2' => $play_date], 200);
-        $result_number_combination_id = !empty($result_master) ? $result_master->two_digit_number_combination_id : null;
-        if($result_number_combination_id){
-            $two_digit_number_set_id = (TwoDigitNumberCombinations::select('two_digit_number_set_id')->first())->two_digit_number_set_id;
-        }else{
-            $two_digit_number_set_id = null;
-        }
-//        return response()->json(['success' => 1, 'data' => $result_number_combination_id, 'data2' => $play_details], 200);
-        $prize_value = 0;
-        foreach ($play_game_ids as $game_id){
+        $result_details = ResultDetail::where('result_masters_id',$result_master->id)->get();
+//        return response()->json(['success' => 100, 'data' => $result_master, 'data2' => $result_details], 200);
+        foreach ($result_details as $tempDetails) {
+            $temp_result_details = ResultDetail::where('result_masters_id',$result_master->id)->where('game_type_id',$tempDetails->game_type_id)->first();
+//        return response()->json(['success' => 100, 'data' => $result_master, 'data2' => $result_details], 200);
+            $result_number_combination_id = !empty($temp_result_details) ? $temp_result_details->two_digit_number_combination_id : null;
+            if ($result_number_combination_id) {
+                $two_digit_number_set_id = (TwoDigitNumberCombinations::select('two_digit_number_set_id')->where('visible_number', $result_number_combination_id)->first())->two_digit_number_set_id;
+            } else {
+                $two_digit_number_set_id = null;
+            }
+//        return response()->json(['success' => 1, 'data' => $result_number_combination_id, 'data2' => $two_digit_number_set_id], 200);
+            $prize_value = 0;
+            foreach ($play_game_ids as $game_id) {
 //            if($game_id == 1){
-                $singleGamePrize = PlayMaster::join('play_details','play_masters.id','play_details.play_master_id')
-                    ->join('two_digit_number_sets','play_details.two_digit_number_set_id','two_digit_number_sets.id')
-                    ->join('game_types','play_details.game_type_id','game_types.id')
-                    ->select(DB::raw("max(play_details.quantity)* max(game_types.winning_price) as prize_value") )
-                    ->where('play_masters.id',$play_master_id)
-                    ->where('play_details.game_type_id',$game_id)
-                    ->where('play_details.two_digit_number_set_id',$two_digit_number_set_id)
+                $singleGamePrize = PlayMaster::join('play_details', 'play_masters.id', 'play_details.play_master_id')
+                    ->join('two_digit_number_sets', 'play_details.two_digit_number_set_id', 'two_digit_number_sets.id')
+                    ->join('game_types', 'play_details.game_type_id', 'game_types.id')
+                    ->select(DB::raw("max(play_details.quantity)* max(game_types.winning_price) as prize_value"))
+                    ->where('play_masters.id', $play_master_id)
+                    ->where('play_details.game_type_id', $game_id)
+                    ->where('play_details.two_digit_number_set_id', $two_digit_number_set_id)
                     ->groupBy('two_digit_number_sets.id')
                     ->first();
 //            }
@@ -142,12 +147,17 @@ class CPanelReportController extends Controller
 //                    ->where('play_details.single_number_id',$result_number_combination_id)
 //                    ->first();
 //            }
+
+                if (!empty($singleGamePrize)) {
+                    $prize_value += $singleGamePrize->prize_value;
+                }
+            }
         }
 //        return ['single' => $singleGamePrize];
 
-        if(!empty($singleGamePrize)){
-            $prize_value+= $singleGamePrize->prize_value;
-        }
+//        if(!empty($singleGamePrize)){
+//            $prize_value+= $singleGamePrize->prize_value;
+//        }
 //        if(!empty($tripleGamePrize)){
 //            $prize_value+= $tripleGamePrize->prize_value;
 //        }

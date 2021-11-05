@@ -19,34 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46d97cff-c6cb-436f-8cf9-75f19341b347" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/rajshree_single_api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rajshree_single_api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CentralController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CentralController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ManualResultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ManualResultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PlayController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PlayController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PlayMasterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PlayMasterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ResultMasterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ResultMasterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TwoDigitNumberSetsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TwoDigitNumberSetsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ManualResultResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ManualResultResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/PlayDetailsResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/PlayDetailsResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ManualResult.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ManualResult.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/NumberCombination.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/NumberCombination.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/PlayDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PlayDetails.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ResultMaster.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ResultMaster.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/TwoDigitNumberCombinations.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/TwoDigitNumberCombinations.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_15_154458_create_play_masters_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_15_154853_create_play_details_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_20_170205_create_result_masters_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_20_180925_create_manual_results_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_26_194123_create_two_d_number_sets_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_26_195701_create_two_d_number_combinations_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insomnia-data.json" beforeDir="false" afterPath="$PROJECT_DIR$/insomnia-data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-    </list>
+    <list default="true" id="46d97cff-c6cb-436f-8cf9-75f19341b347" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -261,6 +234,8 @@
       <workItem from="1635855889518" duration="1257000" />
       <workItem from="1635871598209" duration="986000" />
       <workItem from="1635913494297" duration="3045000" />
+      <workItem from="1636002209151" duration="349000" />
+      <workItem from="1636093280628" duration="4335000" />
     </task>
     <servers />
   </component>
