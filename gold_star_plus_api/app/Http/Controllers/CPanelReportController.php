@@ -114,6 +114,7 @@ class CPanelReportController extends Controller
         $result_master = ResultMaster::where('draw_master_id', $play_master->draw_master_id)->where('game_date',$play_date)->first();
         $result_details = ResultDetail::where('result_masters_id',$result_master->id)->get();
 //        return response()->json(['success' => 100, 'data' => $result_master, 'data2' => $result_details], 200);
+        $prize_value = 0;
         foreach ($result_details as $tempDetails) {
             $temp_result_details = ResultDetail::where('result_masters_id',$result_master->id)->where('game_type_id',$tempDetails->game_type_id)->first();
 //        return response()->json(['success' => 100, 'data' => $result_master, 'data2' => $result_details], 200);
@@ -157,9 +158,6 @@ class CPanelReportController extends Controller
 
 //        if(!empty($singleGamePrize)){
 //            $prize_value+= $singleGamePrize->prize_value;
-//        }
-//        if(!empty($tripleGamePrize)){
-//            $prize_value+= $tripleGamePrize->prize_value;
 //        }
         return $prize_value;
     }
@@ -291,19 +289,6 @@ class CPanelReportController extends Controller
         group by stockist_to_terminals.stockist_id, play_masters.user_id,users.user_name,play_details.game_type_id,users.email) as table1 group by user_name,user_id,terminal_pin,stockist_id) as table1
         left join users on table1.stockist_id = users.id ",[$start_date,$end_date]);
 
-//        $data = DB::select("select max(play_master_id) as play_master_id,terminal_pin,user_name,user_id,
-//        sum(total) as total,round(sum(commission),2) as commission from (
-//        select max(play_masters.id) as play_master_id,users.user_name,users.email as terminal_pin,
-//        round(sum(play_details.quantity * play_details.mrp)) as total,
-//        sum(play_details.quantity * play_details.mrp)* (max(play_details.commission)/100) as commission,
-//        play_masters.user_id
-//        FROM play_masters
-//        inner join play_details on play_details.play_master_id = play_masters.id
-//        inner join game_types ON game_types.id = play_details.game_type_id
-//        inner join users ON users.id = play_masters.user_id
-//        where play_masters.is_cancelled=0 and date(play_masters.created_at) >= ? and date(play_masters.created_at) <= ?
-//        group by play_masters.user_id,users.user_name,play_details.game_type_id,users.email) as table1 group by user_name,user_id,terminal_pin",[$start_date,$end_date]);
-
         foreach($data as $x){
             $newPrize = 0;
             $tempntp = 0;
@@ -328,8 +313,5 @@ class CPanelReportController extends Controller
         }
         return response()->json(['success'=> 1, 'data' => $data], 200);
 
-
-
-//        return response()->json(['success'=> 1, 'data' => $start_date, 'fdsf'=>$end_date], 200);
     }
 }
