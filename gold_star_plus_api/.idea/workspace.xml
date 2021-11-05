@@ -19,6 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="46d97cff-c6cb-436f-8cf9-75f19341b347" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/pages/terminal/terminal.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/pages/terminal/terminal.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/pages/terminal/terminal.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/pages/terminal/terminal.component.ts" afterDir="false" />
@@ -32,6 +33,9 @@
       <change beforePath="$PROJECT_DIR$/database/migrations/2022_05_50_170205_create_result_masters_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_05_50_170205_create_result_masters_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
     </list>
+=======
+    <list default="true" id="46d97cff-c6cb-436f-8cf9-75f19341b347" name="Default Changelist" comment="" />
+>>>>>>> 494e323ed0245a7e6439667bf411faeb9b63b327
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -246,9 +250,14 @@
       <workItem from="1635855889518" duration="1257000" />
       <workItem from="1635871598209" duration="986000" />
       <workItem from="1635913494297" duration="3045000" />
+<<<<<<< HEAD
       <workItem from="1635960028236" duration="1220000" />
       <workItem from="1636033639669" duration="484000" />
       <workItem from="1636083504578" duration="1124000" />
+=======
+      <workItem from="1636002209151" duration="349000" />
+      <workItem from="1636093280628" duration="6147000" />
+>>>>>>> 494e323ed0245a7e6439667bf411faeb9b63b327
     </task>
     <servers />
   </component>
