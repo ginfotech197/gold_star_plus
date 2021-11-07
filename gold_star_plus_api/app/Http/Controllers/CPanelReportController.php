@@ -79,18 +79,38 @@ class CPanelReportController extends Controller
     public function get_barcode_report_particulars($play_master_id){
         $data = array();
         $playMaster = PlayMaster::findOrFail($play_master_id);
-        $data['barcode'] = Str::substr($playMaster->barcode_number,0,8);
-        $singleGameData = PlayDetails::select(DB::raw('max(single_numbers.single_number) as single_number')
-            ,DB::raw('max(play_details.quantity) as quantity'))
-//            ->join('number_combinations','play_details.single_number_id','number_combinations.id')
-            ->join('single_numbers','play_details.single_number_id','single_numbers.id')
-            ->where('play_details.play_master_id',$play_master_id)
-            ->where('play_details.game_type_id',1)
-            ->groupBy('single_numbers.id')
-            ->orderBy('single_numbers.single_order')
-            ->get();
 
-        $data['single'] = $singleGameData;
+//        $play_details = PlayDetails::select()->where('play_master_id',$play_master_id)->get();
+        $play_game_ids = PlayDetails::where('play_master_id',$play_master_id)->distinct()->pluck('game_type_id');
+
+//        return response()->json(['success'=> 1, 'data' => $play_game_ids], 200);
+
+        $data = [];
+        $data['barcode'] = Str::substr($playMaster->barcode_number,0,8);
+        foreach ($play_game_ids as $game_id){
+            $singleGameData = PlayDetails::select(DB::raw('max(two_digit_number_combinations.visible_number) as visible_number')
+                ,DB::raw('max(play_details.quantity) as quantity'), 'play_details.game_type_id')
+//            ->join('number_combinations','play_details.single_number_id','number_combinations.id')
+                ->join('two_digit_number_combinations','play_details.two_digit_number_set_id','two_digit_number_combinations.id')
+                ->where('play_details.play_master_id',$play_master_id)
+                ->where('play_details.game_type_id',$game_id)
+                ->groupBy('two_digit_number_combinations.id','game_type_id')
+//            ->orderBy('single_numbers.single_order')
+                ->get();
+//            array_push($data, $singleGameData);
+            $data[$game_id] = $singleGameData;
+        }
+//        $singleGameData = PlayDetails::select(DB::raw('max(two_digit_number_combinations.visible_number) as visible_number')
+//            ,DB::raw('max(play_details.quantity) as quantity'))
+////            ->join('number_combinations','play_details.single_number_id','number_combinations.id')
+//            ->join('two_digit_number_combinations','play_details.two_digit_number_set_id','two_digit_number_combinations.id')
+//            ->where('play_details.play_master_id',$play_master_id)
+//            ->where('play_details.game_type_id',1)
+//            ->groupBy('two_digit_number_combinations.id')
+////            ->orderBy('single_numbers.single_order')
+//            ->get();
+
+//        $data['single'] = $singleGameData;
 
 //        $tripleGameData = PlayDetails::select('number_combinations.visible_triple_number','single_numbers.single_number'
 //            ,'play_details.quantity')
