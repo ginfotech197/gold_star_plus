@@ -21,8 +21,8 @@
         <td scope="col" style="background-color: rgb(255, 0, 234);">{{row.game_four}}</td>
         <td scope="col" style="background-color: rgb(175, 174, 252);">{{row.game_five}}</td>
       </tr>
-      <tr>
-
+      <tr *ngIf="currentDateResult.result.length==0">
+        <td colspan="6" class="text-center text-white">No results</td>
       </tr>
 
     </tbody>

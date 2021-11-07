@@ -112,7 +112,9 @@ export class TerminalComponent implements OnInit {
     this.watchDrawService.getNextDrawListener().subscribe((response: NextDrawId) => {
       this.nextDrawId = response;
       this.showCurrentResult = this.watchDrawService.showCurrentResult;
-      this.showResultSheet = false;
+      if (this.showCurrentResult){
+        this.showResultSheet = false;
+      }
       setTimeout(() => {
         this.watchDrawService.showCurrentResult = false;
         this.showCurrentResult = false;
