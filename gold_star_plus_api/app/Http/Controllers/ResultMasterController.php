@@ -158,4 +158,9 @@ class ResultMasterController extends Controller
 
         return response()->json(['success'=> 1, 'data' => $data], 200);
     }
+
+    public function get_result_by_date($date){
+        $result = DrawMaster::findOrFail($date);
+        return response()->json(['success'=> 1, 'data' => $result], 200);
+    }
 }
