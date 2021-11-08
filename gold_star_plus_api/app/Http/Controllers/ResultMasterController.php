@@ -19,14 +19,11 @@ use Illuminate\Database\Query\Builder;
 
 class ResultMasterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function get_results()
     {
-        $result_dates= ResultMaster::distinct()->orderBy('game_date','desc')->pluck('game_date')->take(40);
+        $result_dates= ResultMaster::distinct()->orderBy('game_date','desc')->pluck('game_date');
+
+//        return response()->json(['success'=>1,'data'=>$result_dates], 200,[],JSON_NUMERIC_CHECK);
 
         $result_array = array();
         foreach($result_dates as $result_date){
@@ -40,7 +37,7 @@ class ResultMasterController extends Controller
                     $join->on('draw_masters.id','=','result_masters.draw_master_id')
                         ->where('result_masters.game_date','=', $result_date);
                 })
-                ->leftJoin('two_digit_number_combinations','result_masters.two_digit_number_combination_id','two_digit_number_combinations.id')
+                ->leftJoin('two_digit_number_combinations','result_details.two_digit_number_combination_id','two_digit_number_combinations.id')
                 ->get();
 
             /*Do Not delete*/

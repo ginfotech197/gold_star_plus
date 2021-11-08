@@ -26,6 +26,7 @@ import {GameType} from '../../models/GameType.model';
 import {MatTableDataSource} from '@angular/material/table';
 import {GameTypeService} from '../../services/game-type.service';
 import {TwoDigitNumberSet} from '../../models/TwoDigitNumberSet.model';
+import {LastResult} from "../../models/LastResult.model";
 
 
 @Component({
@@ -85,6 +86,7 @@ export class TerminalComponent implements OnInit {
   showDevArea = false;
   currentDate: string;
   deviceXs: boolean;
+  lastResult: LastResult[];
 
   public showCurrentResult = false;
   public showResultSheet = false;
@@ -96,6 +98,10 @@ export class TerminalComponent implements OnInit {
               private ngxPrinterService: NgxPrinterService, private renderer: Renderer2, private watchDrawService: WatchDrawService,
               private gameTypeService: GameTypeService
   ) {
+
+    this.watchDrawService.lastResultSubject.subscribe((response) => {
+      this.lastResult = response;
+    });
 
     // this.renderer.setStyle(document.body, 'background-image', ' url("assets/images/curtain.jpg")');
     // this.renderer.setStyle(document.body.firstChild., 'background-image', ' url("assets/images/curtain.jpg")');
