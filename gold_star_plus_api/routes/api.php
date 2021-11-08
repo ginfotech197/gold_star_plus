@@ -202,7 +202,7 @@ Route::group(array('prefix' => 'dev'), function() {
 
     Route::get('balance', [PlayMasterController::class, 'get_total_balance']);
 
-    Route::get('getResultByDate/{date}', [ResultMasterController::class, 'get_result_by_date']);
+    Route::post('getResultByDate', [ResultMasterController::class, 'get_result_by_date']);
 
 });
 
