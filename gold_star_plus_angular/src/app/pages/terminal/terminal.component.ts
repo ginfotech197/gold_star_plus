@@ -103,6 +103,8 @@ export class TerminalComponent implements OnInit {
     this.watchDrawService.lastResultSubject.subscribe((response) => {
       this.lastResult = response;
     });
+    // @ts-ignore
+    this.lastResult = this.watchDrawService.getResult();
 
     // this.renderer.setStyle(document.body, 'background-image', ' url("assets/images/curtain.jpg")');
     // this.renderer.setStyle(document.body.firstChild., 'background-image', ' url("assets/images/curtain.jpg")');
