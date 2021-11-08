@@ -82,6 +82,10 @@ export class WatchDrawService {
     });
   }
 
+  getResult(){
+    return {...this.lastResult};
+  }
+
   getNextDraw(){
     return {...this.nextDrawId};
   }
