@@ -27,6 +27,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {GameTypeService} from '../../services/game-type.service';
 import {TwoDigitNumberSet} from '../../models/TwoDigitNumberSet.model';
 import {LastResult} from "../../models/LastResult.model";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -96,7 +97,7 @@ export class TerminalComponent implements OnInit {
 
   constructor(private playGameService: PlayGameService, private commonService: CommonService, private authService: AuthService,
               private ngxPrinterService: NgxPrinterService, private renderer: Renderer2, private watchDrawService: WatchDrawService,
-              private gameTypeService: GameTypeService
+              private gameTypeService: GameTypeService, private route: Router
   ) {
 
     this.watchDrawService.lastResultSubject.subscribe((response) => {

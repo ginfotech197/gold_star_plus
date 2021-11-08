@@ -132,6 +132,9 @@ class CPanelReportController extends Controller
 //        return response()->json(['success' => 1, 'data' => $play_game_ids], 200);
         $play_date = Carbon::parse($play_master->created_at)->format('Y-m-d');
         $result_master = ResultMaster::where('draw_master_id', $play_master->draw_master_id)->where('game_date',$play_date)->first();
+        if(empty($result_master)){
+            return 0 ;
+        }
         $result_details = ResultDetail::where('result_masters_id',$result_master->id)->get();
 //        return response()->json(['success' => 100, 'data' => $result_master, 'data2' => $result_details], 200);
         $prize_value = 0;

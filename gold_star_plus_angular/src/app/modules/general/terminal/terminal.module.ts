@@ -20,6 +20,7 @@ import {MatProgressBar, MatProgressBarModule} from '@angular/material/progress-b
 import {CurrentResultModule} from '../current-result/current-result.module';
 import {CurrentResultComponent} from '../../../pages/current-result/current-result.component';
 import { ResultSheetComponent } from 'src/app/pages/result-sheet/result-sheet.component';
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ResultSheetComponent } from 'src/app/pages/result-sheet/result-sheet.co
     NgxPrintModule,
     NgxWheelModule,
     MatProgressBarModule,
-    CurrentResultModule
+    CurrentResultModule,
+    RouterModule
   ],
   declarations: [
     TerminalComponent,

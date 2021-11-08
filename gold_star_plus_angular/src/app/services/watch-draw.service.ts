@@ -76,7 +76,7 @@ export class WatchDrawService {
   getLastResult(){
     this.http.get(this.BASE_API_URL + '/dev/results/lastResult').subscribe((response: ServerResponse) => {
       this.lastResult = response.data;
-      console.log(this.lastResult);
+      // console.log(this.lastResult);
       // @ts-ignore
       this.lastResultSubject.next([...this.lastResult]);
     });

@@ -15,7 +15,7 @@ export class CurrentResultComponent implements OnInit {
 
     this.watchDrawService.lastResultSubject.subscribe((response) => {
       this.lastResult = response;
-      console.log('current result', this.lastResult);
+      // console.log('current result', this.lastResult);
     });
   }
 

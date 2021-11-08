@@ -19,6 +19,8 @@ class TerminalReportController extends Controller
         $end_date = $requestedData->endDate;
         $data = $requestedData;
 
+//        return response()->json(['success' => 1, 'data' => $requestedData], 200);
+
         $data = PlayMaster::select('play_masters.id as play_master_id', DB::raw('substr(play_masters.barcode_number, 1, 8) as barcode_number')
             ,'draw_masters.visible_time as draw_time','play_masters.is_claimed',
             'users.email as terminal_pin','play_masters.created_at as ticket_taken_time','play_masters.is_cancelled','play_masters.is_cancelable'
