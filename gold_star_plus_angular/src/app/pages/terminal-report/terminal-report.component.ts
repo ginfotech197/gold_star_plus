@@ -39,6 +39,7 @@ export class TerminalReportComponent implements OnInit {
 
     this.terminalReportService.terminalListListener().subscribe((response) => {
       this.terminalReportData = response;
+      console.log(this.terminalReportData);
     });
     this.terminalReportService.terminalSaleListListener().subscribe((response) => {
       this.terminalSaleReportData = response;
@@ -171,6 +172,7 @@ export class TerminalReportComponent implements OnInit {
 
     this.adminReportService.getBarcodeDetails(playMasterId).subscribe(response => {
       this.barcodeDetails = response.data;
+      console.log(this.barcodeDetails);
     });
   }
 

@@ -88,15 +88,21 @@ class CPanelReportController extends Controller
         $data = [];
         $data['barcode'] = Str::substr($playMaster->barcode_number,0,8);
         foreach ($play_game_ids as $game_id){
-            $singleGameData = PlayDetails::select(DB::raw('max(two_digit_number_combinations.visible_number) as visible_number')
-                ,DB::raw('max(play_details.quantity) as quantity'), 'play_details.game_type_id')
-//            ->join('number_combinations','play_details.single_number_id','number_combinations.id')
-                ->join('two_digit_number_combinations','play_details.two_digit_number_set_id','two_digit_number_combinations.id')
-                ->where('play_details.play_master_id',$play_master_id)
-                ->where('play_details.game_type_id',$game_id)
-                ->groupBy('two_digit_number_combinations.id','game_type_id')
-//            ->orderBy('single_numbers.single_order')
-                ->get();
+//            $singleGameData = PlayDetails::select(DB::raw('max(two_digit_number_sets.number_set) as number_set')
+//                ,DB::raw('max(play_details.quantity) as quantity'), 'play_details.game_type_id')
+////            ->join('number_combinations','play_details.single_number_id','number_combinations.id')
+//                ->join('two_digit_number_sets','play_details.two_digit_number_set_id','two_digit_number_sets.id')
+//                ->where('play_details.play_master_id',$play_master_id)
+//                ->where('play_details.game_type_id',2)
+//                ->groupBy('game_type_id')
+////            ->orderBy('single_numbers.single_order')
+//                ->get();
+
+        $singleGameData = DB::select("select two_digit_number_sets.number_set, play_details.quantity, play_details.game_type_id from play_details
+            inner join two_digit_number_sets on play_details.two_digit_number_set_id = two_digit_number_sets.id
+            where play_details.play_master_id = ".$play_master_id." and play_details.game_type_id =".$game_id."
+            ");
+
 //            array_push($data, $singleGameData);
             $data[$game_id] = $singleGameData;
         }

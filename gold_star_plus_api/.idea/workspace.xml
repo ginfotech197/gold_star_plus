@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4eb4110c-81d9-43f4-9711-e035440ab2b2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/services/watch-draw.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/services/watch-draw.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CPanelReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CPanelReportController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TerminalReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TerminalReportController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -167,6 +165,8 @@
       <option name="presentableId" value="Default" />
       <updated>1636362592335</updated>
       <workItem from="1636362602066" duration="4083000" />
+      <workItem from="1636390269576" duration="608000" />
+      <workItem from="1636392790924" duration="1819000" />
     </task>
     <servers />
   </component>
