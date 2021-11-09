@@ -8,7 +8,8 @@ import { ResultSheetRoutingModule } from './result-sheet-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    ResultSheetRoutingModule
+    ResultSheetRoutingModule,
+    
   ]
 })
 export class ResultSheetModule { }

@@ -2,7 +2,7 @@
 
 
 
-  <div  style="padding-top: 30px;" >
+  <div  style="padding-top: 20px;" >
     <div class="d-flex" style="background-color: blue;">
       <div class="col-2">
         <i class="bi bi-bookmark-star-fill" style="font-size: 25px; color: white;"></i>
@@ -45,7 +45,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr [style.background-color]="colorName[i]" style=" font-weight: bold; font-size: 33px;" *ngFor="let row of gameTypes; let i = index">
+        <tr [style.background-color]="colorName[i]" style=" font-weight: bold; font-size: 30px;" *ngFor="let row of gameTypes; let i = index">
           <td scope="col">{{row.gameName}}</td>
           <td scope="col">{{row.seriesName}}</td>
           <td scope="col"><input #value1 (change)="changeInputDetails(row,value1.value,twoDigitNumberSet[0].id)" style="max-width: 50px; max-height: 25px;"></td>
@@ -63,6 +63,9 @@
       </tbody>
     </table>
   </div>
+  <div>
+    <label style="background-color: aquamarine; border: 3px double black; border-radius: 5px; font-size: 25px; font-weight: bold;">{{totalTicketPurchased}}</label>
+  </div>
   <div class="row" style="text-align: center; padding-left: 550px;">
     <button class="mr-2 btn btn-warning" (click)="viewResult()">View Results</button>
     <button class="mr-2 btn btn-warning" [routerLink]="'/terminalReport'" >View Report</button>
@@ -70,7 +73,10 @@
     <!-- <button class="btn btn-primary">Log Out</button> -->
 
   </div>
-  <label>{{totalTicketPurchased}}</label>
+  <!-- <div>
+    <label style="background-color: aquamarine; border: 3px double black; border-radius: 5px; font-size: 15px; font-weight: bold;">{{totalTicketPurchased}}</label>
+  </div> -->
+  
   <!-- <div style="color: rgb(253, 253, 253);">
     <pre>
       {{gameTypes | json}}

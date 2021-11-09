@@ -33,6 +33,8 @@ export class ResultComponent implements OnInit {
     return this.activeTripleContainerValue == idxSingle;
   }
 
-
+  
 
 }
+
+
