@@ -34,7 +34,9 @@ export class ResultSheetComponent implements OnInit {
       // console.log("ResultSheetComponent", this.currentDateResult);
     });
 
-    this.resultService.getResultByDate('2021-11-09');
+    this.resultService.getResultByDate('2021-11-08').subscribe(response=>{
+      console.log(response);
+    });
     this.resultService.getResultByDateListener().subscribe((response: GameResult) => {
       this.resultByDate = response;
       console.log(response);
