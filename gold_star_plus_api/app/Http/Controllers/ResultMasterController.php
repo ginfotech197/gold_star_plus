@@ -149,7 +149,7 @@ class ResultMasterController extends Controller
             ->join('result_details','result_details.result_masters_id','result_masters.id')
             ->leftJoin('two_digit_number_combinations','result_details.two_digit_number_combination_id','two_digit_number_combinations.id')
             ->leftJoin('game_types','result_details.game_type_id','game_types.id')
-            ->select('result_masters.game_date','draw_masters.end_time','two_digit_number_combinations.visible_number',
+            ->select('result_masters.game_date','draw_masters.end_time','draw_masters.visible_time','two_digit_number_combinations.visible_number',
                 'game_types.game_name','game_types.series_name')
             ->orderBy('result_masters.draw_master_id','desc')
             ->whereNotNull('two_digit_number_combinations.visible_number')

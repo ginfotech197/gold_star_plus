@@ -24,5 +24,6 @@ export class LastResult{
   visible_number: number;
   game_name: string;
   series_name: string;
+  visible_time?: string;
 
 }
