@@ -475,10 +475,10 @@ export class TerminalComponent implements OnInit {
       for (let j = 0 ; j <= 10 ; j++){
         if (this.inputData[i][j].length === 0){
           // tslint:disable-next-line:radix
-          tempData = parseInt(String(tempData));
+          tempData = parseInt(0 + String(tempData));
         }else{
           // tslint:disable-next-line:radix
-          tempData = parseInt(String(tempData + parseInt(this.inputData[i][j])));
+          tempData = parseInt(String(tempData + (parseInt(this.inputData[i][j]) * x.mrp)));
         }
       }
     }
