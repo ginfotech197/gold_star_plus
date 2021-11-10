@@ -29,7 +29,6 @@ import {TwoDigitNumberSet} from '../../models/TwoDigitNumberSet.model';
 import {LastResult} from "../../models/LastResult.model";
 import {Router} from "@angular/router";
 
-
 @Component({
   selector: 'app-terminal',
   templateUrl: './terminal.component.html',
@@ -42,6 +41,10 @@ export class TerminalComponent implements OnInit {
   items: any[];
   textOrientation: TextOrientation = TextOrientation.HORIZONTAL;
   textAlignment: TextAlignment = TextAlignment.OUTER;
+  StartDateFilter = 1;
+
+  inputData: any[][];
+
 
   // for progressbar
   value = 0;
@@ -100,6 +103,14 @@ export class TerminalComponent implements OnInit {
               private gameTypeService: GameTypeService, private route: Router
   ) {
 
+    this.inputData = [];
+    for (let i = 0; i <= 6 ; i++){
+      this.inputData[i] = [];
+      for (let j = 0 ; j <= 10 ; j++){
+        this.inputData[i][j] = [];
+      }
+    }
+
     // @ts-ignore
     this.lastResult = this.watchDrawService.getResult();
 
@@ -149,6 +160,7 @@ export class TerminalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
 
     // let audio = new Audio();
     // audio.src = "sound/Wheel.wav";
@@ -461,12 +473,30 @@ export class TerminalComponent implements OnInit {
 
   changeInputDetails(x, y, nc){
 
-    this.playDetails.forEach(function(value) {
-      if ((value.gameTypeId === x.gameTypeId) && (value.twoDigitNumberSetId === nc)){
-        // const tempIndex = value.findIndex(x=>x.gameTypeId === x.gameTypeId);
-        value.quantity = y;
+    let tempData = 0;
+    for (let i = 0; i <= 6 ; i++){
+      for (let j = 0 ; j <= 10 ; j++){
+        if (this.inputData[i][j].length === 0){
+          // tslint:disable-next-line:radix
+          tempData = parseInt(String(tempData));
+        }else{
+          // tslint:disable-next-line:radix
+          tempData = parseInt(String(tempData + parseInt(this.inputData[i][j])));
+        }
       }
-    });
+    }
+    this.totalTicketPurchased = tempData;
+
+    if (y === ''){
+      const index = this.playDetails.findIndex(r => r.gameTypeId === x.gameTypeId && r.twoDigitNumberSetId === nc);
+      this.playDetails.slice(index , 1);
+      return;
+    }
+    const index = this.playDetails.findIndex(r => r.gameTypeId === x.gameTypeId && r.twoDigitNumberSetId === nc);
+    if (this.playDetails[index] !== undefined && this.playDetails[index].quantity > 0){
+      this.playDetails[index].quantity = y;
+      return;
+    }
 
     const z = {
       "gameTypeId": x.gameTypeId,
@@ -475,16 +505,39 @@ export class TerminalComponent implements OnInit {
       "twoDigitNumberSetId": nc,
       "quantity": y,
       "mrp": x.mrp
-     };
+    };
     this.playDetails.push(z);
-    console.log(this.playDetails);
+
+
+
+    // return;
+    //
+    //
+    //
+    // this.playDetails.forEach(function(value) {
+    //   if ((value.gameTypeId === x.gameTypeId) && (value.twoDigitNumberSetId === nc)){
+    //     // const tempIndex = value.findIndex(x=>x.gameTypeId === x.gameTypeId);
+    //     value.quantity = y;
+    //   }
+    // });
+    //
+    // const z = {
+    //   "gameTypeId": x.gameTypeId,
+    //   // "gameTypeId": 1,
+    //   // "twoDigitNumberSetId": Math.floor(Math.random() * (9 - 1 + 1) + 1),
+    //   "twoDigitNumberSetId": nc,
+    //   "quantity": y,
+    //   "mrp": x.mrp
+    //  };
+    // this.playDetails.push(z);
     // console.log(this.playDetails);
-    let tempTotal = 0;
-    this.playDetails.forEach(function(value) {
-        tempTotal = tempTotal + (value.quantity * value.mrp);
-    });
+    // // console.log(this.playDetails);
+    // let tempTotal = 0;
+    // this.playDetails.forEach(function(value) {
+    //     tempTotal = tempTotal + (value.quantity * value.mrp);
+    // });
     // console.log(tempTotal);
-    this.totalTicketPurchased = tempTotal;
+
   }
 
 
@@ -536,6 +589,15 @@ export class TerminalComponent implements OnInit {
             });
             // updating terminal balance from here
             this.authService.setUserBalanceBy(responseData.play_master.terminal.balance);
+
+            this.inputData = [];
+            for (let i = 0; i <= 6 ; i++){
+              this.inputData[i] = [];
+              for (let j = 0 ; j <= 10 ; j++){
+                this.inputData[i][j] = [];
+              }
+            }
+
             // @ts-ignore
             // this.user.balance =
             this.resetMatrixValue();

@@ -48,16 +48,27 @@
         <tr [style.background-color]="colorName[i]" style=" font-weight: bold; font-size: 30px;" *ngFor="let row of gameTypes; let i = index">
           <td scope="col">{{row.gameName}}</td>
           <td scope="col">{{row.seriesName}}</td>
-          <td scope="col"><input #value1 (change)="changeInputDetails(row,value1.value,twoDigitNumberSet[0].id)" style="max-width: 50px; max-height: 25px;"></td>
-          <td scope="col"><input #value2 (change)="changeInputDetails(row,value2.value,twoDigitNumberSet[1].id)" style="max-width: 50px; max-height: 25px;"></td>
-          <td scope="col"><input #value3 (change)="changeInputDetails(row,value3.value,twoDigitNumberSet[2].id)" style="max-width: 50px; max-height: 25px;"></td>
-          <td scope="col"><input #value4 (change)="changeInputDetails(row,value4.value,twoDigitNumberSet[3].id)" style="max-width: 50px; max-height: 25px;"></td>
-          <td scope="col"><input #value5 (change)="changeInputDetails(row,value5.value,twoDigitNumberSet[4].id)" style="max-width: 50px; max-height: 25px;"></td>
-          <td scope="col"><input #value6 (change)="changeInputDetails(row,value6.value,twoDigitNumberSet[5].id)" style="max-width: 50px; max-height: 25px;"></td>
-          <td scope="col"><input #value7 (change)="changeInputDetails(row,value7.value,twoDigitNumberSet[6].id)" style="max-width: 50px; max-height: 25px;"></td>
-          <td scope="col"><input #value8 (change)="changeInputDetails(row,value8.value,twoDigitNumberSet[7].id)" style="max-width: 50px; max-height: 25px;"></td>
-          <td scope="col"><input #value9 (change)="changeInputDetails(row,value9.value,twoDigitNumberSet[8].id)" style="max-width: 50px; max-height: 25px;"></td>
-          <td scope="col"><input #value10 (change)="changeInputDetails(row,value10.value,twoDigitNumberSet[9].id)" style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input (change)="changeInputDetails(row,inputData[row.gameTypeId][0],twoDigitNumberSet[0].id)" [(ngModel)]= "inputData[row.gameTypeId][0]" style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input (change)="changeInputDetails(row,inputData[row.gameTypeId][1],twoDigitNumberSet[1].id)" [(ngModel)]= "inputData[row.gameTypeId][1]" style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input (change)="changeInputDetails(row,inputData[row.gameTypeId][2],twoDigitNumberSet[2].id)" [(ngModel)]= "inputData[row.gameTypeId][2]" style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input (change)="changeInputDetails(row,inputData[row.gameTypeId][3],twoDigitNumberSet[3].id)" [(ngModel)]= "inputData[row.gameTypeId][3]" style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input (change)="changeInputDetails(row,inputData[row.gameTypeId][4],twoDigitNumberSet[4].id)" [(ngModel)]= "inputData[row.gameTypeId][4]" style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input (change)="changeInputDetails(row,inputData[row.gameTypeId][5],twoDigitNumberSet[5].id)" [(ngModel)]= "inputData[row.gameTypeId][5]" style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input (change)="changeInputDetails(row,inputData[row.gameTypeId][6],twoDigitNumberSet[6].id)" [(ngModel)]= "inputData[row.gameTypeId][6]" style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input (change)="changeInputDetails(row,inputData[row.gameTypeId][7],twoDigitNumberSet[7].id)" [(ngModel)]= "inputData[row.gameTypeId][7]" style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input (change)="changeInputDetails(row,inputData[row.gameTypeId][8],twoDigitNumberSet[8].id)" [(ngModel)]= "inputData[row.gameTypeId][8]" style="max-width: 50px; max-height: 25px;"></td>
+          <td scope="col"><input (change)="changeInputDetails(row,inputData[row.gameTypeId][9],twoDigitNumberSet[9].id)" [(ngModel)]= "inputData[row.gameTypeId][9]" style="max-width: 50px; max-height: 25px;"></td>
+
+<!--          <td scope="col"><input #value1 (change)="changeInputDetails(row,value1.value,twoDigitNumberSet[0].id)" style="max-width: 50px; max-height: 25px;"></td>-->
+<!--          <td scope="col"><input #value2 (change)="changeInputDetails(row,value2.value,twoDigitNumberSet[1].id)" style="max-width: 50px; max-height: 25px;"></td>-->
+<!--          <td scope="col"><input #value3 (change)="changeInputDetails(row,value3.value,twoDigitNumberSet[2].id)" style="max-width: 50px; max-height: 25px;"></td>-->
+<!--          <td scope="col"><input #value4 (change)="changeInputDetails(row,value4.value,twoDigitNumberSet[3].id)" style="max-width: 50px; max-height: 25px;"></td>-->
+<!--          <td scope="col"><input #value5 (change)="changeInputDetails(row,value5.value,twoDigitNumberSet[4].id)" style="max-width: 50px; max-height: 25px;"></td>-->
+<!--          <td scope="col"><input #value6 (change)="changeInputDetails(row,value6.value,twoDigitNumberSet[5].id)" style="max-width: 50px; max-height: 25px;"></td>-->
+<!--          <td scope="col"><input #value7 (change)="changeInputDetails(row,value7.value,twoDigitNumberSet[6].id)" style="max-width: 50px; max-height: 25px;"></td>-->
+<!--          <td scope="col"><input #value8 (change)="changeInputDetails(row,value8.value,twoDigitNumberSet[7].id)" style="max-width: 50px; max-height: 25px;"></td>-->
+<!--          <td scope="col"><input #value9 (change)="changeInputDetails(row,value9.value,twoDigitNumberSet[8].id)" style="max-width: 50px; max-height: 25px;"></td>-->
+<!--          <td scope="col"><input #value10 (change)="changeInputDetails(row,value10.value,twoDigitNumberSet[9].id)" style="max-width: 50px; max-height: 25px;"></td>-->
           <td scope="col" *ngIf="lastResult[0]!=undefined" >{{lastResult[i].visible_number}}</td>
         </tr>
       </tbody>

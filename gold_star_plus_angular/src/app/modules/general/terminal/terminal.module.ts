@@ -6,7 +6,7 @@ import {TerminalComponent} from '../../../pages/terminal/terminal.component';
 // import {CurrentResultComponent} from '../../../pages/current-result/current-result.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
@@ -42,7 +42,8 @@ import {RouterModule} from "@angular/router";
     NgxWheelModule,
     MatProgressBarModule,
     CurrentResultModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   declarations: [
     TerminalComponent,

@@ -24,7 +24,6 @@ import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
   imports: [
     CommonModule,
     TerminalReportRoutingModule,
-    CommonModule,
     AdminReportsRoutingModule,
     MatTabsModule,
     MaterialModule,
@@ -41,7 +40,6 @@ import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
     MatBadgeModule,
     MatDatepickerModule,
     MatInputModule,
-    FormsModule,
     MatNativeDateModule,
     MatRippleModule,
   ],
