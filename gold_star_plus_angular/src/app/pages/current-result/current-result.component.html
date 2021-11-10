@@ -1,6 +1,6 @@
 <div style="color: #ffffff; max-height: 100vh; background-size: cover; padding-top: 30px;">
   <div style="text-align: center!important;">
-    <div scope="col" class="text-center" style="font-size: 65px!important;"><b>{{lastResult[0].visible_time}}</b></div>
+    <div *ngIf="lastResult[0]!=undefined" scope="col" class="text-center" style="font-size: 65px!important;"><b>{{lastResult[0].visible_time}}</b></div>
     <div class="d-flex ml-5">
       <div class="col-4" >
         <div class="ml-5 mr-5" style="max-width: 200px;">

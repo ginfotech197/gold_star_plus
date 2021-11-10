@@ -41,7 +41,7 @@
           <th scope="col">{{twoDigitNumberSet[7].number_set}}</th>
           <th scope="col">{{twoDigitNumberSet[8].number_set}}</th>
           <th scope="col">{{twoDigitNumberSet[9].number_set}}</th>
-          <th scope="col">{{lastResult[0].visible_time}}</th>
+          <th scope="col" *ngIf="lastResult[0]!=undefined">{{lastResult[0].visible_time}}</th>
         </tr>
       </thead>
       <tbody>
@@ -76,7 +76,7 @@
   <!-- <div>
     <label style="background-color: aquamarine; border: 3px double black; border-radius: 5px; font-size: 15px; font-weight: bold;">{{totalTicketPurchased}}</label>
   </div> -->
-  
+
   <!-- <div style="color: rgb(253, 253, 253);">
     <pre>
       {{gameTypes | json}}
