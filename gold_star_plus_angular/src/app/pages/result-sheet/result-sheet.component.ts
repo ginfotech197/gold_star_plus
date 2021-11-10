@@ -18,6 +18,11 @@ export class ResultSheetComponent implements OnInit {
   public currentDateResult: CurrentGameResult;
   public resultByDate: GameResult ;
 
+  thisYear = new Date().getFullYear();
+  thisMonth = new Date().getMonth();
+  thisDay = new Date().getDate();
+  startDate = new Date(this.thisYear, this.thisMonth, this.thisDay);
+
 
 
   constructor(private playGameService: PlayGameService, private commonService: CommonService, private resultService: ResultService) {
@@ -35,7 +40,7 @@ export class ResultSheetComponent implements OnInit {
     });
 
     this.resultService.getResultByDate('2021-11-08').subscribe(response=>{
-      console.log(response);
+      console.log('Component',response);
     });
     this.resultService.getResultByDateListener().subscribe((response: GameResult) => {
       this.resultByDate = response;
@@ -43,6 +48,6 @@ export class ResultSheetComponent implements OnInit {
     });
   }
 
-  
+
 
 }
