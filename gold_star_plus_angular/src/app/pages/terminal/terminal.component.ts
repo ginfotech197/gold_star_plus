@@ -486,6 +486,8 @@ export class TerminalComponent implements OnInit {
       }
     }
     this.totalTicketPurchased = tempData;
+    console.log(this.totalTicketPurchased);
+    console.log(x);
 
     if (y === ''){
       const index = this.playDetails.findIndex(r => r.gameTypeId === x.gameTypeId && r.twoDigitNumberSetId === nc);
