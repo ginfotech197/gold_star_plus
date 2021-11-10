@@ -49,7 +49,7 @@ export class AppComponent implements OnInit, OnDestroy{
       { name: 'author', content: 'gold star plus' },
       { name: 'date', content: '2021-05-25', scheme: 'YYYY-MM-DD' },
       { charset: 'UTF-8' },
-      { description: 'Gold star plus WEBSITE ⭐ Today All Bazi Tips Gold Star Plus Result Live Update. Kolkata Fatafat Result . कोलकाता फटाफट RESULT, Prediction the result and win, try your luck..\n' +
+      { description: 'Gold star plus WEBSITE ⭐ Today All Bazi Tips Gold Star Plus Result Live Update. Kolkata Gold star plus Result . कोलकाता फटाफट RESULT, Prediction the result and win, try your luck..\n' +
           '‎Gold star plus · ‎OLD Kolkata  Gold star plus Result · ‎Kolkata fun lucky number · ‎Kolkata FF FUN result since 1960' }
     ]);
 
