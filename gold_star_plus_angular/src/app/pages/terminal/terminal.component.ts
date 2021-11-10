@@ -109,13 +109,16 @@ export class TerminalComponent implements OnInit {
     // this.renderer.setStyle(document.body, 'background-image', ' url("assets/images/curtain.jpg")');
     // this.renderer.setStyle(document.body.firstChild., 'background-image', ' url("assets/images/curtain.jpg")');
     const layer = document.querySelector('.layer');
-    // this.renderer.setStyle(layer, 'background-color', ' #808000	');
-    // this.renderer.setStyle(layer, 'width', '1355px');
+    if(screen.width < 800){
+      console.log('phone_view');
+          this.renderer.setStyle(layer, 'height', '140%');
+    }
     this.renderer.setStyle(layer, 'width', '36cm');
-    // this.renderer.setStyle(layer, 'height', '500px');
-    // this.renderer.listen(hello, 'click', console.log);
+    this.renderer.setStyle(layer, 'overflow', 'hidden');
     this.currentDate = this.commonService.getCurrentDate();
     this.deviceXs = this.commonService.deviceXs;
+    console.log(screen.height);
+    console.log(screen.width);
 
     this.playGameService.getTodayLastResultListener().subscribe(response => {
       this.todayLastResult = response;
