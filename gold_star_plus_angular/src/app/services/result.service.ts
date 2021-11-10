@@ -36,18 +36,18 @@ export class ResultService {
     //   this.resultByDate = response.data;
     //   this.resultByDateSubject.next({...this.resultByDate});
     // });
-   
+
 
   }
 
   getResultByDate(resultDate: any){
-    return this.http.post(this.BASE_API_URL + '/dev/getResultByDate', {resultDate: '2021-11-08'}).pipe(catchError(this.handleError),
+    return this.http.post(this.BASE_API_URL + '/dev/getResultByDate', {date: resultDate}).pipe(catchError(this.handleError),
     tap(((response:{success: number, data: GameResult[]}) =>{
       console.log(response);
     })));
   }
-  
-  
+
+
 
   getCurrentDateResult(){
     return {...this.currentDateResult};

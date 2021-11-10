@@ -162,6 +162,7 @@ class ResultMasterController extends Controller
     public function get_result_by_date(Request $request){
 
         $date= $request['date'];
+        // return response()->json(['success'=>1,'data'=>$date], 200,[],JSON_NUMERIC_CHECK);
 
 
 
