@@ -26,8 +26,8 @@ import {GameType} from '../../models/GameType.model';
 import {MatTableDataSource} from '@angular/material/table';
 import {GameTypeService} from '../../services/game-type.service';
 import {TwoDigitNumberSet} from '../../models/TwoDigitNumberSet.model';
-import {LastResult} from "../../models/LastResult.model";
-import {Router} from "@angular/router";
+import {LastResult} from '../../models/LastResult.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-terminal',
@@ -83,7 +83,7 @@ export class TerminalComponent implements OnInit {
   public previousChip = 10;
   public selectedChipValue = 10;
   public counter = 0;
-  public colorName = ['#FE0C4D','#85FE0C','#1DA4FE','#FE7701','#BB01FE'];
+  public colorName = ['#FE0C4D', '#85FE0C', '#1DA4FE', '#FE7701', '#BB01FE'];
   copyNumberMatrix: SingleNumber[];
   copySingleNumber: SingleNumber[];
   isProduction = environment.production;
@@ -91,6 +91,8 @@ export class TerminalComponent implements OnInit {
   currentDate: string;
   deviceXs: boolean;
   lastResult: LastResult[];
+
+  timeoutSec = 10;
 
   public showCurrentResult = false;
   public showResultSheet = false;
@@ -120,9 +122,8 @@ export class TerminalComponent implements OnInit {
     // this.renderer.setStyle(document.body, 'background-image', ' url("assets/images/curtain.jpg")');
     // this.renderer.setStyle(document.body.firstChild., 'background-image', ' url("assets/images/curtain.jpg")');
     const layer = document.querySelector('.layer');
-    if(screen.width < 800){
-      console.log('phone_view');
-          this.renderer.setStyle(layer, 'height', '140%');
+    if (screen.width < 800){
+      this.renderer.setStyle(layer, 'height', '140%');
     }
     this.renderer.setStyle(layer, 'width', '36cm');
     this.renderer.setStyle(layer, 'overflow', 'hidden');
@@ -144,7 +145,7 @@ export class TerminalComponent implements OnInit {
       setTimeout(() => {
         this.watchDrawService.showCurrentResult = false;
         this.showCurrentResult = false;
-      }, 10000);
+      }, (this.timeoutSec * 1000));
       // if (this.todayLastResult !== undefined){
       //   console.log(this.todayLastResult.data);
       //   this.spin(this.todayLastResult.data.single_number).then(r => {});
@@ -211,10 +212,50 @@ export class TerminalComponent implements OnInit {
       this.chips = this.projectData.chips;
     });
 
+    let tempSecTime = null;
+    let tempMinTime = null;
     this.activeDrawTime = this.commonService.getActiveDrawTime();
     this.commonService.getActiveDrawTimeListener().subscribe((response: DrawTime) => {
         this.activeDrawTime = response;
+        tempSecTime = this.activeDrawTime.startTime.split(':')[2];
+        tempMinTime = this.activeDrawTime.startTime.split(':')[1];
+        // console.log('1', this.activeDrawTime.startTime);
+        // console.log(tempSecTime, ' ', new Date().getSeconds());
+        // console.log((new Date().getSeconds()) - tempSecTime);
+        // console.log('min diff', (new Date().getMinutes()) - tempMinTime);
+        // console.log(tempMinTime);
+        if ((((new Date().getSeconds()) - tempSecTime) < this.timeoutSec) && ((new Date().getMinutes()) - tempMinTime) <= 0){
+          this.showCurrentResult = true;
+        }
     });
+
+    // console.log('2', this.activeDrawTime.startTime);
+
+    if (this.activeDrawTime.startTime !== undefined){
+      tempSecTime = this.activeDrawTime.startTime.split(':')[2];
+      tempMinTime = this.activeDrawTime.startTime.split(':')[1];
+    }
+    // console.log((new Date().getSeconds()) - tempSecTime);
+    // console.log('min diff', (new Date().getMinutes()) - tempMinTime);
+    //
+    // console.log(tempSecTime);
+    // console.log(tempMinTime);
+
+
+
+    if ((((new Date().getSeconds()) - tempSecTime) < this.timeoutSec) && ((new Date().getMinutes()) - tempMinTime) <= 0){
+      this.showCurrentResult = true;
+    }
+
+    // console.log(tempSecTime);
+
+    // console.log('2', this.activeDrawTime.startTime);
+    // console.log(new Date().getSeconds());
+    // console.log(new Date().getMinutes());
+    // console.log('seconds', this.activeDrawTime.startTime.split(':')[2]);
+    // console.log('minutes', this.activeDrawTime.startTime.split(':')[1]);
+
+
     this.currentDateResult = this.playGameService.getCurrentDateResult();
     this.playGameService.getCurrentDateResultListener().subscribe((response: CurrentGameResult) => {
       this.currentDateResult = response;
@@ -246,8 +287,11 @@ export class TerminalComponent implements OnInit {
       // tslint:disable-next-line:radix
       this.value = ((hourToSec + minToSec + sec) / timeDiffMinToSec) * 100;
       // console.log(this.value);
+
+      // console.log(this.activeDrawTime);
     });
 
+    // console.log(this.activeDrawTime);
 
   }// end of ngOnIInit
 
@@ -469,7 +513,7 @@ export class TerminalComponent implements OnInit {
 
   removeDuplicates(data){
     data.filter((value, index) => data.indexOf(value) === index);
-  };
+  }
 
   changeInputDetails(x, y, nc){
 
@@ -486,10 +530,9 @@ export class TerminalComponent implements OnInit {
       }
     }
     this.totalTicketPurchased = tempData;
-    console.log(this.totalTicketPurchased);
-    console.log(x);
 
     if (y === ''){
+      // tslint:disable-next-line:no-shadowed-variable
       const index = this.playDetails.findIndex(r => r.gameTypeId === x.gameTypeId && r.twoDigitNumberSetId === nc);
       this.playDetails.slice(index , 1);
       return;
@@ -501,12 +544,12 @@ export class TerminalComponent implements OnInit {
     }
 
     const z = {
-      "gameTypeId": x.gameTypeId,
+      gameTypeId: x.gameTypeId,
       // "gameTypeId": 1,
       // "twoDigitNumberSetId": Math.floor(Math.random() * (9 - 1 + 1) + 1),
-      "twoDigitNumberSetId": nc,
-      "quantity": y,
-      "mrp": x.mrp
+      twoDigitNumberSetId: nc,
+      quantity: y,
+      mrp: x.mrp
     };
     this.playDetails.push(z);
 
@@ -577,7 +620,6 @@ export class TerminalComponent implements OnInit {
     this.playGameService.saveUserPlayInputDetails(masterData).subscribe(response => {
           if (response.success === 1){
             this.lastPurchasedTicketDetails = response;
-            console.log('lastPurchasedTicketDetails: ', this.lastPurchasedTicketDetails);
             // this.lastPurchasedTicketSingle = this.lastPurchasedTicketDetails.data.game_input.single_game_data;
             // this.lastPurchasedTicketTriple = this.lastPurchasedTicketDetails.data.game_input.triple_game_data;
             const responseData = response.data;

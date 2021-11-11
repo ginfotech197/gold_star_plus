@@ -42,6 +42,8 @@ export class WatchDrawService {
       setInterval(() => {
       this.http.get(this.BASE_API_URL + '/dev/nextDrawId').subscribe((response: NextDrawId) => {
 
+        // console.log(response);
+
         if (Object.entries(this.nextDrawId).length === 0){
           this.nextDrawId = response;
           this.nextDrawSubject.next({...this.nextDrawId});
