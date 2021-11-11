@@ -27,11 +27,11 @@
     <!-- {{showCurrentResult}} -->
     <table class="table table-bordered">
       <thead>
-        <tr style="background-color: rgb(54, 54, 54); color: white;">
+        <tr style="background-color: rgb(54, 54, 54); color: white;" *ngIf="twoDigitNumberSet[0]!=undefined">
           <th scope="col">Sereise Name</th>
           <th scope="col">SR</th>
 
-          <th scope="col">{{twoDigitNumberSet[0].number_set}}</th>
+          <th scope="col" >{{twoDigitNumberSet[0].number_set}}</th>
           <th scope="col">{{twoDigitNumberSet[1].number_set}}</th>
           <th scope="col">{{twoDigitNumberSet[2].number_set}}</th>
           <th scope="col">{{twoDigitNumberSet[3].number_set}}</th>
