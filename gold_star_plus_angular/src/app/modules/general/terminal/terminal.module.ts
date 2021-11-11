@@ -22,6 +22,9 @@ import {CurrentResultComponent} from '../../../pages/current-result/current-resu
 import { ResultSheetComponent } from 'src/app/pages/result-sheet/result-sheet.component';
 import {RouterModule} from "@angular/router";
 
+import {MatNativeDateModule} from "@angular/material/core";
+
+
 
 @NgModule({
   imports: [
@@ -43,7 +46,12 @@ import {RouterModule} from "@angular/router";
     MatProgressBarModule,
     CurrentResultModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+
+    MatDatepickerModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
   ],
   declarations: [
     TerminalComponent,
