@@ -129,8 +129,6 @@ export class TerminalComponent implements OnInit {
     this.renderer.setStyle(layer, 'overflow', 'hidden');
     this.currentDate = this.commonService.getCurrentDate();
     this.deviceXs = this.commonService.deviceXs;
-    console.log(screen.height);
-    console.log(screen.width);
 
     this.playGameService.getTodayLastResultListener().subscribe(response => {
       this.todayLastResult = response;
