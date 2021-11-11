@@ -353,7 +353,7 @@ export class TerminalComponent implements OnInit {
     this.wheel.reset();
   }
   before() {
-    console.log('Your wheel is about to spin');
+    // console.log('Your wheel is about to spin');
   }
 
   async spin(prize) {
@@ -363,7 +363,7 @@ export class TerminalComponent implements OnInit {
   }
 
   after() {
-    console.log('You have been bamboozled');
+    // console.log('You have been bamboozled');
   }
 
 
