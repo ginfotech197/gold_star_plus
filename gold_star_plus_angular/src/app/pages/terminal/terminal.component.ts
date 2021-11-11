@@ -641,6 +641,8 @@ export class TerminalComponent implements OnInit {
                 this.inputData[i][j] = [];
               }
             }
+            this.playDetails = [];
+            this.totalTicketPurchased = 0;
 
             // @ts-ignore
             // this.user.balance =
@@ -664,6 +666,19 @@ export class TerminalComponent implements OnInit {
           // when error occured
           // console.log('data saving error', error);
         });
+  }
+
+  clear(){
+    this.inputData = [];
+    for (let i = 0; i <= 6 ; i++){
+      this.inputData[i] = [];
+      for (let j = 0 ; j <= 10 ; j++){
+        this.inputData[i][j] = [];
+      }
+    }
+    this.playDetails = [];
+    this.playDetails = [];
+    this.totalTicketPurchased = 0;
   }
 
 
