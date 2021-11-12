@@ -48,6 +48,9 @@ export class ManualResultComponent implements OnInit {
   isProduction = environment.production;
   showDevArea = false;
   deviceXs: boolean;
+  inputData = [];
+  inputDataSaveArray = [];
+  selectedDraw: null;
   isDisabledSingleHeaderButton: boolean = true;
   // tslint:disable-next-line:max-line-length
   constructor(private http: HttpClient, private manualResultService: ManualResultService
@@ -70,6 +73,8 @@ export class ManualResultComponent implements OnInit {
       triple: new FormControl(null),
       transaction_date: new FormControl(currentSQLDate),
     });
+
+    // this.test = 100;
   }
 
 
@@ -141,7 +146,32 @@ export class ManualResultComponent implements OnInit {
   }
 
   saveManualResult(){
-    this.validatorError = null;
+    this.inputDataSaveArray = [];
+    // @ts-ignore
+    for (let i = 0 ; i <= 4 ; i++){
+      if ((this.inputData[i] === undefined) || (this.inputData[i] === null)){
+        this.inputDataSaveArray = [];
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Data Error',
+          showConfirmButton: false,
+          timer: 1000
+        });
+        return;
+      }else {
+        const x = {
+          drawMasterId: this.manualResultForm.value.drawMasterId,
+          twoDigitNumberCombinationId: this.inputData[i],
+          gameTypeId: (i + 1),
+        };
+        this.inputDataSaveArray.push(x);
+        // console.log(x);
+      }
+    }
+
+    // return;
+    // this.validatorError = null;
     Swal.fire({
       title: 'Confirmation',
       text: 'Do you sure to save this result?',
@@ -152,7 +182,7 @@ export class ManualResultComponent implements OnInit {
       confirmButtonText: 'Yes, save It!'
     }).then((result) => {
       if (result.isConfirmed){
-        this.manualResultService.saveManualResult(this.manualResultForm.value).subscribe(response => {
+        this.manualResultService.saveManualResult(this.inputDataSaveArray).subscribe(response => {
           if (response.success === 1){
             // @ts-ignore
             Swal.fire({
@@ -163,6 +193,8 @@ export class ManualResultComponent implements OnInit {
               timer: 1000
             });
             this.manualResultForm.reset();
+            this.inputDataSaveArray = [];
+            this.inputData = [];
             this.currentCombinationMatrixSelectedId = -1;
           }else{
             this.validatorError = response.error;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ManualResultResource;
 use App\Models\ManualResult;
 use App\Models\ResultMaster;
+use App\Models\TwoDigitNumberCombinations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -22,40 +23,39 @@ class ManualResultController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function save_manual_result(Request $request)
     {
-        $rules = array(
-            'drawMasterId'=>['required','exists:draw_masters,id',
-                    function($attribute, $value, $fail){
-                        $existingManual=ManualResult::where('draw_master_id', $value)->where('game_date','=',Carbon::today())->first();
-                        if($existingManual){
-                            $fail($value.' Duplicate entry');
-                        }
-                    }
-                ],
-//            'numberCombinationId'=>'required|exists:number_combinations,id',
-        );
-        $validator = Validator::make($request->all(),$rules);
-
-        if($validator->fails()){
-            return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
-        }
-        $requestedData = (object)$request->json()->all();
+//        $rules = array(
+//            'drawMasterId'=>['required','exists:draw_masters,id',
+//                    function($attribute, $value, $fail){
+//                        $existingManual=ManualResult::where('draw_master_id', $value)->where('game_date','=',Carbon::today())->first();
+//                        if($existingManual){
+//                            $fail($value.' Duplicate entry');
+//                        }
+//                    }
+//                ],
+////            'numberCombinationId'=>'required|exists:number_combinations,id',
+//        );
+//        $validator = Validator::make($request->all(),$rules);
+//
+//        if($validator->fails()){
+//            return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
+//        }
+        $requestedData = $request->json()->all();
 //        return response()->json(['success'=>1,'data'=> $requestedData], 200,[],JSON_NUMERIC_CHECK);
 //        DB::beginTransaction();
 //        try{
-
+//        $requestedData.foreach ()
+        foreach ($requestedData as $items) {
+            $twoNumberCombination = TwoDigitNumberCombinations::select()->where('visible_number',$items['twoDigitNumberCombinationId'] )->first();
             $manualResult = new ManualResult();
-            $manualResult->draw_master_id = $requestedData->drawMasterId;
-            $manualResult->two_digit_number_combination_id = $requestedData->twoDigitNumberCombinationId;
-            $manualResult->game_type_id = $requestedData->gameTypeId;
+            $manualResult->draw_master_id = $items['drawMasterId'];
+            $manualResult->two_digit_number_combination_id = $twoNumberCombination->id;
+            $manualResult->game_type_id = $items['gameTypeId'];
             $manualResult->game_date = Carbon::today();
             $manualResult->save();
+        }
 
 //            DB::commit();
 //        }catch (\Exception $e){

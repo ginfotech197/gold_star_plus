@@ -5,7 +5,7 @@
         <div #targetDiv>
           <mat-form-field>
             <mat-label>Draw time</mat-label>
-            <mat-select  formControlName="drawMasterId" placeholder="Category">
+            <mat-select  formControlName="drawMasterId" placeholder="Category" >
               <mat-option *ngFor="let time of drawTimes" [value]="time.drawId">
                 {{time.endTime}}
               </mat-option>
@@ -13,41 +13,108 @@
           </mat-form-field>
         </div>
 
-        <div>
+<!--        <div>-->
 
-          <div class="card" style="width: 18rem;">
-            <div class="card-header">
-              Upcoming result
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">{{manualResultForm.value.triple}}</li>
-              <li class="list-group-item">{{manualResultForm.value.single}}</li>
-            </ul>
-          </div>
+<!--          <div class="card" style="width: 18rem;">-->
+<!--            <div class="card-header">-->
+<!--              Upcoming result-->
+<!--            </div>-->
+<!--            <ul class="list-group list-group-flush">-->
+<!--              <li class="list-group-item">{{manualResultForm.value.triple}}</li>-->
+<!--              <li class="list-group-item">{{manualResultForm.value.single}}</li>-->
+<!--            </ul>-->
+<!--          </div>-->
 
-          <button type="button" class="btn btn-primary mt-2" (click)="saveManualResult()" [disabled]="!manualResultForm.valid" >Save</button>
-          
-        </div>
+<!--          <button type="button" class="btn btn-primary mt-2" (click)="saveManualResult()" [disabled]="!manualResultForm.valid" >Save</button>-->
+<!--          -->
+<!--        </div>-->
       </div>
 
-        <div class="d-flex flex-row bd-highlight">
+      <table class="table table-bordered col-4" >
+
+<!--        <table>-->
+          <tr>
+            <th>Game Name</th>
+            <th>Inputs</th>
+          </tr>
+          <tr>
+            <td>GoldStar GANGA-A</td>
+<!--            <td><input matInput maxlength="2" [value]="test" [(ngModel)]= "test" ></td>-->
+            <td><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[0]" [ngModelOptions]="{ standalone: true }" required></td>
+          </tr>
+          <tr>
+            <td>GoldStar JAMUNA-B</td>
+            <td><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[1]" [ngModelOptions]="{ standalone: true }" required></td>
+          </tr>
+          <tr>
+            <td>GoldStar SARASWATI-C</td>
+            <td><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[2]" [ngModelOptions]="{ standalone: true }" required></td>
+          </tr>
+          <tr>
+            <td>GoldStar GODAVARI-D</td>
+            <td><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[3]" [ngModelOptions]="{ standalone: true }" required></td>
+          </tr>
+          <tr>
+            <td>GoldStar GODAVARI-E</td>
+            <td><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[4]" [ngModelOptions]="{ standalone: true }" required></td>
+          </tr>
+
+<!--        </table>-->
 
 
-            <div class="d-flex flex-column" id="triple-flex-column-{{idxSingle}}" *ngFor="let tableData of numberCombinationMatrix; let idxSingle = index">
-              <div class="p-1">
-                <button  class="single-number-button coder-fab" [class.green]="isDisabledSingleHeaderButton"  [disabled]="isDisabledSingleHeaderButton">
-                  {{tableData.singleNumber}}
-                </button>
-              </div>
-              <div class="p-1" *ngFor="let numberCombination of tableData.numberCombinations">
-                <button class="coder-fab" mat-fab  matBadge="{{tableData.singleNumber}}" [matBadgeHidden]="currentCombinationMatrixSelectedId != numberCombination.numberCombinationId"  [ngStyle]="{'background-color':(currentCombinationMatrixSelectedId === numberCombination.numberCombinationId) ? 'rgb(30,64,30)' : '#858b8b' }" aria-label="" (click)="setManualResultInForm(tableData.singleNumber, numberCombination);scroll(targetDiv)">
-                  {{numberCombination.visibleTripleNumber}}
-                </button>
-              </div>
-            </div>
+        <!--        <thead>-->
+<!--        <tr style="font-size: 20px; font-weight: bold;">-->
+<!--          &lt;!&ndash; <th scope="col" style="background-color: aqua;" >#</th> &ndash;&gt;-->
+<!--          <th scope="" style="background-color: rgb(0, 255, 98);">GoldStar GANGA-A</th>-->
+<!--          <th scope="" style="background-color: rgb(255, 0, 0);">GoldStar JAMUNA-B</th>-->
+<!--          <th scope="" style="background-color: rgb(255, 230, 0);">GoldStar SARASWATI-C</th>-->
+<!--          <th scope="" style="background-color: rgb(255, 0, 234);">GoldStar GODAVARI-D</th>-->
+<!--          <th scope="" style="background-color: rgb(175, 174, 252);">GoldStar GODAVARI-E</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+
+<!--        <td scope="col" style="background-color: rgb(0, 255, 98);">GoldStar GANGA-A</td>-->
+<!--        <td scope="col" style="background-color: rgb(255, 0, 0);">GoldStar JAMUNA-B</td>-->
+<!--        <td scope="col" style="background-color: rgb(255, 230, 0);">GoldStar SARASWATI-C</td>-->
+<!--        <td scope="col" style="background-color: rgb(255, 0, 234);">GoldStar GODAVARI-D</td>-->
+<!--        <td scope="col" style="background-color: rgb(175, 174, 252);">GoldStar GODAVARI-E</td>-->
+
+<!--        <tr *ngFor="let row of currentResult" style="font-size: 40px; font-weight: bold;">-->
+<!--          &lt;!&ndash; <td scope="col" style="background-color: aqua;" >#</td> &ndash;&gt;-->
+<!--          <td scope="" style="background-color: rgb(255, 102, 0);">{{row.visible_time}}</td>-->
+<!--          <td scope="" style="background-color: rgb(0, 255, 98);" >{{row.game_one | number:'2.'}}</td>-->
+<!--          <td scope="" style="background-color: rgb(255, 0, 0);" >{{row.game_two | number:'2.'}}</td>-->
+<!--          <td scope="" style="background-color: rgb(255, 230, 0);" >{{row.game_three | number:'2.'}}</td>-->
+<!--          <td scope="" style="background-color: rgb(255, 0, 234);" >{{row.game_four | number:'2.'}}</td>-->
+<!--          <td scope="" style="background-color: rgb(175, 174, 252);" >{{row.game_five | number:'2.'}}</td>-->
+<!--        </tr>-->
+<!--        <tr *ngIf="currentResult.length==0">-->
+<!--          <td colspan="6" class="text-center text-white">No results</td>-->
+<!--        </tr>-->
+
+<!--        </tbody>-->
+      </table>
+      <button (click)="saveManualResult()">save</button>
+
+<!--        <div class="d-flex flex-row bd-highlight">-->
 
 
-        </div>
+<!--            <div class="d-flex flex-column" id="triple-flex-column-{{idxSingle}}" *ngFor="let tableData of numberCombinationMatrix; let idxSingle = index">-->
+<!--              <div class="p-1">-->
+<!--                <button  class="single-number-button coder-fab" [class.green]="isDisabledSingleHeaderButton"  [disabled]="isDisabledSingleHeaderButton">-->
+<!--                  {{tableData.singleNumber}}-->
+<!--                </button>-->
+<!--              </div>-->
+<!--              <div class="p-1" *ngFor="let numberCombination of tableData.numberCombinations">-->
+<!--                <button class="coder-fab" mat-fab  matBadge="{{tableData.singleNumber}}" [matBadgeHidden]="currentCombinationMatrixSelectedId != numberCombination.numberCombinationId"  [ngStyle]="{'background-color':(currentCombinationMatrixSelectedId === numberCombination.numberCombinationId) ? 'rgb(30,64,30)' : '#858b8b' }" aria-label="" (click)="setManualResultInForm(tableData.singleNumber, numberCombination);scroll(targetDiv)">-->
+<!--                  {{numberCombination.visibleTripleNumber}}-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </div>-->
+
+
+<!--        </div>-->
     </div>
   </form>
 
