@@ -165,9 +165,12 @@
 
       <!--Body-->
       <div class="modal-body">
-        <span *ngIf="barcodeDetails.single.length">Single</span>
-        <div class="d-flex flex-row mt-2">
-          <button matBadge="{{single.quantity}}" *ngFor="let single of barcodeDetails.single; let i=index" class="mr-2">{{ single.single_number }}</button>
+        <span *ngIf="barcodeDetails.details.length">Single</span>
+        <div class="d-flex flex-row mt-2" style="display: block">
+          <button matBadge="{{detail.quantity}}" *ngFor="let detail of barcodeDetails.details; let i=index" class="mr-2">
+            {{detail.game_name}}
+            {{ detail.number_set }}
+          </button>
         </div>
 
 <!--        <span *ngIf="barcodeDetails.triple.length">Triple</span>-->

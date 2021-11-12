@@ -43,7 +43,7 @@ export class ResultService {
   getResultByDate(resultDate: any){
     return this.http.post(this.BASE_API_URL + '/dev/getResultByDate', {date: resultDate}).pipe(catchError(this.handleError),
     tap(((response:{success: number, data: GameResult[]}) =>{
-      console.log(response);
+      //console.log(response);
     })));
   }
 

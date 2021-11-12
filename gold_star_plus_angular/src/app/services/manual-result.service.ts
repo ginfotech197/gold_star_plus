@@ -50,7 +50,6 @@ export class ManualResultService {
   saveManualResult(formData){
     return this.http.post<ManualResultSaveResponse>(this.BASE_API_URL + '/manualResult', formData)
       .pipe(catchError(this.errorService.serverError), tap(response => {
-        console.log(response);
       }));
   }
 }

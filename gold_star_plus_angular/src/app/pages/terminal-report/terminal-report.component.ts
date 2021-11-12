@@ -1,15 +1,15 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
-import {TerminalReportService} from "../../services/terminal-report.service";
-import {User} from "../../models/user.model";
-import {CPanelBarcodeReport} from "../../models/CPanelBarcodeReport.model";
-import {TerminalBarcodeReport} from "../../models/TerminalBarcodeReport.model";
-import {DatePipe} from "@angular/common";
-import {TerminalSaleReport} from "../../models/TerminaSaleReport.model";
+import {TerminalReportService} from '../../services/terminal-report.service';
+import {User} from '../../models/user.model';
+import {CPanelBarcodeReport} from '../../models/CPanelBarcodeReport.model';
+import {TerminalBarcodeReport} from '../../models/TerminalBarcodeReport.model';
+import {DatePipe} from '@angular/common';
+import {TerminalSaleReport} from '../../models/TerminaSaleReport.model';
 import Swal from 'sweetalert2';
-import {AdminReportService} from "../../services/admin-report.service";
-import {BarcodeDetails} from "../../models/BarcodeDetails.model";
-import {AuthService} from "../../services/auth.service";
-import {CommonService} from "../../services/common.service";
+import {AdminReportService} from '../../services/admin-report.service';
+import {BarcodeDetails} from '../../models/BarcodeDetails.model';
+import {AuthService} from '../../services/auth.service';
+import {CommonService} from '../../services/common.service';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class TerminalReportComponent implements OnInit {
   EndDateFilter = this.startDate;
   barcodeDetails: BarcodeDetails;
   pipe = new DatePipe('en-US');
-  selectedIndex : number;
+  selectedIndex: number;
 
   terminalReportData: TerminalBarcodeReport[] = [];
   terminalSaleReportData: TerminalSaleReport[] = [];
@@ -39,7 +39,6 @@ export class TerminalReportComponent implements OnInit {
 
     this.terminalReportService.terminalListListener().subscribe((response) => {
       this.terminalReportData = response;
-      console.log(this.terminalReportData);
     });
     this.terminalReportService.terminalSaleListListener().subscribe((response) => {
       this.terminalSaleReportData = response;
@@ -51,7 +50,7 @@ export class TerminalReportComponent implements OnInit {
       // tslint:disable-next-line:only-arrow-functions
       response.forEach(function(value){
           const z = this.terminalReportData.findIndex(x => x.play_master_id === value.id);
-        this.terminalReportData[z].is_cancelable = 0;
+          this.terminalReportData[z].is_cancelable = 0;
       });
     });
   }
@@ -63,24 +62,24 @@ export class TerminalReportComponent implements OnInit {
   claimPrize(play_master_id){
     Swal.fire({
       title: 'Please Wait !',
-      html: 'adding points ...',// add html attribute if you want or remove
+      html: 'adding points ...', // add html attribute if you want or remove
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
       }
     });
-    this.terminalReportService.claimPrize(play_master_id).subscribe((response)=>{
-      if(response.point){
+    this.terminalReportService.claimPrize(play_master_id).subscribe((response) => {
+      if (response.point){
         Swal.close();
       }
     });
   }
 
   checkBtnEligibility(record){
-    if(record.is_cancelled === 1){
+    if (record.is_cancelled === 1){
       return true;
     }
-    if(record.is_cancelable === 0){
+    if (record.is_cancelable === 0){
       return true;
     }
     return false;
@@ -99,14 +98,14 @@ export class TerminalReportComponent implements OnInit {
       if (result.isConfirmed) {
         Swal.fire({
           title: 'Please Wait !',
-          html: 'Confirming cancel',// add html attribute if you want or remove
+          html: 'Confirming cancel', // add html attribute if you want or remove
           allowOutsideClick: false,
           didOpen: () => {
             Swal.showLoading();
           }
         });
         this.terminalReportService.cancelTicket(masterId).subscribe((response) => {
-          if(response.success === 1){
+          if (response.success === 1){
           // if(response.data){
             Swal.hideLoading();
             Swal.fire({
@@ -133,17 +132,17 @@ export class TerminalReportComponent implements OnInit {
   getTerminalBarcodeReport(){
     Swal.fire({
       title: 'Please Wait !',
-      html: 'loading ...',// add html attribute if you want or remove
+      html: 'loading ...', // add html attribute if you want or remove
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
       }
     });
     const User = JSON.parse(localStorage.getItem('user'));
-    var startDate = this.pipe.transform(this.StartDateFilter, 'yyyy-MM-dd');
-    var endDate = this.pipe.transform(this.EndDateFilter, 'yyyy-MM-dd');
-    this.terminalReportService.getTerminalReport(User.userId,startDate,endDate).subscribe((response)=>{
-      if(response.data){
+    let startDate = this.pipe.transform(this.StartDateFilter, 'yyyy-MM-dd');
+    let endDate = this.pipe.transform(this.EndDateFilter, 'yyyy-MM-dd');
+    this.terminalReportService.getTerminalReport(User.userId, startDate, endDate).subscribe((response) => {
+      if (response.data){
         Swal.close();
       }
     });
@@ -152,17 +151,17 @@ export class TerminalReportComponent implements OnInit {
   getTerminalSaleReport(){
     Swal.fire({
       title: 'Please Wait !',
-      html: 'loading ...',// add html attribute if you want or remove
+      html: 'loading ...', // add html attribute if you want or remove
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
       }
     });
     const User = JSON.parse(localStorage.getItem('user'));
-    var startDate = this.pipe.transform(this.StartDateFilter, 'yyyy-MM-dd');
-    var endDate = this.pipe.transform(this.EndDateFilter, 'yyyy-MM-dd');
-    this.terminalReportService.getTerminalSaleReport(User.userId,startDate,endDate).subscribe((response)=>{
-      if(response.data){
+    const startDate = this.pipe.transform(this.StartDateFilter, 'yyyy-MM-dd');
+    const endDate = this.pipe.transform(this.EndDateFilter, 'yyyy-MM-dd');
+    this.terminalReportService.getTerminalSaleReport(User.userId, startDate, endDate).subscribe((response) => {
+      if (response.data){
         Swal.close();
       }
     });
@@ -172,7 +171,7 @@ export class TerminalReportComponent implements OnInit {
 
     this.adminReportService.getBarcodeDetails(playMasterId).subscribe(response => {
       this.barcodeDetails = response.data;
-      console.log(this.barcodeDetails);
+      //console.log(this.barcodeDetails);
     });
   }
 

@@ -49,7 +49,7 @@ export class AdminReportsComponent implements OnInit {
     this.customerSaleReportRecords = this.adminReportService.getCustomerSaleReportRecords();
     this.adminReportService.getCustomerSaleReportListener().subscribe((response: CPanelCustomerSaleReport[]) => {
       this.customerSaleReportRecords = response;
-      let temp= 0;
+      let temp = 0;
       this.customerSaleReportRecords.forEach(function (value) {
         temp += Number(value.total);
       })
@@ -63,7 +63,7 @@ export class AdminReportsComponent implements OnInit {
   searchByDateTab1(){
     Swal.fire({
       title: 'Please Wait !',
-      html: 'loading ...',// add html attribute if you want or remove
+      html: 'loading ...', // add html attribute if you want or remove
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
@@ -81,7 +81,7 @@ export class AdminReportsComponent implements OnInit {
   searchByDateTab2(){
     Swal.fire({
       title: 'Please Wait !',
-      html: 'loading ...',// add html attribute if you want or remove
+      html: 'loading ...', // add html attribute if you want or remove
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
@@ -90,7 +90,7 @@ export class AdminReportsComponent implements OnInit {
     var startDate = this.pipe.transform(this.StartDateFilter, 'yyyy-MM-dd');
     var endDate = this.pipe.transform(this.EndDateFilter, 'yyyy-MM-dd');
     this.adminReportService.barcodeReportByDate(startDate,endDate).subscribe((response)=>{
-      if(response.data){
+      if (response.data){
         Swal.close();
       }
     });

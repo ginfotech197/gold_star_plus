@@ -142,7 +142,7 @@
   style="overflow-y: auto"
 >
   <!--Dialog-->
-  <div class="modal-dialog modal-notify modal-info" role="document" *ngIf="barcodeDetails" style="min-width: 550px">
+  <div class="modal-dialog modal-lg modal-notify modal-info" role="document" *ngIf="barcodeDetails" style="min-width: 550px">
     <!--Content-->
     <div class="modal-content">
       <!--Header-->
@@ -163,9 +163,9 @@
 
       <!--Body-->
       <div class="modal-body">
-        <span *ngIf="barcodeDetails.single.length">Single</span>
+        <span *ngIf="barcodeDetails.details.length">Single</span>
         <div class="d-flex flex-row mt-2">
-          <button matBadge="{{single.quantity}}" *ngFor="let single of barcodeDetails.single; let i=index" class="mr-2">{{ single.single_number }}</button>
+          <button matBadge="{{detail.quantity}}" *ngFor="let detail of barcodeDetails.details; let i=index" class="mr-2">{{ detail.single_number }}</button>
         </div>
 
 <!--        <span *ngIf="barcodeDetails.triple.length">Triple</span>-->
