@@ -144,6 +144,8 @@ Route::group(array('prefix' => 'dev'), function() {
     //play_masters
     Route::post('buyTicket',[PlayController::class,'save_play_details']);
 
+    //TwoDigitNumberSets
+    Route::get("getTwoDigitNumberSets",[TwoDigitNumberSetsController::class,'getTwoDigitNumberSets']);
 
     //game
     Route::get('playDetails/playId/{id}',[PlayMasterController::class,'get_play_details_by_play_master_id']);
