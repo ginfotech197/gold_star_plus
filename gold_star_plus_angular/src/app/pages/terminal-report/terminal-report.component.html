@@ -122,7 +122,11 @@
   </mat-tab>
 
 
+<!-- *ngFor="let record of terminalReportData.slice(0, terminalReportData.length % columnNumber  === 0 ?
+  terminalReportData.length / columnNumber : terminalReportData.length / columnNumber + 1); let indexOfElement = index" -->
 
+
+  <!-- *ngFor="let record of terminalReportData.slice(indexOfElement * columnNumber, indexOfElement * columnNumber + columnNumber)" -->
 
 
 
@@ -164,8 +168,9 @@
       <!--Body-->
       <div class="modal-body">
         <span *ngIf="barcodeDetails.details.length">Single</span>
-        <div class="d-flex flex-row mt-2">
-          <button matBadge="{{detail.quantity}}" *ngFor="let detail of barcodeDetails.details; let i=index" class="mr-2">{{ detail.single_number }}</button>
+        <div class="d-flex flex-row mt-2" *ngFor="let detail of barcodeDetails.details.slice(0, barcodeDetails.details.length % columnNumber  === 0 ?
+        barcodeDetails.details.length / columnNumber : barcodeDetails.details.length / columnNumber + 1); let i= index">
+          <button matBadge="{{detail.quantity}}" *ngFor="let detail of barcodeDetails.details.slice(i* columnNumber, i* columnNumber + columnNumber)" class="mr-2 mt-3">{{ detail.single_number }}</button>
         </div>
 
 <!--        <span *ngIf="barcodeDetails.triple.length">Triple</span>-->

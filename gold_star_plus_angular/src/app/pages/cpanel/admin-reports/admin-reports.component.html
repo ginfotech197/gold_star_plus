@@ -166,8 +166,9 @@
       <!--Body-->
       <div class="modal-body">
         <span *ngIf="barcodeDetails.details.length">Single</span>
-        <div class="d-flex flex-row mt-2" style="display: block">
-          <button matBadge="{{detail.quantity}}" *ngFor="let detail of barcodeDetails.details; let i=index" class="mr-2">
+        <div class="d-flex flex-row mt-3" style="display: block" *ngFor="let detail of barcodeDetails.details.slice(0, barcodeDetails.details.length % columnNumber  === 0 ?
+        barcodeDetails.details.length / columnNumber : barcodeDetails.details.length / columnNumber + 1); let idx = index">
+          <button matBadge="{{detail.quantity}}" *ngFor="let detail of barcodeDetails.details.slice(idx * columnNumber, idx * columnNumber + columnNumber)" class="mr-2">
             {{detail.game_name}}
             {{ detail.number_set }}
           </button>
