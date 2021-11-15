@@ -26,14 +26,14 @@ export class PayoutSettingComponent implements OnInit {
     this.gameTypes = this.gameTypeService.getGameType();
     this.gameTypeService.getGameTypeListener().subscribe((response: GameType[]) => {
       this.gameTypes = response;
-      const x = this.gameTypes.filter(x => x.gameTypeId === 1);
+      // const x = this.gameTypes.filter(x => x.gameTypeId === 1);
       // @ts-ignore
-      this.dataSource = new MatTableDataSource(x);
+      this.dataSource = new MatTableDataSource(this.gameTypes);
     });
 
-    const x = this.gameTypes.filter(x => x.gameTypeId === 1);
+    // const x = this.gameTypes.filter(x => x.gameTypeId === 1);
     // @ts-ignore
-    this.dataSource = new MatTableDataSource(x);
+    this.dataSource = new MatTableDataSource(this.gameTypes);
   }
 
 

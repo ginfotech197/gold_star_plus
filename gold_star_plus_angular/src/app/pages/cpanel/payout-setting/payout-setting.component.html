@@ -6,6 +6,7 @@
 
   <form #payoutSetForm="ngForm" novalidate >
     <mat-table #table [dataSource]="dataSource">
+      <pre>{{dataSource}}</pre>
 
       <!-- Position Column -->
        <ng-container matColumnDef="position">
@@ -16,7 +17,7 @@
       <!-- GameName Column -->
       <ng-container matColumnDef="gameTypeName">
         <mat-header-cell *matHeaderCellDef> Game </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.gameTypeName}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.gameName}} </mat-cell>
       </ng-container>
 
       <!-- mrp Column -->
@@ -43,7 +44,7 @@
           <mat-header-cell *matHeaderCellDef> payout </mat-header-cell>
           <mat-cell *matCellDef="let element">
             <mat-form-field floatLabel="never">
-              <input type="number" name="payout" matInput placeholder="payout" [value]="element.payout" [(ngModel)]="element.payout" required>
+              <input type="number" name="payout" matInput placeholder="payout" [value]="element.payout" [(ngModel)]="element.payout" [ngModelOptions]="{ standalone: true }" required>
             </mat-form-field>
           </mat-cell>
         </ng-container>
