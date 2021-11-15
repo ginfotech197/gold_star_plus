@@ -167,12 +167,22 @@
 
       <!--Body-->
       <div class="modal-body">
+        <!-- <span *ngIf="terminalReportData.length">Single</span>
+        <div class="d-flex flex-row mt-2" *ngFor="let detail of terminalReportData.slice(0, terminalReportData.length % columnNumber  === 0 ?
+        terminalReportData.length / columnNumber : terminalReportData.length / columnNumber + 1); let i= index">
+          <button matBadge="{{detail.quantity}}" *ngFor="let detail of terminalReportData.slice(i* columnNumber, i* columnNumber + columnNumber)" class="mr-2 mt-3">{{ detail.single_number }}</button>
+        </div>
+        <pre>{{terminalReportData | json}}</pre> -->
         <span *ngIf="barcodeDetails.details.length">Single</span>
         <div class="d-flex flex-row mt-2" *ngFor="let detail of barcodeDetails.details.slice(0, barcodeDetails.details.length % columnNumber  === 0 ?
         barcodeDetails.details.length / columnNumber : barcodeDetails.details.length / columnNumber + 1); let i= index">
-          <button matBadge="{{detail.quantity}}" *ngFor="let detail of barcodeDetails.details.slice(i* columnNumber, i* columnNumber + columnNumber)" class="mr-2 mt-3">{{ detail.single_number }}</button>
+          <button matBadge="{{detail.quantity}}" *ngFor="let detail of barcodeDetails.details.slice(i* columnNumber, i* columnNumber + columnNumber)" class="mr-2 mt-3">
+            {{detail.game_name}}
+            {{ detail.number_set }}
+          </button>
         </div>
 
+        <!-- <pre>{{barcodeDetails.details | json}}</pre> -->
 <!--        <span *ngIf="barcodeDetails.triple.length">Triple</span>-->
 <!--        <div class="d-flex flex-row mt-2" *ngFor="let row of barcodeDetails.triple.slice(0, barcodeDetails.triple.length % 10  === 0 ?-->
 <!--        barcodeDetails.triple.length / 10 : barcodeDetails.triple.length / 10 + 1); let idx = index">-->
