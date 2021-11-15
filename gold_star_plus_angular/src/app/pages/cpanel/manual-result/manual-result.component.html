@@ -3,7 +3,7 @@
     <div class="d-flex flex-column bd-highlight">
       <div class="p-2 bd-highlight">
         <div #targetDiv>
-          <mat-form-field>
+          <mat-form-field style="padding-left: 400px;">
             <mat-label>Draw time</mat-label>
             <mat-select  formControlName="drawMasterId" placeholder="Category" >
               <mat-option *ngFor="let time of drawTimes" [value]="time.drawId">
@@ -30,72 +30,76 @@
 <!--        </div>-->
       </div>
 
-      <table class="table table-bordered col-4" >
+      <div style="padding-left: 400px;">
+        <table class="table table-bordered col-8">
 
-<!--        <table>-->
-          <tr>
-            <th>Game Name</th>
-            <th>Inputs</th>
-          </tr>
-          <tr>
-            <td>GoldStar GANGA-A</td>
-<!--            <td><input matInput maxlength="2" [value]="test" [(ngModel)]= "test" ></td>-->
-            <td><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[0]" [ngModelOptions]="{ standalone: true }" required></td>
-          </tr>
-          <tr>
-            <td>GoldStar JAMUNA-B</td>
-            <td><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[1]" [ngModelOptions]="{ standalone: true }" required></td>
-          </tr>
-          <tr>
-            <td>GoldStar SARASWATI-C</td>
-            <td><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[2]" [ngModelOptions]="{ standalone: true }" required></td>
-          </tr>
-          <tr>
-            <td>GoldStar GODAVARI-D</td>
-            <td><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[3]" [ngModelOptions]="{ standalone: true }" required></td>
-          </tr>
-          <tr>
-            <td>GoldStar GODAVARI-E</td>
-            <td><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[4]" [ngModelOptions]="{ standalone: true }" required></td>
-          </tr>
+          <!--        <table>-->
+                    <tr>
+                      <th style="background-color: rgb(17, 162, 206);">Game Name</th>
+                      <th style="background-color: rgb(255, 72, 0);">Inputs</th>
+                    </tr>
+                    <tr>
+                      <td style="background-color: rgb(243, 172, 172);">GoldStar GANGA-A</td>
+          <!--            <td><input matInput maxlength="2" [value]="test" [(ngModel)]= "test" ></td>-->
+                      <td style="background-color: rgb(189, 189, 189);"><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[0]" [ngModelOptions]="{ standalone: true }" required></td>
+                    </tr>
+                    <tr>
+                      <td style="background-color: rgb(243, 172, 172);">GoldStar JAMUNA-B</td>
+                      <td style="background-color: rgb(189, 189, 189);"><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[1]" [ngModelOptions]="{ standalone: true }" required></td>
+                    </tr>
+                    <tr>
+                      <td style="background-color: rgb(243, 172, 172);">GoldStar SARASWATI-C</td>
+                      <td style="background-color: rgb(189, 189, 189);"><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[2]" [ngModelOptions]="{ standalone: true }" required></td>
+                    </tr>
+                    <tr>
+                      <td style="background-color: rgb(243, 172, 172);">GoldStar GODAVARI-D</td>
+                      <td style="background-color: rgb(189, 189, 189);"><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[3]" [ngModelOptions]="{ standalone: true }" required></td>
+                    </tr>
+                    <tr>
+                      <td style="background-color: rgb(243, 172, 172);">GoldStar GODAVARI-E</td>
+                      <td style="background-color: rgb(189, 189, 189);"><input type="number" matInput placeholder="Input" [(ngModel)]="inputData[4]" [ngModelOptions]="{ standalone: true }" required></td>
+                    </tr>
 
-<!--        </table>-->
+          <!--        </table>-->
 
 
-        <!--        <thead>-->
-<!--        <tr style="font-size: 20px; font-weight: bold;">-->
-<!--          &lt;!&ndash; <th scope="col" style="background-color: aqua;" >#</th> &ndash;&gt;-->
-<!--          <th scope="" style="background-color: rgb(0, 255, 98);">GoldStar GANGA-A</th>-->
-<!--          <th scope="" style="background-color: rgb(255, 0, 0);">GoldStar JAMUNA-B</th>-->
-<!--          <th scope="" style="background-color: rgb(255, 230, 0);">GoldStar SARASWATI-C</th>-->
-<!--          <th scope="" style="background-color: rgb(255, 0, 234);">GoldStar GODAVARI-D</th>-->
-<!--          <th scope="" style="background-color: rgb(175, 174, 252);">GoldStar GODAVARI-E</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
+                  <!--        <thead>-->
+          <!--        <tr style="font-size: 20px; font-weight: bold;">-->
+          <!--          &lt;!&ndash; <th scope="col" style="background-color: aqua;" >#</th> &ndash;&gt;-->
+          <!--          <th scope="" style="background-color: rgb(0, 255, 98);">GoldStar GANGA-A</th>-->
+          <!--          <th scope="" style="background-color: rgb(255, 0, 0);">GoldStar JAMUNA-B</th>-->
+          <!--          <th scope="" style="background-color: rgb(255, 230, 0);">GoldStar SARASWATI-C</th>-->
+          <!--          <th scope="" style="background-color: rgb(255, 0, 234);">GoldStar GODAVARI-D</th>-->
+          <!--          <th scope="" style="background-color: rgb(175, 174, 252);">GoldStar GODAVARI-E</th>-->
+          <!--        </tr>-->
+          <!--        </thead>-->
+          <!--        <tbody>-->
 
-<!--        <td scope="col" style="background-color: rgb(0, 255, 98);">GoldStar GANGA-A</td>-->
-<!--        <td scope="col" style="background-color: rgb(255, 0, 0);">GoldStar JAMUNA-B</td>-->
-<!--        <td scope="col" style="background-color: rgb(255, 230, 0);">GoldStar SARASWATI-C</td>-->
-<!--        <td scope="col" style="background-color: rgb(255, 0, 234);">GoldStar GODAVARI-D</td>-->
-<!--        <td scope="col" style="background-color: rgb(175, 174, 252);">GoldStar GODAVARI-E</td>-->
+          <!--        <td scope="col" style="background-color: rgb(0, 255, 98);">GoldStar GANGA-A</td>-->
+          <!--        <td scope="col" style="background-color: rgb(255, 0, 0);">GoldStar JAMUNA-B</td>-->
+          <!--        <td scope="col" style="background-color: rgb(255, 230, 0);">GoldStar SARASWATI-C</td>-->
+          <!--        <td scope="col" style="background-color: rgb(255, 0, 234);">GoldStar GODAVARI-D</td>-->
+          <!--        <td scope="col" style="background-color: rgb(175, 174, 252);">GoldStar GODAVARI-E</td>-->
 
-<!--        <tr *ngFor="let row of currentResult" style="font-size: 40px; font-weight: bold;">-->
-<!--          &lt;!&ndash; <td scope="col" style="background-color: aqua;" >#</td> &ndash;&gt;-->
-<!--          <td scope="" style="background-color: rgb(255, 102, 0);">{{row.visible_time}}</td>-->
-<!--          <td scope="" style="background-color: rgb(0, 255, 98);" >{{row.game_one | number:'2.'}}</td>-->
-<!--          <td scope="" style="background-color: rgb(255, 0, 0);" >{{row.game_two | number:'2.'}}</td>-->
-<!--          <td scope="" style="background-color: rgb(255, 230, 0);" >{{row.game_three | number:'2.'}}</td>-->
-<!--          <td scope="" style="background-color: rgb(255, 0, 234);" >{{row.game_four | number:'2.'}}</td>-->
-<!--          <td scope="" style="background-color: rgb(175, 174, 252);" >{{row.game_five | number:'2.'}}</td>-->
-<!--        </tr>-->
-<!--        <tr *ngIf="currentResult.length==0">-->
-<!--          <td colspan="6" class="text-center text-white">No results</td>-->
-<!--        </tr>-->
+          <!--        <tr *ngFor="let row of currentResult" style="font-size: 40px; font-weight: bold;">-->
+          <!--          &lt;!&ndash; <td scope="col" style="background-color: aqua;" >#</td> &ndash;&gt;-->
+          <!--          <td scope="" style="background-color: rgb(255, 102, 0);">{{row.visible_time}}</td>-->
+          <!--          <td scope="" style="background-color: rgb(0, 255, 98);" >{{row.game_one | number:'2.'}}</td>-->
+          <!--          <td scope="" style="background-color: rgb(255, 0, 0);" >{{row.game_two | number:'2.'}}</td>-->
+          <!--          <td scope="" style="background-color: rgb(255, 230, 0);" >{{row.game_three | number:'2.'}}</td>-->
+          <!--          <td scope="" style="background-color: rgb(255, 0, 234);" >{{row.game_four | number:'2.'}}</td>-->
+          <!--          <td scope="" style="background-color: rgb(175, 174, 252);" >{{row.game_five | number:'2.'}}</td>-->
+          <!--        </tr>-->
+          <!--        <tr *ngIf="currentResult.length==0">-->
+          <!--          <td colspan="6" class="text-center text-white">No results</td>-->
+          <!--        </tr>-->
 
-<!--        </tbody>-->
-      </table>
-      <button (click)="saveManualResult()">save</button>
+          <!--        </tbody>-->
+                </table>
+      </div>
+
+
+      <div style="padding-left: 700px;"><button type="button" class="btn btn-primary" (click)="saveManualResult()">save</button></div>
 
 <!--        <div class="d-flex flex-row bd-highlight">-->
 
