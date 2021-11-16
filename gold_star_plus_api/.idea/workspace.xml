@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4eb4110c-81d9-43f4-9711-e035440ab2b2" name="Default Changelist" comment="" />
+    <list default="true" id="4eb4110c-81d9-43f4-9711-e035440ab2b2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/app.module.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

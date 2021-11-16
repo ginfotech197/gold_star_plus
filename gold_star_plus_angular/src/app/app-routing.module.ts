@@ -21,6 +21,7 @@ import {MasterStockistComponent} from './pages/cpanel/master-stockist/master-sto
 
 
 // @ts-ignore
+// @ts-ignore
 const routes: Routes = [
   {path: 'chart', component: HomeComponent},
   {
@@ -104,6 +105,11 @@ const routes: Routes = [
     path: 'stockistCPanel',
     loadChildren: () => import('./modules/general/stockist/stockist.module')
       .then(mod => mod.StockistModule)
+  },
+  {
+    path: 'stockiestMaster',
+    loadChildren: () => import('./modules/general/stockistPanel/master-terminal/master-terminal.module')
+      .then(mod => mod.MasterTerminalModule)
   },
 
   {
