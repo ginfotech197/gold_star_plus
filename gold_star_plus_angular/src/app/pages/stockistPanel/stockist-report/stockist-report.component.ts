@@ -5,9 +5,10 @@ import {CPanelBarcodeReport} from '../../../models/CPanelBarcodeReport.model';
 import {BarcodeDetails} from '../../../models/BarcodeDetails.model';
 import {CPanelCustomerSaleReport} from '../../../models/CPanelCustomerSaleReport.model';
 import {DatePipe} from '@angular/common';
-import {AdminReportService} from '../../../services/admin-report.service';
 import {Sort} from '@angular/material/sort';
 import Swal from 'sweetalert2';
+import {StockistReportService} from '../../../services/stockist-report.service';
+import {User} from "../../../models/user.model";
 
 @Component({
   selector: 'app-stockist-report',
@@ -34,10 +35,12 @@ export class StockistReportComponent implements OnInit {
 
   totalAmount = 0;
   columnNumber = 4;
+  userData: User;
 
   // picker1: any;
-  constructor(private adminReportService: AdminReportService) {
+  constructor(private adminReportService: StockistReportService) {
     // console.log(this.thisDay);
+    this.userData = JSON.parse(localStorage.getItem('user'));
   }
 
   ngOnInit(): void {
@@ -71,7 +74,7 @@ export class StockistReportComponent implements OnInit {
     });
     let startDate = this.pipe.transform(this.StartDateFilter, 'yyyy-MM-dd');
     let endDate = this.pipe.transform(this.EndDateFilter, 'yyyy-MM-dd');
-    this.adminReportService.customerSaleReportByDate(startDate, endDate).subscribe((response) => {
+    this.adminReportService.customerSaleReportByDate(startDate, endDate, this.userData.userId).subscribe((response) => {
       if (response.data){
         Swal.close();
       }

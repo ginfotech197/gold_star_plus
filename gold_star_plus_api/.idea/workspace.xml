@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4eb4110c-81d9-43f4-9711-e035440ab2b2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/pages/stockistPanel/stockist-report/stockist-report.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/pages/stockistPanel/stockist-report/stockist-report.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,19 +192,5 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="390" y="7" key="#PHP" timestamp="1636637772197">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="390" y="7" key="#PHP/0.0.1366.728@0.0.1366.728" timestamp="1636637772197" />
-    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1636637773888">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1636637773888" />
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1636637739778">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1636637739778" />
   </component>
 </project>
