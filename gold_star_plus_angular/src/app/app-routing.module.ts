@@ -113,6 +113,13 @@ const routes: Routes = [
   },
 
   {
+    path: 'stockiestReport',
+    loadChildren: () => import('./modules/general/stockistPanel/stockist-report/stockist-report.module')
+      .then(mod => mod.StockistReportModule)
+  },
+
+
+  {
     path: 'terminalReport',
     loadChildren: () => import('./modules/general/terminal-report/terminal-report.module')
       .then(mod => mod.TerminalReportModule)

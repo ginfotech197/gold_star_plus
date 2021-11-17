@@ -9,7 +9,7 @@ import {ServerResponse} from '../models/ServerResponse.model';
 import {StockistMaster} from '../models/StockistMaster.model';
 import {catchError, tap} from 'rxjs/operators';
 import {TerminalMaster} from '../models/TerminalMaster.model';
-import {User} from "../models/user.model";
+import {User} from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
