@@ -67,7 +67,7 @@ export class StockistReportService {
 
   customerSaleReportByDate(startDate, endDate, userID){
     // tslint:disable-next-line:max-line-length
-    return this.http.post<{success: number; data: any}>( this.BASE_API_URL + '/cPanel/customerSaleReports', {startDate, endDate, userID})
+    return this.http.post<{success: number; data: any}>( this.BASE_API_URL + '/stockist/customerSaleReports', {startDate, endDate, userID})
       .pipe(catchError(this.handleError), tap(((response: {success: number, data: CPanelCustomerSaleReport[]}) => {
         if (response.data){
           this.customerSaleReportRecords = response.data;
@@ -76,8 +76,8 @@ export class StockistReportService {
       })));
   }
 
-  barcodeReportByDate(startDate, endDate){
-    return this.http.post<{success: number; data: any}>( this.BASE_API_URL + '/cPanel/barcodeReportByDate', {startDate, endDate})
+  barcodeReportByDate(startDate, endDate, userID){
+    return this.http.post<{success: number; data: any}>( this.BASE_API_URL + '/stockist/barcodeReportByDate', {startDate, endDate, userID})
       .pipe(catchError(this.handleError), tap(((response: ServerResponse) => {
         if (response.data){
           this.barcodeReportRecords = response.data;

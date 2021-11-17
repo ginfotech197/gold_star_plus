@@ -173,4 +173,42 @@ class StockistController extends Controller
 
     }
 
+    public function barcode_wise_report_by_date(Request $request){
+        $requestedData = (object)$request->json()->all();
+        $start_date = $requestedData->startDate;
+        $end_date = $requestedData->endDate;
+        $userID = $requestedData->userID;
+
+        $cPanelRepotControllerObj = new CPanelReportController();
+
+//        $x = $this->get_total_quantity_by_barcode(1);
+
+        $data = PlayMaster::select('play_masters.id as play_master_id', DB::raw('substr(play_masters.barcode_number, 1, 8) as barcode_number')
+            ,'draw_masters.visible_time as draw_time',
+            'users.email as terminal_pin','play_masters.created_at as ticket_taken_time'
+        )
+            ->join('draw_masters','play_masters.draw_master_id','draw_masters.id')
+            ->join('users','users.id','play_masters.user_id')
+            ->join('play_details','play_details.play_master_id','play_masters.id')
+            ->join('stockist_to_terminals','stockist_to_terminals.terminal_id','play_masters.user_id')
+            ->where('play_masters.is_cancelled',0)
+            ->where('stockist_to_terminals.stockist_id',$userID)
+//            ->where('play_masters.created_at','>=',$start_date)
+//            ->where('play_masters.created_at','<=',$end_date)
+            ->whereRaw('date(play_masters.created_at) >= ?', [$start_date])
+            ->whereRaw('date(play_masters.created_at) <= ?', [$end_date])
+            ->groupBy('play_masters.id','play_masters.barcode_number','draw_masters.visible_time','users.email','play_masters.created_at')
+            ->orderBy('play_masters.created_at','desc')
+            ->get();
+
+        foreach($data as $x){
+            $detail = (object)$x;
+            $detail->total_quantity = $cPanelRepotControllerObj->get_total_quantity_by_barcode($detail->play_master_id);
+            $detail->prize_value = $cPanelRepotControllerObj->get_prize_value_by_barcode($detail->play_master_id);
+            $detail->amount = $cPanelRepotControllerObj->get_total_amount_by_barcode($detail->play_master_id);
+        }
+        return response()->json(['success'=> 1, 'data' => $data], 200);
+
+    }
+
 }

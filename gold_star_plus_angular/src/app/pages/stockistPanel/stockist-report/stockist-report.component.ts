@@ -92,7 +92,7 @@ export class StockistReportComponent implements OnInit {
     });
     let startDate = this.pipe.transform(this.StartDateFilter, 'yyyy-MM-dd');
     let endDate = this.pipe.transform(this.EndDateFilter, 'yyyy-MM-dd');
-    this.adminReportService.barcodeReportByDate(startDate, endDate).subscribe((response) => {
+    this.adminReportService.barcodeReportByDate(startDate, endDate, this.userData.userId).subscribe((response) => {
       if (response.data){
         Swal.close();
       }

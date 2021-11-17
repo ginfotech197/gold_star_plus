@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4eb4110c-81d9-43f4-9711-e035440ab2b2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/pages/stockistPanel/stockist-report/stockist-report.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/pages/stockistPanel/stockist-report/stockist-report.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/services/stockist-report.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/services/stockist-report.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
