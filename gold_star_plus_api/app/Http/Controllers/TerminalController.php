@@ -25,10 +25,14 @@ class TerminalController extends Controller
         return TerminalResource::collection($terminals);
     }
 
-    // public function get_stockist_by_terminal_id(){
-    //     $trminals = User::find(StockistToTerminal::whereTerminalId(14)->first()->stockist_id);
-    //     return response()->json(['success'=>0, 'data' => $trminals], 500);
-    // }
+     public function get_stockist_by_terminal_id($id){
+//         $terminals = User::find(StockistToTerminal::whereTerminalId($id)->first()->stockist_id);
+         $terminals = DB::select("select * from stockist_to_terminals
+                inner join users ON users.id = stockist_to_terminals.terminal_id
+                where stockist_to_terminals.stockist_id = ?",[$id]);
+         return TerminalResource::collection($terminals);
+         return response()->json(['success'=>1, 'data' => $terminals], 500);
+     }
 
 
 

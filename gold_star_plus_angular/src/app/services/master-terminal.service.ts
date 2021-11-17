@@ -9,6 +9,7 @@ import {ServerResponse} from '../models/ServerResponse.model';
 import {StockistMaster} from '../models/StockistMaster.model';
 import {catchError, tap} from 'rxjs/operators';
 import {TerminalMaster} from '../models/TerminalMaster.model';
+import {User} from "../models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +21,22 @@ export class MasterTerminalService {
   terminals: Terminal[] = [];
   terminalSubject = new Subject<Terminal[]>();
   constructor(private http: HttpClient, private errorService: ErrorService) {
+    const userData: User = JSON.parse(localStorage.getItem('user'));
 
-    // get all terminals
-    this.http.get(this.BASE_API_URL + '/terminals').subscribe((response: ServerResponse) => {
-      this.terminals = response.data;
-      this.terminalSubject.next([...this.terminals]);
-    });
+    if (userData.userTypeId === 1){
+      // get all terminals
+      this.http.get(this.BASE_API_URL + '/terminals').subscribe((response: ServerResponse) => {
+        this.terminals = response.data;
+        this.terminalSubject.next([...this.terminals]);
+      });
+    }else if (userData.userTypeId === 3){
+      // @ts-ignore
+      this.http.get(this.BASE_API_URL + '/terminals/' + userData.userId).subscribe((response: ServerResponse) => {
+        this.terminals = response.data;
+        this.terminalSubject.next([...this.terminals]);
+      });
+    }
+
   }
 
   getTerminals(){

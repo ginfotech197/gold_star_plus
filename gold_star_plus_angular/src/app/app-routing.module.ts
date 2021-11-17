@@ -107,7 +107,7 @@ const routes: Routes = [
       .then(mod => mod.StockistModule)
   },
   {
-    path: 'stockiestMaster',
+    path: 'stockiestMasterTerminal',
     loadChildren: () => import('./modules/general/stockistPanel/master-terminal/master-terminal.module')
       .then(mod => mod.MasterTerminalModule)
   },
