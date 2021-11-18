@@ -118,6 +118,12 @@ const routes: Routes = [
       .then(mod => mod.StockistReportModule)
   },
 
+  {
+    path: 'stockiestResult',
+    loadChildren: () => import('./modules/general/stockistPanel/stockist-result/stockist-result.module')
+      .then(mod => mod.StockistResultModule)
+  },
+
 
   {
     path: 'terminalReport',
