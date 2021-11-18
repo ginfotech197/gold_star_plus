@@ -74,6 +74,7 @@ import { MasterStockistComponent } from './pages/cpanel/master-stockist/master-s
 import {MatTabsModule} from '@angular/material/tabs';
 import {NgMarqueeModule} from 'ng-marquee-improved';
 import {MatProgressBar, MatProgressBarModule} from '@angular/material/progress-bar';
+import { ResultModule } from './modules/general/result/result.module';
 // import { MasterTerminalComponent } from './pages/stockistPanel/master-terminal/master-terminal.component';
 // import { MasterTerminalModule } from './modules/general/stockistPanel/master-terminal/master-terminal.module';
 // import { StockistReportComponent } from './pages/stockistPanel/stockist-report/stockist-report.component';
@@ -177,6 +178,7 @@ import {MatProgressBar, MatProgressBarModule} from '@angular/material/progress-b
     // MasterStockistModule,
     MatTabsModule,
     NgMarqueeModule,
+    ResultModule,
     // MasterTerminalModule,
     // StockistReportModule,
     // ResultSheetModule,

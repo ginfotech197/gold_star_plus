@@ -8,6 +8,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import { ResultComponent } from '../../../pages/cpanel/result/result.component';
 
 
 
@@ -28,10 +29,12 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 
   ],
   declarations: [
-    ResultSheetComponent
+    ResultSheetComponent,
+    ResultComponent
   ],
   exports: [
     ResultSheetComponent,
+    ResultComponent
   ]
 
 })

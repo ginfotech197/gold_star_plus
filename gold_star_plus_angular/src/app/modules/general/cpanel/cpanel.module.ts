@@ -9,6 +9,7 @@ import {CpanelComponent} from '../../../pages/cpanel/cpanel.component';
 import {ManualResultModule} from './manual-result/manual-result.module';
 import {NgxPrintModule} from 'ngx-print';
 import {ReceiptModule} from '../../../pages/cpanel/receipt/receipt.module';
+import { ResultComponent } from 'src/app/pages/cpanel/result/result.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {ReceiptModule} from '../../../pages/cpanel/receipt/receipt.module';
     CpanelComponent
   ],
   declarations: [
-    CpanelComponent
+    CpanelComponent,
+    // ResultComponent
   ],
 })
 export class CpanelModule { }

@@ -23,6 +23,7 @@ import { ResultSheetComponent } from 'src/app/pages/result-sheet/result-sheet.co
 import {RouterModule} from "@angular/router";
 
 import {MatNativeDateModule} from "@angular/material/core";
+import { ResultComponent } from 'src/app/pages/cpanel/result/result.component';
 
 
 
@@ -56,7 +57,7 @@ import {MatNativeDateModule} from "@angular/material/core";
   declarations: [
     TerminalComponent,
     CurrentResultComponent,
-    ResultSheetComponent
+    ResultSheetComponent,
   ],
   exports: [
     TerminalComponent
