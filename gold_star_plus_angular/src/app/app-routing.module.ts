@@ -23,15 +23,16 @@ import {MasterStockistComponent} from './pages/cpanel/master-stockist/master-sto
 // @ts-ignore
 // @ts-ignore
 const routes: Routes = [
-  {path: 'chart', component: HomeComponent},
-  {
-    path: '',
-    loadChildren: () => import('./modules/general/auth/auth.module')
-      .then(mod => mod.AuthModule),
-    data: {
-      loginType: 'All'
-    }
-  },
+  {path: '', component: HomeComponent},
+  // {path: 'chart', component: HomeComponent},
+  // {
+  //   path: '',
+  //   loadChildren: () => import('./modules/general/auth/auth.module')
+  //     .then(mod => mod.AuthModule),
+  //   data: {
+  //     loginType: 'All'
+  //   }
+  // },
   {
     path: 'auth',
     loadChildren: () => import('./modules/general/auth/auth.module')

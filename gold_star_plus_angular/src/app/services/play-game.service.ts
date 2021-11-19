@@ -62,7 +62,7 @@ export class PlayGameService {
         this.currentDateResultSubject.next({...this.currentDateResult});
       });
 
-    this.http.get(this.BASE_API_URL + '/getTwoDigitNumberSets').subscribe((response: ServerResponse) => {
+    this.http.get(this.BASE_API_URL + '/dev/getTwoDigitNumberSets').subscribe((response: ServerResponse) => {
       this.twoDigitNumberSet = response.data;
       // console.log('service', this.twoDigitNumberSet);
       this.twoDigitNumberSetSubject.next([...this.twoDigitNumberSet]);
