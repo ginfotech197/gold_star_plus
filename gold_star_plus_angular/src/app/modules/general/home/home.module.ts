@@ -7,11 +7,14 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { ResultSheetComponent } from 'src/app/pages/result-sheet/result-sheet.component';
 
+// @ts-ignore
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    
   ],
   exports: [
     HomeComponent
