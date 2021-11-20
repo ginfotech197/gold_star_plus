@@ -61,9 +61,10 @@ import {ResultSheetModule} from '../result-sheet/result-sheet.module';
     CurrentResultComponent,
     // ResultSheetComponent,
   ],
-  exports: [
-    TerminalComponent
-  ]
+    exports: [
+        TerminalComponent,
+        CurrentResultComponent
+    ]
 })
 export class TerminalModule { }
 

@@ -9,6 +9,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ResultSheetComponent } from 'src/app/pages/result-sheet/result-sheet.component';
 import {ResultSheetModule} from '../result-sheet/result-sheet.module';
+import {TerminalModule} from "../terminal/terminal.module";
 
 // @ts-ignore
 
@@ -27,7 +28,8 @@ import {ResultSheetModule} from '../result-sheet/result-sheet.module';
     HttpClientModule,
     NgbModule,
     MatSlideToggleModule,
-    ResultSheetModule
+    ResultSheetModule,
+    TerminalModule
   ]
 })
 export class HomeModule { }
