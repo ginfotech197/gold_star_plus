@@ -5,7 +5,7 @@ import {AuthGuardAdminServiceService} from '../../../services/auth-guard-admin-s
 
 
 const routes: Routes = [
-  { path: '', canActivate : [AuthGuardAdminServiceService], component: ResultSheetComponent }
+  { path: '', component: ResultSheetComponent }
 
 ];
 
