@@ -24,6 +24,7 @@ import {RouterModule} from "@angular/router";
 
 import {MatNativeDateModule} from "@angular/material/core";
 import { ResultComponent } from 'src/app/pages/cpanel/result/result.component';
+import {ResultSheetModule} from '../result-sheet/result-sheet.module';
 
 
 
@@ -53,11 +54,12 @@ import { ResultComponent } from 'src/app/pages/cpanel/result/result.component';
     MatButtonModule,
     MatFormFieldModule,
     MatNativeDateModule,
+    ResultSheetModule
   ],
   declarations: [
     TerminalComponent,
     CurrentResultComponent,
-    ResultSheetComponent,
+    // ResultSheetComponent,
   ],
   exports: [
     TerminalComponent

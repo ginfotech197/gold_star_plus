@@ -8,13 +8,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ResultSheetComponent } from 'src/app/pages/result-sheet/result-sheet.component';
+import {ResultSheetModule} from '../result-sheet/result-sheet.module';
 
 // @ts-ignore
 
 @NgModule({
   declarations: [
     HomeComponent,
-    
+
   ],
   exports: [
     HomeComponent
@@ -25,7 +26,8 @@ import { ResultSheetComponent } from 'src/app/pages/result-sheet/result-sheet.co
     FlexLayoutModule,
     HttpClientModule,
     NgbModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    ResultSheetModule
   ]
 })
 export class HomeModule { }

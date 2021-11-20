@@ -30,11 +30,11 @@ import { ResultComponent } from '../../../pages/cpanel/result/result.component';
   ],
   declarations: [
     ResultSheetComponent,
-    ResultComponent
+    //ResultComponent
   ],
   exports: [
     ResultSheetComponent,
-    ResultComponent
+    //ResultComponent
   ]
 
 })
