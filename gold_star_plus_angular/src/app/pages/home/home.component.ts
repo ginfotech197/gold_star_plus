@@ -220,52 +220,24 @@ export class HomeComponent implements OnInit {
         this.activeDrawTime = response;
         tempSecTime = this.activeDrawTime.startTime.split(':')[2];
         tempMinTime = this.activeDrawTime.startTime.split(':')[1];
-        // console.log('1', this.activeDrawTime.startTime);
-        // console.log(tempSecTime, ' ', new Date().getSeconds());
-        // console.log((new Date().getSeconds()) - tempSecTime);
-        // console.log('min diff', (new Date().getMinutes()) - tempMinTime);
-        // console.log(tempMinTime);
         if ((((new Date().getSeconds()) - tempSecTime) < this.timeoutSec) && ((new Date().getMinutes()) - tempMinTime) <= 0){
           this.showCurrentResult = true;
         }
     });
 
-    // console.log('2', this.activeDrawTime.startTime);
-
     if (this.activeDrawTime.startTime !== undefined){
       tempSecTime = this.activeDrawTime.startTime.split(':')[2];
       tempMinTime = this.activeDrawTime.startTime.split(':')[1];
     }
-    // console.log((new Date().getSeconds()) - tempSecTime);
-    // console.log('min diff', (new Date().getMinutes()) - tempMinTime);
-    //
-    // console.log(tempSecTime);
-    // console.log(tempMinTime);
-
-
 
     if ((((new Date().getSeconds()) - tempSecTime) < this.timeoutSec) && ((new Date().getMinutes()) - tempMinTime) <= 0){
       this.showCurrentResult = true;
     }
 
-    // console.log(tempSecTime);
-
-    // console.log('2', this.activeDrawTime.startTime);
-    // console.log(new Date().getSeconds());
-    // console.log(new Date().getMinutes());
-    // console.log('seconds', this.activeDrawTime.startTime.split(':')[2]);
-    // console.log('minutes', this.activeDrawTime.startTime.split(':')[1]);
-
-
     this.currentDateResult = this.playGameService.getCurrentDateResult();
     this.playGameService.getCurrentDateResultListener().subscribe((response: CurrentGameResult) => {
       this.currentDateResult = response;
     });
-
-    // this.playGameService.getTwoDigitNumberSetListener().subscribe((response: TwoDigitNumberSet) => {
-    //   // this.currentDateResult = response;
-    //   console.log('component', response);
-    // });
 
     this.twoDigitNumberSet =  this.playGameService.getTwoDigitNumberSetNumbers();
     this.playGameService.getTwoDigitNumberSetListener().subscribe((response: TwoDigitNumberSet[]) => {
@@ -289,29 +261,11 @@ export class HomeComponent implements OnInit {
       // tslint:disable-next-line:radix
       this.value = ((hourToSec + minToSec + sec) / timeDiffMinToSec) * 100;
       // console.log(this.value);
-
-      // console.log(this.activeDrawTime);
     });
-
-    // console.log(this.activeDrawTime);
 
   }// end of ngOnIInit
 
   initializeValue(value){
-    // if (this.selectedChip === 0 ){
-    //   return;
-    // }
-    // if (this.selectedChipValue === 0){
-    //   return;
-    // }
-    // value.quantity = (this.selectedChipValue / this.gameTypes[0].mrp);
-    // this.selectedChip = 0;
-    // this.selectedChipValue = 0;
-    // this.counter = 0;
-    // this.previousChip = 0;
-
-
-
     if (this.previousChip === 0){
       this.previousChip = value;
     }
@@ -348,11 +302,6 @@ export class HomeComponent implements OnInit {
 
   }
 
-  test1(value){
-
-  }
-
-
   reset() {
     this.wheel.reset();
   }
@@ -365,11 +314,6 @@ export class HomeComponent implements OnInit {
     await new Promise(resolve => setTimeout(resolve, 0));
     this.wheel.spin();
   }
-
-  after() {
-    // console.log('You have been bamboozled');
-  }
-
 
 
   isActiveTripleContainter(idxSingle: number) {
@@ -413,12 +357,6 @@ export class HomeComponent implements OnInit {
       value.quantity = this.customInput;
       this.customInput = null;
     }
-
-    // this.totalTicketPurchased = this.userGameInput.map(a => a.quantity).reduce(function(a, b)
-    // {
-    //   // const x = this.gameTypes[0].mrp * ( a + b );
-    //   return (a + b);
-    // });
 
     let x = 0;
     this.userGameInput.forEach(function(value) {

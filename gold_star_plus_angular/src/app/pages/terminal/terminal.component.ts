@@ -270,7 +270,6 @@ export class TerminalComponent implements OnInit {
     });
 
     this.nextDrawId = this.watchDrawService.getNextDraw();
-
     this.commonService.remainingTimeBehaviorSubject.asObservable().subscribe(response => {
       this.remainingTime = response;
       // console.log(this.remainingTime);
@@ -343,11 +342,6 @@ export class TerminalComponent implements OnInit {
     this.setValue(value.quantity, value );
 
   }
-
-  test1(value){
-
-  }
-
 
   reset() {
     this.wheel.reset();
