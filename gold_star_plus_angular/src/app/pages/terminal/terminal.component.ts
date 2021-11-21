@@ -106,9 +106,9 @@ export class TerminalComponent implements OnInit {
   ) {
 
     this.inputData = [];
-    for (let i = 0; i <= 6 ; i++){
+    for (let i = 1; i <= 5 ; i++){
       this.inputData[i] = [];
-      for (let j = 0 ; j <= 10 ; j++){
+      for (let j = 0 ; j <= 9 ; j++){
         this.inputData[i][j] = [];
       }
     }
@@ -580,6 +580,28 @@ export class TerminalComponent implements OnInit {
 
   saveUserPlayInputDetails(){
 
+    let counter = 0;
+    for (let i = 1; i <= 5 ; i++){
+      for (let j = 0 ; j <= 9 ; j++){
+        if (!(this.inputData[i][j].length === 0)){
+          break;
+        }else{
+          // break;
+          counter ++;
+        }
+      }
+    }
+    if (counter === 50){
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'All field cannot be empty',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      return;
+    }
+
     const user = JSON.parse(localStorage.getItem('user'));
 
     if (user.balance < 1){
@@ -662,9 +684,9 @@ export class TerminalComponent implements OnInit {
 
   clear(){
     this.inputData = [];
-    for (let i = 0; i <= 6 ; i++){
+    for (let i = 0; i <= 5 ; i++){
       this.inputData[i] = [];
-      for (let j = 0 ; j <= 10 ; j++){
+      for (let j = 0 ; j <= 9 ; j++){
         this.inputData[i][j] = [];
       }
     }
