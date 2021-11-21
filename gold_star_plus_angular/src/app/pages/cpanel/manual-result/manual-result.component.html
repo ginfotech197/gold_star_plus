@@ -114,18 +114,23 @@
     <mat-tab label="Load">
 
 
-      <div class="p-2 bd-highlight">
-        <div #targetDiv>
-          <mat-form-field style="padding-left: 400px;">
-            <mat-label>Draw time</mat-label>
-            <mat-select  formControlName="drawMasterId" placeholder="Category" >
-              <mat-option *ngFor="let time of drawTimes" [value]="time.drawId">
-                {{time.endTime}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+      <form [formGroup]="manualResultForm">
+        <div class="d-flex flex-column bd-highlight">
+          <div class="p-2 bd-highlight">
+            <div #targetDiv>
+              <mat-form-field style="padding-left: 400px;">
+                <mat-label>Draw time</mat-label>
+                <mat-select  formControlName="drawMasterId" placeholder="Category" >
+                  <mat-option *ngFor="let time of drawTimes" [value]="time.drawId">
+                    {{time.endTime}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
         </div>
-      </div>
+        <button (click)="getLoadData()" >Search</button>
+      </form>
 
       <table class="table table-bordered">
         <thead>
@@ -151,16 +156,16 @@
           <td scope="col">{{row.gameName}}</td>
           <td scope="col">{{row.seriesName}}</td>
 
-          <td scope="row" *ngIf="loadData[0]" >{{(loadData[i])[0].total}}</td>
-          <td scope="row" *ngIf="loadData[0]" >{{(loadData[i])[1].total}}</td>
-          <td scope="row" *ngIf="loadData[0]" >{{(loadData[i])[2].total}}</td>
-          <td scope="row" *ngIf="loadData[0]" >{{(loadData[i])[3].total}}</td>
-          <td scope="row" *ngIf="loadData[0]" >{{(loadData[i])[4].total}}</td>
-          <td scope="row" *ngIf="loadData[0]" >{{(loadData[i])[5].total}}</td>
-          <td scope="row" *ngIf="loadData[0]" >{{(loadData[i])[6].total}}</td>
-          <td scope="row" *ngIf="loadData[0]" >{{(loadData[i])[7].total}}</td>
-          <td scope="row" *ngIf="loadData[0]" >{{(loadData[i])[8].total}}</td>
-          <td scope="row" *ngIf="loadData[0]" >{{(loadData[i])[9].total}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[0].total}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[1].total}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[2].total}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[3].total}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[4].total}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[5].total}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[6].total}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[7].total}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[8].total}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[9].total}}</td>
 <!--          <td scope="col" *ngIf="loadData[0]">{{((twoDigitNumberSet[0].number_set == loadData[0].number_set) ? loadData[0].total : '0')}}</td>-->
 <!--          <td scope="col"><input (change)="changeInputDetails(row,inputData[row.gameTypeId][0],twoDigitNumberSet[0].id)" [(ngModel)]= "inputData[row.gameTypeId][0]" style="max-width: 50px; max-height: 25px;"></td>-->
 <!--          <td scope="col"><input (change)="changeInputDetails(row,inputData[row.gameTypeId][1],twoDigitNumberSet[1].id)" [(ngModel)]= "inputData[row.gameTypeId][1]" style="max-width: 50px; max-height: 25px;"></td>-->

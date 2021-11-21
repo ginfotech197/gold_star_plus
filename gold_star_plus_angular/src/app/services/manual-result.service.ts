@@ -42,15 +42,19 @@ export class ManualResultService {
       this.drawTimeSubject.next([...this.drawTimes]);
     });
 
-    this.http.get(this.BASE_API_URL + '/dev/getLoadDetails').subscribe((response: ServerResponse) => {
+    // this.http.get(this.BASE_API_URL + '/dev/getLoadDetails').subscribe((response: ServerResponse) => {
+    //   this.loadData = response.data;
+    //   this.loadDataSubject.next([...this.loadData]);
+    //   // console.log(this.loadData);
+    // });
+  }
+
+  getLoadData(id){
+    this.http.get(this.BASE_API_URL + '/dev/getLoadDetails/' + id).subscribe((response: ServerResponse) => {
       this.loadData = response.data;
       this.loadDataSubject.next([...this.loadData]);
       // console.log(this.loadData);
     });
-  }
-
-  getLoadData(){
-    return [...this.loadData];
   }
 
   getAllDrawTimes(){

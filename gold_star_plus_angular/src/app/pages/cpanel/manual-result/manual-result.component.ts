@@ -58,6 +58,7 @@ export class ManualResultComponent implements OnInit {
   twoDigitNumberSet: TwoDigitNumberSet[] = [];
   selectedDraw: null;
   loadData: LoadData[];
+  selectedDrawMaster: null;
   isDisabledSingleHeaderButton = true;
   // tslint:disable-next-line:max-line-length
   constructor(private http: HttpClient, private manualResultService: ManualResultService
@@ -87,12 +88,23 @@ export class ManualResultComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.loadData = [];
+    for (let i = 1; i <= 5 ; i++){
+      // @ts-ignore
+      this.loadData[i] = [];
+      for (let j = 0 ; j <= 9 ; j++){
+        this.loadData[i][j] = [];
+      }
+    }
+
       // this.drawTimes = this.manualResultService.getAllDrawTimes();
       // this.manualResultService.getAllDrawTimesListener().subscribe((response: DrawTime[]) => {
       //   this.drawTimes = response;
       // });
 
-    this.loadData = this.manualResultService.getLoadData();
+    // @ts-ignore
+    // this.loadData = this.manualResultService.getLoadData(1);
     this.manualResultService.getLoadDataListener().subscribe((response) => {
       this.loadData = response;
     });
@@ -135,8 +147,15 @@ export class ManualResultComponent implements OnInit {
         this.copyNumberMatrix  = JSON.parse(JSON.stringify(this.numberCombinationMatrix));
       });
   }
+
+  getLoadData(){
+    console.log(this.manualResultForm.value.drawMasterId);
+    this.manualResultService.getLoadData(this.manualResultForm.value.drawMasterId);
+  }
+
   newTestFunction(){
-    this.loadData = this.manualResultService.getLoadData();
+    // @ts-ignore
+    this.loadData = this.manualResultService.getLoadData(1);
   }
 
 
@@ -144,10 +163,10 @@ export class ManualResultComponent implements OnInit {
     return (id === this.currentCombinationMatrixSelectedId);
   }
 
-  testfnc(){
-    this.loadData = this.manualResultService.getLoadData();
-    console.log('component', this.loadData);
-  }
+  // testfnc(){
+  //   this.loadData = this.manualResultService.getLoadData();
+  //   console.log('component', this.loadData);
+  // }
 
   setManualResultInForm(single: number, numberCombination){
     // tslint:disable-next-line:max-line-length
