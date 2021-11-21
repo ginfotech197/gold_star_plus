@@ -14,6 +14,10 @@ import {MatCard} from '@angular/material/card';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {filter, map, mergeMap} from 'rxjs/operators';
 import {CommonService} from '../../../services/common.service';
+import {GameType} from '../../../models/GameType.model';
+import {GameTypeService} from '../../../services/game-type.service';
+import {TwoDigitNumberSet} from '../../../models/TwoDigitNumberSet.model';
+import {LoadData} from '../../../models/LoadData.model';
 
 @Component({
   selector: 'app-manual-result',
@@ -40,6 +44,7 @@ export class ManualResultComponent implements OnInit {
   private BASE_API_URL = environment.BASE_API_URL;
   manualResultForm: FormGroup;
   drawTimes: DrawTime[] = [];
+  gameTypes: GameType[] = [];
   public numberCombinationMatrix: SingleNumber[] = [];
   private copyNumberMatrix: SingleNumber[];
   currentCombinationMatrixSelectedId: number;
@@ -50,8 +55,11 @@ export class ManualResultComponent implements OnInit {
   deviceXs: boolean;
   inputData = [];
   inputDataSaveArray = [];
+  twoDigitNumberSet: TwoDigitNumberSet[] = [];
   selectedDraw: null;
-  isDisabledSingleHeaderButton: boolean = true;
+  loadData: LoadData[];
+  selectedDrawMaster: null;
+  isDisabledSingleHeaderButton = true;
   // tslint:disable-next-line:max-line-length
   constructor(private http: HttpClient, private manualResultService: ManualResultService
               // tslint:disable-next-line:align
@@ -61,7 +69,8 @@ export class ManualResultComponent implements OnInit {
               // tslint:disable-next-line:align
               , private router: Router
               // tslint:disable-next-line:align
-              , private commonService: CommonService) {
+              , private commonService: CommonService,
+              private gameTypeService: GameTypeService) {
     this.deviceXs = this.commonService.deviceXs;
     const now = new Date();
     const currentSQLDate = formatDate(now, 'yyyy-MM-dd', 'en');
@@ -78,12 +87,39 @@ export class ManualResultComponent implements OnInit {
   }
 
 
-
   ngOnInit(): void {
+
+    this.loadData = [];
+    for (let i = 1; i <= 5 ; i++){
+      // @ts-ignore
+      this.loadData[i] = [];
+      for (let j = 0 ; j <= 9 ; j++){
+        this.loadData[i][j] = [];
+      }
+    }
+
       // this.drawTimes = this.manualResultService.getAllDrawTimes();
       // this.manualResultService.getAllDrawTimesListener().subscribe((response: DrawTime[]) => {
       //   this.drawTimes = response;
       // });
+
+    // @ts-ignore
+    // this.loadData = this.manualResultService.getLoadData(1);
+    this.manualResultService.getLoadDataListener().subscribe((response) => {
+      this.loadData = response;
+    });
+
+    this.gameTypes = this.gameTypeService.getGameType();
+    this.gameTypeService.getGameTypeListener().subscribe((response: GameType[]) => {
+      this.gameTypes = response;
+      this.gameTypes = this.gameTypes.filter(x => x.gameTypeId);
+    });
+    this.gameTypes = this.gameTypes.filter(x => x.gameTypeId);
+
+    this.twoDigitNumberSet =  this.playGameService.getTwoDigitNumberSetNumbers();
+    this.playGameService.getTwoDigitNumberSetListener().subscribe((response: TwoDigitNumberSet[]) => {
+      this.twoDigitNumberSet = response;
+    });
 
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
@@ -112,9 +148,25 @@ export class ManualResultComponent implements OnInit {
       });
   }
 
+  getLoadData(){
+    console.log(this.manualResultForm.value.drawMasterId);
+    this.manualResultService.getLoadData(this.manualResultForm.value.drawMasterId);
+  }
+
+  newTestFunction(){
+    // @ts-ignore
+    this.loadData = this.manualResultService.getLoadData(1);
+  }
+
+
   iscurrentCombinationMatrixSelected(id: number){
     return (id === this.currentCombinationMatrixSelectedId);
   }
+
+  // testfnc(){
+  //   this.loadData = this.manualResultService.getLoadData();
+  //   console.log('component', this.loadData);
+  // }
 
   setManualResultInForm(single: number, numberCombination){
     // tslint:disable-next-line:max-line-length

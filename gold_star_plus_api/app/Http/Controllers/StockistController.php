@@ -175,6 +175,7 @@ class StockistController extends Controller
 
     public function barcode_wise_report_by_date(Request $request){
         $requestedData = (object)$request->json()->all();
+        $requestedData = (object)$request->json()->all();
         $start_date = $requestedData->startDate;
         $end_date = $requestedData->endDate;
         $userID = $requestedData->userID;

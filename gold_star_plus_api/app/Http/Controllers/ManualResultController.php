@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ManualResultResource;
+use App\Models\GameType;
 use App\Models\ManualResult;
 use App\Models\ResultMaster;
 use App\Models\TwoDigitNumberCombinations;
@@ -67,46 +68,63 @@ class ManualResultController extends Controller
         return response()->json(['success'=>1,'data'=> $manualResult], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function get_load_details($id)
     {
-        //
+
+//        $data = [
+//            'id' => 1,
+//            'game_id' => 2
+//        ];
+//
+//        return response()->json(['success'=> 1, 'data' => $data], 200);
+
+//        return response()->json(['success'=> 1, 'data' => $id], 200);
+
+//        return response()->json(['success'=> 1, 'data' => $request], 200);
+//        $data = DB::select("select game_types.id ,game_types.game_name, two_digit_number_sets.number_set, sum(play_details.quantity) as total from play_masters
+//                inner join play_details on play_details.play_master_id = play_masters.id
+//                inner join game_types on game_types.id = play_details.game_type_id
+//                inner join two_digit_number_sets on two_digit_number_sets.id = play_details.two_digit_number_set_id
+//                inner join draw_masters on draw_masters.id = play_masters.draw_master_id
+//                group by  game_types.id ,game_types.game_name, two_digit_number_sets.number_set");
+
+        $gameTypes = GameType::select('id')->get();
+        $data1 = [];
+        $tempDate = [];
+        foreach ($gameTypes as $gameType){
+            $data = DB::select("select sum(play_details.quantity) as total from play_masters
+                inner join play_details on play_details.play_master_id = play_masters.id
+                inner join game_types on game_types.id = play_details.game_type_id
+                inner join two_digit_number_sets on two_digit_number_sets.id = play_details.two_digit_number_set_id
+                inner join draw_masters on draw_masters.id = play_masters.draw_master_id
+                where game_types.id = ".$gameType->id." and draw_masters.id = ".$id."
+                group by  game_types.id ,game_types.game_name, two_digit_number_sets.number_set
+                ");
+            if(!$data){
+                for($i = 0; $i <= 9; $i++){
+                    $data = [
+                        'total' => 0
+                    ];
+                    array_push($tempDate, $data);
+                }
+                $data = $tempDate;
+            };
+            array_push($data1, $data);
+        }
+        return response()->json(['success'=> 1, 'data' => $data1], 200);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ManualResult  $manualResult
-     * @return \Illuminate\Http\Response
-     */
     public function show(ManualResult $manualResult)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ManualResult  $manualResult
-     * @return \Illuminate\Http\Response
-     */
     public function edit(ManualResult $manualResult)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ManualResult  $manualResult
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, ManualResult $manualResult)
     {
         //
