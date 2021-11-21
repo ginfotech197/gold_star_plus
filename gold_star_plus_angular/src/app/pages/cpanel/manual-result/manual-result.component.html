@@ -129,8 +129,8 @@
             </div>
           </div>
         </div>
-        <button (click)="getLoadData()" >Search</button>
       </form>
+      <button mat-raised-button color="primary" (click)="getLoadData()" >Search</button>
 
       <table class="table table-bordered">
         <thead>
@@ -156,16 +156,30 @@
           <td scope="col">{{row.gameName}}</td>
           <td scope="col">{{row.seriesName}}</td>
 
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[0].total}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[1].total}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[2].total}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[3].total}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[4].total}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[5].total}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[6].total}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[7].total}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[8].total}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[9].total}}</td>
+<!--          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[0].total}}</td>-->
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[0].total):'0'}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[1].total):'0'}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[2].total):'0'}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[3].total):'0'}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[4].total):'0'}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[5].total):'0'}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[6].total):'0'}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[7].total):'0'}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[8].total):'0'}}</td>
+          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[9].total):'0'}}</td>
+
+
+<!--          <td scope="row" *ngIf="loadData[1] != undefined" >{{(loadData[i])[1].total}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[2] != undefined" >{{(loadData[i])[2].total}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[3] != undefined" >{{(loadData[i])[3].total}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[4] != undefined" >{{(loadData[i])[4].total}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[5] != undefined" >{{(loadData[i])[5].total}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[6] != undefined" >{{(loadData[i])[6].total}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[7] != undefined" >{{(loadData[i])[7].total}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[8] != undefined" >{{(loadData[i])[8].total}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[9] != undefined" >{{(loadData[i])[9].total}}</td>-->
+
+
 <!--          <td scope="col" *ngIf="loadData[0]">{{((twoDigitNumberSet[0].number_set == loadData[0].number_set) ? loadData[0].total : '0')}}</td>-->
 <!--          <td scope="col"><input (change)="changeInputDetails(row,inputData[row.gameTypeId][0],twoDigitNumberSet[0].id)" [(ngModel)]= "inputData[row.gameTypeId][0]" style="max-width: 50px; max-height: 25px;"></td>-->
 <!--          <td scope="col"><input (change)="changeInputDetails(row,inputData[row.gameTypeId][1],twoDigitNumberSet[1].id)" [(ngModel)]= "inputData[row.gameTypeId][1]" style="max-width: 50px; max-height: 25px;"></td>-->
