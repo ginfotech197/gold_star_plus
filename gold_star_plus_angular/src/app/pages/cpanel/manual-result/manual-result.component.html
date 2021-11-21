@@ -1,4 +1,7 @@
 <div [ngClass]="deviceXs?'mobile':'desktop'">
+
+  <mat-tab-group>
+    <mat-tab label="Create Result">
   <form [formGroup]="manualResultForm">
     <div class="d-flex flex-column bd-highlight">
       <div class="p-2 bd-highlight">
@@ -12,22 +15,6 @@
             </mat-select>
           </mat-form-field>
         </div>
-
-<!--        <div>-->
-
-<!--          <div class="card" style="width: 18rem;">-->
-<!--            <div class="card-header">-->
-<!--              Upcoming result-->
-<!--            </div>-->
-<!--            <ul class="list-group list-group-flush">-->
-<!--              <li class="list-group-item">{{manualResultForm.value.triple}}</li>-->
-<!--              <li class="list-group-item">{{manualResultForm.value.single}}</li>-->
-<!--            </ul>-->
-<!--          </div>-->
-
-<!--          <button type="button" class="btn btn-primary mt-2" (click)="saveManualResult()" [disabled]="!manualResultForm.valid" >Save</button>-->
-<!--          -->
-<!--        </div>-->
       </div>
 
       <div style="padding-left: 400px;">
@@ -121,8 +108,12 @@
 <!--        </div>-->
     </div>
   </form>
+<!--      <mat-tab-group>-->
+    </mat-tab>
 
-
+    <mat-tab label="Load">
+    </mat-tab>
+  </mat-tab-group>
 
   <!-- <button class="coder-fab" mat-fab (click)="scroll(targetDiv)">
     <i class="bi bi-arrow-up-circle"></i>

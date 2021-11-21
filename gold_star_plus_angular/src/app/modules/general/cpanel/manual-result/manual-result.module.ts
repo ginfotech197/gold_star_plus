@@ -14,6 +14,10 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MaterialModule} from "../../../../core/material.module";
+import {MatTabsModule} from "@angular/material/tabs";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatSortModule} from "@angular/material/sort";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -31,8 +35,13 @@ import {MaterialModule} from "../../../../core/material.module";
     MatSelectModule,
     MatBadgeModule,
     MatButtonModule,
-    MatSlideToggleModule,
-    MaterialModule
+    MaterialModule,
+
+    MatTabsModule,
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    MatSortModule,
+    MatIconModule
 
   ],
   exports: [
