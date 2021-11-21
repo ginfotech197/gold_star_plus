@@ -510,8 +510,8 @@ export class TerminalComponent implements OnInit {
   changeInputDetails(x, y, nc){
 
     let tempData = 0;
-    for (let i = 0; i <= 6 ; i++){
-      for (let j = 0 ; j <= 10 ; j++){
+    for (let i = 1; i <= 5 ; i++){
+      for (let j = 0 ; j <= 9 ; j++){
         if (this.inputData[i][j].length === 0){
           // tslint:disable-next-line:radix
           tempData = parseInt(0 + String(tempData));
@@ -544,8 +544,6 @@ export class TerminalComponent implements OnInit {
       mrp: x.mrp
     };
     this.playDetails.push(z);
-
-
 
     // return;
     //

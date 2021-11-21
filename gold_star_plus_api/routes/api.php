@@ -161,6 +161,7 @@ Route::group(array('prefix' => 'dev'), function() {
     //manual_result
 
     Route::post('manualResult',[ManualResultController::class, 'save_manual_result']);
+    Route::get('getLoadDetails',[ManualResultController::class, 'get_load_details']);
 
 
     //test
