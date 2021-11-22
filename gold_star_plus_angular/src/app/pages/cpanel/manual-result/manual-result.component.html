@@ -156,16 +156,16 @@
           <td scope="col">{{row.gameName}}</td>
           <td scope="col">{{row.seriesName}}</td>
 
-          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set1}}</td>
-          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set2}}</td>
-          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set3}}</td>
-          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set4}}</td>
-          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set5}}</td>
-          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set6}}</td>
-          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set7}}</td>
-          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set8}}</td>
-          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set9}}</td>
-          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set10}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set1?loadData[i].set1:'0' }}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set2?loadData[i].set2:'0'}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set3?loadData[i].set3:'0'}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set4?loadData[i].set4:'0'}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set5?loadData[i].set5:'0'}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set6?loadData[i].set6:'0'}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set7?loadData[i].set7:'0'}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set8?loadData[i].set8:'0'}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set9?loadData[i].set9:'0'}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set10?loadData[i].set10:'0'}}</td>
 
 
 <!--          <td scope="col" >{{loadData[i]? loadData[0].set1 : ''}}</td>-->
