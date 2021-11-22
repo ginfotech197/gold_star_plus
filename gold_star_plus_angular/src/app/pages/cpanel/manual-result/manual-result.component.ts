@@ -44,6 +44,7 @@ export class ManualResultComponent implements OnInit {
   private BASE_API_URL = environment.BASE_API_URL;
   manualResultForm: FormGroup;
   drawTimes: DrawTime[] = [];
+  drawTimesAll: DrawTime[] = [];
   gameTypes: GameType[] = [];
   public numberCombinationMatrix: SingleNumber[] = [];
   private copyNumberMatrix: SingleNumber[];
@@ -107,6 +108,12 @@ export class ManualResultComponent implements OnInit {
     // this.loadData = this.manualResultService.getLoadData(1);
     this.manualResultService.getLoadDataListener().subscribe((response) => {
       this.loadData = response;
+    });
+
+    this.drawTimesAll = this.manualResultService.getAllDrawTimes();
+    // @ts-ignore
+    this.manualResultService.getAllDrawTimesListener().subscribe((response: DrawTime[]) => {
+      this.drawTimesAll = response;
     });
 
     this.gameTypes = this.gameTypeService.getGameType();
