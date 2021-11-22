@@ -156,17 +156,47 @@
           <td scope="col">{{row.gameName}}</td>
           <td scope="col">{{row.seriesName}}</td>
 
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set1}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set2}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set3}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set4}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set5}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set6}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set7}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set8}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set9}}</td>
+          <td scope="col"*ngIf="loadData[i] != undefined"  >{{loadData[i].set10}}</td>
+
+
+<!--          <td scope="col" >{{loadData[i]? loadData[0].set1 : ''}}</td>-->
+<!--          <td scope="col" >{{loadData[i]? loadData[1].set2 : ''}}</td>-->
+<!--          <td scope="col" >{{loadData[i]? loadData[2].set3 : ''}}</td>-->
+<!--          <td scope="col" >{{loadData[i]? loadData[3].set4 : ''}}</td>-->
+
+
+<!--          <td scope="col"*ngIf="loadData[i] != undefined"  >{{(loadData[i].game_type_id == row.gameTypeId)? loadData[i].set1 : '0'}}</td>-->
+<!--          <td scope="col"*ngIf="loadData[i] != undefined"  >{{(loadData[i].game_type_id == row.gameTypeId)? loadData[i].set2 : '0'}}</td>-->
+<!--          <td scope="col"*ngIf="loadData[i] != undefined"  >{{(loadData[i].game_type_id == row.gameTypeId)? loadData[i].set3 : '0'}}</td>-->
+<!--          <td scope="col"*ngIf="loadData[i] != undefined"  >{{(loadData[i].game_type_id == row.gameTypeId)? loadData[i].set4 : '0'}}</td>-->
+<!--          <td scope="col"*ngIf="loadData[i] != undefined"  >{{(loadData[i].game_type_id == row.gameTypeId)? loadData[i].set5 : '0'}}</td>-->
+<!--          <td scope="col"*ngIf="loadData[i] != undefined"  >{{(loadData[i].game_type_id == row.gameTypeId)? loadData[i].set6 : '0'}}</td>-->
+<!--          <td scope="col"*ngIf="loadData[i] != undefined"  >{{(loadData[i].game_type_id == row.gameTypeId)? loadData[i].set7 : '0'}}</td>-->
+<!--          <td scope="col"*ngIf="loadData[i] != undefined"  >{{(loadData[i].game_type_id == row.gameTypeId)? loadData[i].set8 : '0'}}</td>-->
+<!--          <td scope="col"*ngIf="loadData[i] != undefined"  >{{(loadData[i].game_type_id == row.gameTypeId)? loadData[i].set9 : '0'}}</td>-->
+<!--          <td scope="col"*ngIf="loadData[i] != undefined"  >{{(loadData[i].game_type_id == row.gameTypeId)? loadData[i].set10 : '0'}}</td>-->
+
+
 <!--          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])[0].total}}</td>-->
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[0].total):'0'}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[1].total):'0'}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[2].total):'0'}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[3].total):'0'}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[4].total):'0'}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[5].total):'0'}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[6].total):'0'}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[7].total):'0'}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[8].total):'0'}}</td>
-          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[9].total):'0'}}</td>
+<!--          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[0].total):'0'}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[1].total):'0'}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[2].total):'0'}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[3].total):'0'}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[4].total):'0'}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[5].total):'0'}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[6].total):'0'}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[7].total):'0'}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[8].total):'0'}}</td>-->
+<!--          <td scope="row" *ngIf="loadData[0] != undefined" >{{(loadData[i])? ((loadData[i])[9].total):'0'}}</td>-->
 
 
 <!--          <td scope="row" *ngIf="loadData[1] != undefined" >{{(loadData[i])[1].total}}</td>-->

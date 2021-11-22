@@ -88,30 +88,80 @@ class ManualResultController extends Controller
 //                inner join draw_masters on draw_masters.id = play_masters.draw_master_id
 //                group by  game_types.id ,game_types.game_name, two_digit_number_sets.number_set");
 
-        $gameTypes = GameType::select('id')->get();
-        $data1 = [];
-        $tempDate = [];
-        foreach ($gameTypes as $gameType){
-            $data = DB::select("select sum(play_details.quantity) as total from play_masters
-                inner join play_details on play_details.play_master_id = play_masters.id
-                inner join game_types on game_types.id = play_details.game_type_id
-                inner join two_digit_number_sets on two_digit_number_sets.id = play_details.two_digit_number_set_id
-                inner join draw_masters on draw_masters.id = play_masters.draw_master_id
-                where game_types.id = ".$gameType->id." and draw_masters.id = ".$id."
-                group by  game_types.id ,game_types.game_name, two_digit_number_sets.number_set
-                ");
-            if(!$data){
-                for($i = 0; $i <= 9; $i++){
-                    $data = [
-                        'total' => 0
-                    ];
-                    array_push($tempDate, $data);
-                }
-                $data = $tempDate;
-            };
-            array_push($data1, $data);
-        }
-        return response()->json(['success'=> 1, 'data' => $data1], 200);
+//        $gameTypes = GameType::select('id')->get();
+//        $data1 = [];
+//        $tempDate = [];
+//        foreach ($gameTypes as $gameType){
+//            $data = DB::select("select sum(play_details.quantity) as total from play_masters
+//                inner join play_details on play_details.play_master_id = play_masters.id
+//                inner join game_types on game_types.id = play_details.game_type_id
+//                inner join two_digit_number_sets on two_digit_number_sets.id = play_details.two_digit_number_set_id
+//                inner join draw_masters on draw_masters.id = play_masters.draw_master_id
+//                where game_types.id = ".$gameType->id." and draw_masters.id = ".$id."
+//                group by  game_types.id ,game_types.game_name, two_digit_number_sets.number_set
+//                ");
+//            if(!$data){
+//                for($i = 0; $i <= 9; $i++){
+//                    $data = [
+//                        'total' => 0
+//                    ];
+//                    array_push($tempDate, $data);
+//                }
+//                $data = $tempDate;
+//            };
+//            array_push($data1, $data);
+//        }
+//        return response()->json(['success'=> 1, 'data' => $data1], 200);
+
+        $play_date = Carbon::today()->format('Y-m-d');
+//        return response()->json(['success'=> 1, 'data' => $play_date], 200);
+
+//        $data = DB::select("SELECT game_type_id,max(set1)as set1,max(set2)as set2,
+//max(set3)as set3,max(set4)as set4,max(set5)as set5,max(set6)as set6,max(set7)as set7,max(set8)as set8,max(set9)as set9,
+//max(set10)as set10
+//
+//FROM(select *,case when two_digit_number_set_id = 1 then quantity end as set1 ,
+//        case when two_digit_number_set_id = 2 then quantity end as set2,
+//        case when two_digit_number_set_id = 3 then quantity end as set3,
+//        case when two_digit_number_set_id = 4 then quantity end as set4,
+//        case when two_digit_number_set_id = 5 then quantity end as set5,
+//        case when two_digit_number_set_id = 6 then quantity end as set6,
+//        case when two_digit_number_set_id = 7 then quantity end as set7,
+//        case when two_digit_number_set_id = 8 then quantity end as set8,
+//        case when two_digit_number_set_id = 9 then quantity end as set9,
+//        case when two_digit_number_set_id = 10 then quantity end as set10
+//
+//from (SELECT play_details.game_type_id,play_details.two_digit_number_set_id,max(two_digit_number_sets.number_set) as number_set,sum(play_details.quantity) as quantity FROM `play_masters`
+//INNER JOIN play_details ON play_masters.id=play_details.play_master_id
+//INNER JOIN two_digit_number_sets ON play_details.two_digit_number_set_id=two_digit_number_sets.id
+//WHERE play_masters.draw_master_id=".$id." and date(play_masters.created_at)=? GROUP BY play_details.game_type_id,play_details.two_digit_number_set_id) as table1) as table2 GROUP BY game_type_id"
+//            ,[$play_date]);
+
+        $data = DB::select("select game_types.id, table3.set1, table3.set2, table3.set3, table3.set4, table3.set5, table3.set6, table3.set7, table3.set8, table3.set9, table3.set10 from (sELECT game_type_id,max(set1)as set1,max(set2)as set2,
+max(set3)as set3,max(set4)as set4,max(set5)as set5,max(set6)as set6,max(set7)as set7,max(set8)as set8,max(set9)as set9,
+max(set10)as set10
+
+FROM(select *,case when two_digit_number_set_id = 1 then quantity end as set1 ,
+        case when two_digit_number_set_id = 2 then quantity end as set2,
+        case when two_digit_number_set_id = 3 then quantity end as set3,
+        case when two_digit_number_set_id = 4 then quantity end as set4,
+        case when two_digit_number_set_id = 5 then quantity end as set5,
+        case when two_digit_number_set_id = 6 then quantity end as set6,
+        case when two_digit_number_set_id = 7 then quantity end as set7,
+        case when two_digit_number_set_id = 8 then quantity end as set8,
+        case when two_digit_number_set_id = 9 then quantity end as set9,
+        case when two_digit_number_set_id = 10 then quantity end as set10
+
+from (SELECT play_details.game_type_id,play_details.two_digit_number_set_id,max(two_digit_number_sets.number_set) as number_set,sum(play_details.quantity) as quantity FROM `play_masters`
+INNER JOIN play_details ON play_masters.id=play_details.play_master_id
+INNER JOIN two_digit_number_sets ON play_details.two_digit_number_set_id=two_digit_number_sets.id
+WHERE play_masters.draw_master_id=".$id." and date(play_masters.created_at)=?
+GROUP BY play_details.game_type_id,play_details.two_digit_number_set_id) as table1) as table2 GROUP BY game_type_id) as table3
+right join game_types on table3.game_type_id = game_types.id",[$play_date]);
+
+
+
+        return response()->json(['success'=> 1, 'data' => $data], 200);
 
     }
 

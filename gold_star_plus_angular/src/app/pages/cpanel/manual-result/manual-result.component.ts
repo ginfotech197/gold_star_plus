@@ -90,13 +90,13 @@ export class ManualResultComponent implements OnInit {
   ngOnInit(): void {
 
     this.loadData = [];
-    for (let i = 1; i <= 5 ; i++){
-      // @ts-ignore
-      this.loadData[i] = [];
-      for (let j = 0 ; j <= 9 ; j++){
-        this.loadData[i][j] = [];
-      }
-    }
+    // for (let i = 1; i <= 5 ; i++){
+    //   // @ts-ignore
+    //   this.loadData[i] = [];
+    //   for (let j = 0 ; j <= 9 ; j++){
+    //     this.loadData[i][j] = [];
+    //   }
+    // }
 
       // this.drawTimes = this.manualResultService.getAllDrawTimes();
       // this.manualResultService.getAllDrawTimesListener().subscribe((response: DrawTime[]) => {
