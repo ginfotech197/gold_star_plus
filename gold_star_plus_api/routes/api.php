@@ -125,6 +125,8 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
 Route::group(array('prefix' => 'dev'), function() {
 
+    Route::get('testReportNew', [CentralController::class, 'testReportNew']);
+
     Route::get("users",[UserController::class,'getAllUsers']);
     Route::patch("users",[UserController::class,'update']);
 

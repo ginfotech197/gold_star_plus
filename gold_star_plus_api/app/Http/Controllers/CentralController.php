@@ -194,4 +194,51 @@ order by rand() limit 1"));
 
     }
 
+    public function testReportNew(){
+        $drawMasters = DrawMaster::select()->get();
+        $gameTypes = GameType::select()->where('id',1)->first();
+
+        //date declaration
+//        $today = Carbon::today()->format('Y-m-d');
+        $today = "2021-11-25";
+
+        //array declaration for final report
+        $dataReport = [];
+
+        //variable declaration
+        $total_prize = 0;
+        $total_quantity = 0;
+
+        //object created
+        $cPanelReportController = new CPanelReportController();
+
+        $playMaster = [];
+
+//        $playMaster = PlayMaster::select()->where('draw_master_id',1)->whereRaw('date(play_masters.created_at) >= ?', $today)->get();
+//        return response()->json(['$gameTypes'=>$today, '$drawMasters' => $playMaster, '$dataReport' => $dataReport], 200);
+
+        foreach ($drawMasters as $drawMaster){
+            $total_prize = 0;
+            $total_quantity = 0;
+
+            $playMaster = PlayMaster::select()->where('draw_master_id',$drawMaster->id)->whereRaw('date(play_masters.created_at) >= ?', $today)->get();
+            foreach ($playMaster as $newPlayMaster){
+                $total_prize = $total_prize + ($cPanelReportController->get_prize_value_by_barcode($newPlayMaster->id));
+                $total_quantity = $cPanelReportController->get_total_quantity_by_barcode($newPlayMaster->id);
+            }
+
+            $tempData = [
+                'game_name' => $gameTypes->game_name,
+                'draw_time' => $drawMaster->visible_time,
+                'mrp' => $gameTypes->mrp,
+                'prize_value' => $total_prize,
+                'total_sale' => ($total_quantity * $gameTypes->mrp)
+            ];
+            array_push($dataReport, $tempData);
+        }
+
+
+        return response()->json(['$gameTypes'=>$today, '$drawMasters' => $playMaster, '$dataReport' => $dataReport], 200);
+    }
+
 }
