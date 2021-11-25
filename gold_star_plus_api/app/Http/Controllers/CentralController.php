@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\ManualResult;
 use App\Models\NumberCombination;
+use App\Models\PlayDetails;
 use App\Models\PlayMaster;
+use App\Models\ResultMaster;
 use Illuminate\Http\Request;
 use App\Models\NextGameDraw;
 use App\Models\DrawMaster;
@@ -208,37 +211,66 @@ order by rand() limit 1"));
         //variable declaration
         $total_prize = 0;
         $total_quantity = 0;
+        $payout = 0;
+
+//        $playMaster = PlayMaster::select()->where('draw_master_id',1)->whereRaw('date(play_masters.created_at) >= ?', $today)->get();
+//        $payout = PlayDetails::select('payout')->where('play_master_id',$playMaster[0]->id)->first();
+//
+//        return response()->json(['$payout'=>$playMaster[0]->id, '$drawMasters' => $payout, '$dataReport' => $dataReport], 200);
 
         //object created
         $cPanelReportController = new CPanelReportController();
 
+        //array declaration
         $playMaster = [];
-
-//        $playMaster = PlayMaster::select()->where('draw_master_id',1)->whereRaw('date(play_masters.created_at) >= ?', $today)->get();
-//        return response()->json(['$gameTypes'=>$today, '$drawMasters' => $playMaster, '$dataReport' => $dataReport], 200);
 
         foreach ($drawMasters as $drawMaster){
             $total_prize = 0;
             $total_quantity = 0;
+//            $payout = 0;
 
             $playMaster = PlayMaster::select()->where('draw_master_id',$drawMaster->id)->whereRaw('date(play_masters.created_at) >= ?', $today)->get();
+
             foreach ($playMaster as $newPlayMaster){
                 $total_prize = $total_prize + ($cPanelReportController->get_prize_value_by_barcode($newPlayMaster->id));
                 $total_quantity = $cPanelReportController->get_total_quantity_by_barcode($newPlayMaster->id);
+                $payout = PlayDetails::select('payout')->where('play_master_id',$newPlayMaster->id)->first();
             }
+
+            $result_details = ResultMaster::select('two_digit_number_combinations.visible_number')
+                ->join('result_details','result_details.result_masters_id','result_masters.id')
+                ->join('two_digit_number_combinations','result_details.two_digit_number_combination_id','two_digit_number_combinations.id')
+                ->where('result_masters.draw_master_id', $drawMaster->id)
+                ->where('result_details.game_type_id', $gameTypes->id)
+                ->whereRaw('date(result_masters.created_at) >= ?', $today)
+                ->first();
+
+            $manual_result = ManualResult::select()
+                ->join('two_digit_number_combinations','manual_results.two_digit_number_combination_id','two_digit_number_combinations.id')
+                ->where('manual_results.draw_master_id', $drawMaster->id)
+                ->where('manual_results.game_type_id', $gameTypes->id)
+                ->whereRaw('date(manual_results.created_at) >= ?', $today)
+                ->first();
+
+
 
             $tempData = [
                 'game_name' => $gameTypes->game_name,
                 'draw_time' => $drawMaster->visible_time,
                 'mrp' => $gameTypes->mrp,
                 'prize_value' => $total_prize,
-                'total_sale' => ($total_quantity * $gameTypes->mrp)
+                'total_sale' => ($total_quantity * $gameTypes->mrp),
+                'result' => $result_details?$result_details->visible_number : 0,
+                'payout_on_sales' => ($total_quantity * $gameTypes->mrp)?(($total_prize / ($total_quantity * $gameTypes->mrp))*100) : 0,
+                'manual_result' => $manual_result?$manual_result->visible_number : null,
+                'payout' => $payout->payout
             ];
             array_push($dataReport, $tempData);
         }
 
 
-        return response()->json(['$gameTypes'=>$today, '$drawMasters' => $playMaster, '$dataReport' => $dataReport], 200);
+//        return response()->json(['$payout'=>$payout->payout, '$drawMasters' => $playMaster, '$dataReport' => $dataReport], 200);
+        return response()->json(['$dataReport' => $dataReport], 200);
     }
 
 }
