@@ -126,6 +126,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 Route::group(array('prefix' => 'dev'), function() {
 
     Route::post('drawWiseReport', [CentralController::class, 'drawWiseReport']);
+    Route::post('get_prize_value_by_game_types', [CentralController::class, 'get_prize_value_by_game_types']);
 
     Route::get("users",[UserController::class,'getAllUsers']);
     Route::patch("users",[UserController::class,'update']);

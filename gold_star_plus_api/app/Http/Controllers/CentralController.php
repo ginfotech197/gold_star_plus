@@ -7,6 +7,7 @@ use App\Models\ManualResult;
 use App\Models\NumberCombination;
 use App\Models\PlayDetails;
 use App\Models\PlayMaster;
+use App\Models\ResultDetail;
 use App\Models\ResultMaster;
 use Illuminate\Http\Request;
 use App\Models\NextGameDraw;
@@ -238,7 +239,8 @@ order by rand() limit 1"));
             $playMaster = PlayMaster::select()->where('draw_master_id',$drawMaster->id)->whereRaw('date(play_masters.created_at) >= ?', $today)->get();
 
             foreach ($playMaster as $newPlayMaster){
-                $total_prize = $total_prize + ($cPanelReportController->get_prize_value_by_barcode($newPlayMaster->id));
+//                $total_prize = $total_prize + ($cPanelReportController->get_prize_value_by_barcode($newPlayMaster->id));
+                $total_prize = $total_prize + $this->get_prize_value_by_game_types($newPlayMaster->id,$gameTypes->id);
                 $total_quantity = $cPanelReportController->get_total_quantity_by_barcode($newPlayMaster->id);
                 $payout = PlayDetails::select('payout')->where('play_master_id',$newPlayMaster->id)->first();
             }
@@ -265,7 +267,7 @@ order by rand() limit 1"));
                 'mrp' => $gameTypes->mrp,
                 'prize_value' => $total_prize,
                 'total_sale' => ($total_quantity * $gameTypes->mrp),
-                'result' => $result_details?$result_details->visible_number : 0,
+                'result' => $result_details?$result_details->visible_number : null,
                 'payout_on_sales' => ($total_quantity * $gameTypes->mrp)?(($total_prize / ($total_quantity * $gameTypes->mrp))*100) : 0,
                 'manual_result' => $manual_result?$manual_result->visible_number : null,
                 'payout' => $payout->payout
@@ -276,6 +278,35 @@ order by rand() limit 1"));
 
 //        return response()->json(['$payout'=>$payout->payout, '$drawMasters' => $playMaster, '$dataReport' => $dataReport], 200);
         return response()->json(['success' => 1,'data' => $dataReport], 200);
+    }
+
+//    public function get_prize_value_by_game_types(Request $request){
+    public function get_prize_value_by_game_types($play_master_id , $game_type_id){
+//        $requestedData = (object)$request->json()->all();
+//        $play_master_id = $requestedData->play_master_id;
+//        $game_type_id = $requestedData->game_type_id;
+
+        $playMaster = (PlayMaster::select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"),'draw_master_id')->where('id', $play_master_id)->first());
+
+        $result = ResultMaster::select()
+            ->join('result_details','result_details.result_masters_id','result_masters.id')
+            ->join('two_digit_number_combinations','two_digit_number_combinations.id','result_details.two_digit_number_combination_id')
+            ->where('result_masters.draw_master_id', $playMaster->draw_master_id)
+            ->where('result_details.game_type_id', $game_type_id)
+            ->whereRaw('date(result_details.created_at) >= ?', $playMaster->created_at)
+            ->first();
+
+        $playDetails = PlayDetails::select()
+            ->where('play_master_id',$play_master_id)
+            ->where('game_type_id',$game_type_id)
+            ->where('two_digit_number_set_id',$result->two_digit_number_set_id)
+            ->first();
+
+        $gameType = GameType::select()->where('id',$game_type_id )->first();
+
+        return $playDetails? (($gameType->winning_price) * ($playDetails->quantity)) : 0;
+
+//        return response()->json(['success' => $prize_value, '$result' => $result], 200);
     }
 
 }
