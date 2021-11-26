@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4eb4110c-81d9-43f4-9711-e035440ab2b2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/pages/cpanel/admin-reports/admin-reports.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../gold_star_plus_angular/src/app/pages/cpanel/admin-reports/admin-reports.component.html" afterDir="false" />
-    </list>
+    <list default="true" id="4eb4110c-81d9-43f4-9711-e035440ab2b2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -197,7 +195,8 @@
       <workItem from="1637572711521" duration="1296000" />
       <workItem from="1637817464485" duration="3229000" />
       <workItem from="1637856049267" duration="4710000" />
-      <workItem from="1637904752610" duration="9860000" />
+      <workItem from="1637904752610" duration="10140000" />
+      <workItem from="1637925407681" duration="1443000" />
     </task>
     <servers />
   </component>

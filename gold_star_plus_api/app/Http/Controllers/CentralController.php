@@ -220,11 +220,6 @@ order by rand() limit 1"));
         $total_quantity = 0;
         $payout = 0;
 
-//        $playMaster = PlayMaster::select()->where('draw_master_id',1)->whereRaw('date(play_masters.created_at) >= ?', $today)->get();
-//        $payout = PlayDetails::select('payout')->where('play_master_id',$playMaster[0]->id)->first();
-//
-//        return response()->json(['$payout'=>$playMaster[0]->id, '$drawMasters' => $payout, '$dataReport' => $dataReport], 200);
-
         //object created
         $cPanelReportController = new CPanelReportController();
 
@@ -241,7 +236,8 @@ order by rand() limit 1"));
             foreach ($playMaster as $newPlayMaster){
 //                $total_prize = $total_prize + ($cPanelReportController->get_prize_value_by_barcode($newPlayMaster->id));
                 $total_prize = $total_prize + $this->get_prize_value_by_game_types($newPlayMaster->id,$gameTypes->id);
-                $total_quantity = $cPanelReportController->get_total_quantity_by_barcode($newPlayMaster->id);
+//                $total_quantity = $cPanelReportController->get_total_quantity_by_barcode($newPlayMaster->id);
+                $total_quantity = $total_quantity + $this->get_quantity_by_game_types($newPlayMaster->id,$gameTypes->id);;
                 $payout = PlayDetails::select('payout')->where('play_master_id',$newPlayMaster->id)->first();
             }
 
@@ -307,6 +303,28 @@ order by rand() limit 1"));
         return $playDetails? (($gameType->winning_price) * ($playDetails->quantity)) : 0;
 
 //        return response()->json(['success' => $prize_value, '$result' => $result], 200);
+    }
+
+//    public function get_quantity_by_game_types(Request $request){
+    public function get_quantity_by_game_types($play_master_id,$game_type_id){
+//        $requestedData = (object)$request->json()->all();
+//        $play_master_id = $requestedData->play_master_id;
+//        $game_type_id = $requestedData->game_type_id;
+
+        $total_quantity = 0;
+
+        $playDetails = PlayDetails::select()
+            ->where('play_master_id',$play_master_id)
+            ->where('game_type_id',$game_type_id)
+            ->get();
+
+        foreach ($playDetails as $playDetail){
+            $total_quantity = $total_quantity + $playDetail->quantity;
+        }
+
+        return $total_quantity;
+
+//        return response()->json(['success' => $total_quantity, '$result' => $game_type_id], 200);
     }
 
 }
