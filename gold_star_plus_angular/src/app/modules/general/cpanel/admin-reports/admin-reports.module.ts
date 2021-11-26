@@ -22,7 +22,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatIcon} from "@angular/material/icon";
+import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -55,6 +56,26 @@ import {MatIcon} from "@angular/material/icon";
     MatDatepickerModule,
     MatInputModule,
     MatFormFieldModule,
+
+
+
+    MatSlideToggleModule,
+    MatCardModule,
+    FormsModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    MatBadgeModule,
+    MatButtonModule,
+    MaterialModule,
+
+    MatTabsModule,
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    MatSortModule,
+    MatIconModule
   ],
   exports: [
     AdminReportsComponent

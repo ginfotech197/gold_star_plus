@@ -127,7 +127,74 @@
   </div>
   </mat-tab>
 
-  <mat-tab label="Draw wise report"></mat-tab>
+  <mat-tab label="Draw wise report">
+
+    <div class="pt-1 d-flex">
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]= "StartDateFilter">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker [(ngModel)]= "StartDateFilter"></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+      <div class="col-3">
+        <form>
+          <mat-form-field appearance="fill">
+            <mat-label>Draw Time</mat-label>
+            <mat-select [(ngModel)]="selectedGame" name="food">
+              <mat-option *ngFor="let game of gameTypes" [value]="game.gameTypeId">
+                {{game.gameName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+
+      <button mat-button color="accent" style="font-size: 20px;" (click)="getDrawWiseReport()">Search</button>
+
+    </div>
+
+
+<!--    <button (click)="getDrawWiseReport()"> test </button>-->
+    <table matSort (matSortChange)="sortData($event)" class=" ml-4 col-11 table table-bordered table-sm" style="border: none !important; height: 50px;  overflow: scroll;">
+      <thead>
+      <tr>
+        <th>Sl No.</th>
+        <th>Game Name</th>
+        <th>Draw time</th>
+        <th>MRP</th>
+        <th>Sales Amount</th>
+        <th>Prize Value</th>
+        <th>Payout Server</th>
+        <th>Payout on Sales</th>
+        <th>Manual Result</th>
+        <th>Result on Sales</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let record of drawWiseReport;let indexOfElement=index">
+        <td>{{indexOfElement + 1 }}</td>
+        <td>{{record.game_name}}</td>
+        <td>{{record.draw_time}}</td>
+        <td>{{record.mrp}}</td>
+        <td>{{record.prize_value}}</td>
+        <td>{{record.total_sale}}</td>
+        <td>{{record.result}}</td>
+        <td>{{record.payout_on_sales}}</td>
+        <td>{{record.manual_result}}</td>
+        <td>{{record.payout}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="text-center" *ngIf="drawWiseReport.length==0">
+      <h1>No Data</h1>
+    </div>
+
+  </mat-tab>
+
 </mat-tab-group>
 
 

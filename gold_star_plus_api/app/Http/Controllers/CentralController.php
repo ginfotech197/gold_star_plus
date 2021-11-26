@@ -197,13 +197,19 @@ order by rand() limit 1"));
 
     }
 
-    public function testReportNew(){
+    public function drawWiseReport(Request $request){
+
+        $requestedData = (object)$request->json()->all();
+        $gameTypeId = $requestedData->gameType;
+        $today = $requestedData->date;
+//        return response()->json(['success' => 1,'data' => $requestedData->drawTime], 200);
+
         $drawMasters = DrawMaster::select()->get();
-        $gameTypes = GameType::select()->where('id',1)->first();
+        $gameTypes = GameType::select()->where('id',$gameTypeId)->first();
 
         //date declaration
 //        $today = Carbon::today()->format('Y-m-d');
-        $today = "2021-11-25";
+//        $today = "2021-11-25";
 
         //array declaration for final report
         $dataReport = [];
@@ -253,7 +259,6 @@ order by rand() limit 1"));
                 ->first();
 
 
-
             $tempData = [
                 'game_name' => $gameTypes->game_name,
                 'draw_time' => $drawMaster->visible_time,
@@ -270,7 +275,7 @@ order by rand() limit 1"));
 
 
 //        return response()->json(['$payout'=>$payout->payout, '$drawMasters' => $playMaster, '$dataReport' => $dataReport], 200);
-        return response()->json(['$dataReport' => $dataReport], 200);
+        return response()->json(['success' => 1,'data' => $dataReport], 200);
     }
 
 }

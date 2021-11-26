@@ -9,6 +9,11 @@ import {BarcodeDetails} from '../../../models/BarcodeDetails.model';
 import {CPanelCustomerSaleReport} from '../../../models/CPanelCustomerSaleReport.model';
 import {FormGroup} from "@angular/forms";
 import {DatePipe, formatDate} from '@angular/common';
+import {DrawWiseReport} from "../../../models/DrawWiseReport.model";
+import {ManualResultService} from "../../../services/manual-result.service";
+import {DrawTime} from "../../../models/DrawTime.model";
+import {GameTypeService} from "../../../services/game-type.service";
+import {GameType} from "../../../models/GameType.model";
 
 @Component({
   selector: 'app-admin-reports',
@@ -27,21 +32,40 @@ export class AdminReportsComponent implements OnInit {
   showDevArea = false;
   barcodeReportRecords: CPanelBarcodeReport[] = [];
   barcodeDetails: BarcodeDetails;
+  drawWiseReport: DrawWiseReport[] = [];
   customerSaleReportRecords: CPanelCustomerSaleReport[] = [];
+  selectedGame = 1;
 
   StartDateFilter = this.startDate;
   EndDateFilter = this.startDate;
   pipe = new DatePipe('en-US');
+  gameTypes: GameType[] = [];
 
   totalAmount: number = 0;
    columnNumber = 4;
 
   // picker1: any;
-  constructor(private adminReportService: AdminReportService) {
+  constructor(private adminReportService: AdminReportService, private gameTypeService: GameTypeService) {
     // console.log(this.thisDay);
   }
 
   ngOnInit(): void {
+
+    this.selectedGame = 1;
+
+    // this.drawTimesAll = this.manualResultService.getAllDrawTimes();
+    // this.manualResultService.getAllDrawTimesListener().subscribe((response: DrawTime[]) => {
+    //   this.drawTimesAll = response;
+    // });
+
+    this.gameTypeService.getGameTypeListener().subscribe((response) => {
+      this.gameTypes = response;
+    });
+
+    this.adminReportService.getDrawWiseReportListener().subscribe((response) => {
+      this.drawWiseReport = response;
+    });
+
     this.barcodeReportRecords = this.adminReportService.getBarcodeReportRecords();
     this.adminReportService.getBarcodeReportListener().subscribe((response: CPanelBarcodeReport[]) => {
       this.barcodeReportRecords = response;
@@ -53,12 +77,18 @@ export class AdminReportsComponent implements OnInit {
       let temp = 0;
       this.customerSaleReportRecords.forEach(function (value) {
         temp += Number(value.total);
-      })
+      });
       // console.log('total amount' + temp);
       this.totalAmount = temp;
     });
     this.searchByDateTab1();
     this.searchByDateTab2();
+    this.getDrawWiseReport();
+  }
+
+  getDrawWiseReport(){
+    var startDate = this.pipe.transform(this.StartDateFilter, 'yyyy-MM-dd');
+    this.adminReportService.getDrawWiseReport(this.selectedGame, startDate);
   }
 
   searchByDateTab1(){

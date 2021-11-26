@@ -39,7 +39,6 @@ export class ManualResultService {
     // get all draw time
     this.http.get(this.BASE_API_URL + '/drawTimes').subscribe((response: ServerResponse) => {
       this.drawTimes = response.data;
-      console.log(this.drawTimes);
       this.drawTimeSubject.next([...this.drawTimes]);
     });
 

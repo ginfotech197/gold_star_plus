@@ -19,7 +19,6 @@ export class GameTypeService {
     this.http.get(this.BASE_API_URL + '/dev/gameTypes').subscribe((response: ServerResponse) => {
       this.gameTypes = response.data;
       this.gameTypeSubject.next([...this.gameTypes]);
-      // console.log(response.data);
     });
   }
 

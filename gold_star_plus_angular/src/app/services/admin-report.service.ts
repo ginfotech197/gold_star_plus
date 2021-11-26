@@ -8,6 +8,7 @@ import {CPanelBarcodeReport} from '../models/CPanelBarcodeReport.model';
 import {Subject, throwError} from 'rxjs';
 import {BarcodeDetails} from '../models/BarcodeDetails.model';
 import {CPanelCustomerSaleReport} from '../models/CPanelCustomerSaleReport.model';
+import {DrawWiseReport} from "../models/DrawWiseReport.model";
 
 
 @Injectable({
@@ -17,6 +18,10 @@ import {CPanelCustomerSaleReport} from '../models/CPanelCustomerSaleReport.model
 export class AdminReportService {
   private BASE_API_URL = environment.BASE_API_URL;
   barcodeReportRecords: CPanelBarcodeReport[] = [];
+
+  drawWiseReport: DrawWiseReport[] = [];
+  drawWiseReportSubject = new Subject<DrawWiseReport[]>();
+
   barcodeReportSubject = new Subject<CPanelBarcodeReport[]>();
 
   barcodeDetails: BarcodeDetails;
@@ -46,6 +51,10 @@ export class AdminReportService {
     return this.barcodeReportSubject.asObservable();
   }
 
+  getDrawWiseReportListener(){
+    return this.drawWiseReportSubject.asObservable();
+  }
+
   getCustomerSaleReportRecords(){
     return [...this.customerSaleReportRecords];
   }
@@ -60,6 +69,14 @@ export class AdminReportService {
         this.barcodeDetailsSubject.next({...this.barcodeDetails});
       }));
   }
+
+  getDrawWiseReport(gameType, date){
+    this.http.post(this.BASE_API_URL + '/dev/drawWiseReport', {gameType, date}).subscribe((response: ServerResponse) => {
+      this.drawWiseReport = response.data;
+      this.drawWiseReportSubject.next([...this.drawWiseReport]);
+    });
+  }
+
   getBarcodeDetailsListener(){
     return this.barcodeDetailsSubject.asObservable();
   }
