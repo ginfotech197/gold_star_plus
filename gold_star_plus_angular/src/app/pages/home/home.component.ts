@@ -394,6 +394,9 @@ export class HomeComponent implements OnInit {
   viewResult(){
     this.showResultSheet = true ;
   }
+  back(){
+    this.showResultSheet = false;
+  }
 
 
 }

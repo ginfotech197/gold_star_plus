@@ -90,7 +90,10 @@
 <!--<div >-->
 </div>
 
+
 <div *ngIf="showResultSheet" >
+  <!-- <div ()><button>back</button></div> -->
+  <div><button (click)="back()">back</button></div>
   <app-result-sheet></app-result-sheet>
 </div>
 

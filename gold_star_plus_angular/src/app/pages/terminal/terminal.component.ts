@@ -697,6 +697,9 @@ export class TerminalComponent implements OnInit {
   viewResult(){
     this.showResultSheet = true ;
   }
+  back(){
+    this.showResultSheet = false;
+  }
 
   // playAudio(){
   //   let audio = new Audio();
