@@ -203,7 +203,14 @@ order by rand() limit 1"));
         $requestedData = (object)$request->json()->all();
         $gameTypeId = $requestedData->gameType;
         $today = $requestedData->date;
-//        return response()->json(['success' => 1,'data' => $requestedData->drawTime], 200);
+//        $playMaster = PlayMaster::select()->where('draw_master_id',1)->whereRaw('date(play_masters.created_at) >= ?', $today)->get();
+//
+//        if($playMaster->isEmpty()){
+//            return response()->json(['success' => 0,'data' => $playMaster], 200);
+//        }
+//
+//
+//        return response()->json(['success' => 1,'data' => $playMaster], 200);
 
         $drawMasters = DrawMaster::select()->get();
         $gameTypes = GameType::select()->where('id',$gameTypeId)->first();
@@ -229,16 +236,17 @@ order by rand() limit 1"));
         foreach ($drawMasters as $drawMaster){
             $total_prize = 0;
             $total_quantity = 0;
-//            $payout = 0;
+            $payout = null;
 
             $playMaster = PlayMaster::select()->where('draw_master_id',$drawMaster->id)->whereRaw('date(play_masters.created_at) >= ?', $today)->get();
+
 
             foreach ($playMaster as $newPlayMaster){
 //                $total_prize = $total_prize + ($cPanelReportController->get_prize_value_by_barcode($newPlayMaster->id));
                 $total_prize = $total_prize + $this->get_prize_value_by_game_types($newPlayMaster->id,$gameTypes->id);
 //                $total_quantity = $cPanelReportController->get_total_quantity_by_barcode($newPlayMaster->id);
                 $total_quantity = $total_quantity + $this->get_quantity_by_game_types($newPlayMaster->id,$gameTypes->id);;
-                $payout = PlayDetails::select('payout')->where('play_master_id',$newPlayMaster->id)->first();
+                $payout = (PlayDetails::select('payout')->where('play_master_id',$newPlayMaster->id)->first())->payout;
             }
 
             $result_details = ResultMaster::select('two_digit_number_combinations.visible_number')
@@ -266,7 +274,7 @@ order by rand() limit 1"));
                 'result' => $result_details?$result_details->visible_number : null,
                 'payout_on_sales' => ($total_quantity * $gameTypes->mrp)?(($total_prize / ($total_quantity * $gameTypes->mrp))*100) : 0,
                 'manual_result' => $manual_result?$manual_result->visible_number : null,
-                'payout' => $payout->payout
+                'payout' => $payout
             ];
             array_push($dataReport, $tempData);
         }
